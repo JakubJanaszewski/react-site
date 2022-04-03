@@ -8,8 +8,8 @@ function TopBar() {
             <nav>
                 <ul>
                     <li><Link to="/">Main Page</Link></li>
-                    <li><Link to="/sing-up">Sing Up</Link></li>
-                    <li><Link to="/log-in">Log In</Link></li>
+                    <li><Link to="/sign-up">Sign Up</Link></li>
+                    <li><Link to="/sign-in">Sign In</Link></li>
                     <li><Link to="/favorites">Favorites</Link></li>
                 </ul>
             </nav>

@@ -1,9 +1,9 @@
-function SingUpPage() {
+function SignUpPage() {
     return (
         <div>
-            <h1>Sing up page</h1>
+            <h1>Sign up page</h1>
         </div>
     );
   }
   
-  export default SingUpPage;
+  export default SignUpPage;
