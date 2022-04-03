@@ -1,5 +1,5 @@
 import SignInForm from '../components/account/SignInForm';
-import classes from './SignIn.module.css';
+import classes from '../components/layout/Layout.module.css';
 
 function SignIn() {
 
@@ -7,14 +7,13 @@ function SignIn() {
     console.log('E-mail: ' + signInData.email);
     console.log('Password: ' + signInData.password);
     //TODO chceck if login and password match in database
-    signInData.email = '';
   }
 
   return (
-    <section className={classes.layout}>
+    <div className={classes.sign}>
       <h1>Sign In</h1>
       <SignInForm onSignIn={signInHandler} />
-    </section>
+    </div>
   );
 }
 

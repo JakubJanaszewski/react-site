@@ -3,3 +3,12 @@
     width: 100%;
     max-width: 70rem;
 }
+
+.sign{
+    width:50%;
+    margin-left: 25%;
+}
+
+.sign h1{
+    text-align: center;
+}
