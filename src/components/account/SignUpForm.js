@@ -31,11 +31,10 @@ function SignUpForm(props) {
     }
     else{
         changePasswordsMatch(false);
-        console.log('Password doesnt match');
     }
   }
 
-  function cancelHandler(event) {
+  function cancelHandler() {
     changePasswordsMatch(true);
   }
 

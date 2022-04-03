@@ -9,19 +9,22 @@ import SignInPage from './pages/SignIn';
 import FavoritesPage from './pages/Favorites';
 import OfferPage from './pages/Offer';
 import Layout from './components/layout/Layout';
+import { FavoritesContextProvider } from './context/favorites-context';
 
 const container = document.getElementById('root');
 const root = ReactDOMClient.createRoot(container);
 root.render(
-    <BrowserRouter>
-        <Layout>
-            <Routes>
-                <Route exact path='/'       element = {<MainPage/>}/>
-                <Route path='/sign-up'      element = {<SignUpPage/>}/>
-                <Route path='/sign-in'      element = {<SignInPage/>}/>
-                <Route path='/favorites'    element = {<FavoritesPage/>}/>
-                <Route path='/offer'        element = {<OfferPage/>}/>
-            </Routes>
-        </Layout>
-    </BrowserRouter>
+    <FavoritesContextProvider>
+        <BrowserRouter>
+            <Layout>
+                <Routes>
+                    <Route exact path='/'       element = {<MainPage/>}/>
+                    <Route path='/sign-up'      element = {<SignUpPage/>}/>
+                    <Route path='/sign-in'      element = {<SignInPage/>}/>
+                    <Route path='/favorites'    element = {<FavoritesPage/>}/>
+                    <Route path='/offer'        element = {<OfferPage/>}/>
+                </Routes>
+            </Layout>
+        </BrowserRouter>
+    </FavoritesContextProvider>
 );

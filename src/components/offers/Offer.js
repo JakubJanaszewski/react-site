@@ -1,7 +1,34 @@
+import { useContext } from 'react';
+
 import classes from './Offer.module.css';
 import ShadowElement from '../ui/ShadowElement'
+import FavoritesContext from '../../context/favorites-context';
 
 function Offer(props) {
+    const favoritesCtx = useContext(FavoritesContext);
+
+    const itemIsFavorite = favoritesCtx.itemIsFavorite(props.id);
+  
+    function toggleFavoriteStatusHandler() {
+        if (itemIsFavorite) {
+            favoritesCtx.removeFavorite(props.id);
+        } 
+        else
+        {
+            favoritesCtx.addFavorite({
+                id: props.id,
+                image: props.image,
+                price: props.price,
+                title: props.title,
+                year: props.year,
+                mileage: props.mileage,
+                engineCapacity: props.engineCapacity,
+                engineType: props.engineType,
+                description: props.description,
+            });
+        }
+    }
+
     return (
         <ShadowElement>
             <li className={classes.item}>
@@ -34,8 +61,8 @@ function Offer(props) {
                             </li>
                             <li>
                                 <div className={classes.actions}>
-                                    <button>
-                                        Observe
+                                    <button onClick={toggleFavoriteStatusHandler}>
+                                        {itemIsFavorite ? 'Stop observing' : 'Observe'}
                                     </button>
                                 </div>
                             </li>
