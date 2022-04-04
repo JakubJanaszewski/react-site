@@ -1,16 +1,25 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import classes from './TopBar.module.css';
+import AccountContext from '../../context/account-context';
 
 function TopBar() {
+    const signedContext = useContext(AccountContext);
+
+    console.log(signedContext);
     return (
         <header className={classes.header}>
-            <div className={classes.logo}>React Site</div>
+            <Link className={classes.logo} to="/">Main Page</Link>
             <nav>
                 <ul>
-                    <li><Link to="/">Main Page</Link></li>
-                    <li><Link to="/sign-up">Sign Up</Link></li>
-                    <li><Link to="/sign-in">Sign In</Link></li>
+                    {(!signedContext.isSignedIn) ?
+                    <><li><Link to="/sign-up">Sign Up</Link></li> 
+                    <li><Link to="/sign-in">Sign In</Link></li></>
+                    : 
+                    <><li><Link to="/new">New Offer</Link></li>
+                    <li><Link to="/my-offers">My Offers</Link></li>
                     <li><Link to="/favorites">Favorites</Link></li>
+                    <li><h1>Welcome!</h1></li></>}
                 </ul>
             </nav>
         </header>
