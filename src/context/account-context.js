@@ -1,12 +1,12 @@
 import { createContext, useState } from 'react';
 
 const AccountContext = createContext({
-  isSignedIn: false,
+  isSignedIn: true,
   setSignState: () => {},
 });
 
 export function AccountContextProvider(props) {
-  const [isSignedIn, setSign] = useState(false);
+  const [isSignedIn, setSign] = useState(true);
 
   const context = {
     isSignedIn: isSignedIn,

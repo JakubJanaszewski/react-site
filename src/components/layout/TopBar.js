@@ -16,7 +16,7 @@ function TopBar() {
                     <><li><Link to="/sign-up">Sign Up</Link></li> 
                     <li><Link to="/sign-in">Sign In</Link></li></>
                     : 
-                    <><li><Link to="/new">New Offer</Link></li>
+                    <><li><Link to="/new-offer">New Offer</Link></li>
                     <li><Link to="/my-offers">My Offers</Link></li>
                     <li><Link to="/favorites">Favorites</Link></li>
                     <li><h1>Welcome!</h1></li></>}
