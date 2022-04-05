@@ -5,8 +5,10 @@ import AccountContext from '../../context/account-context';
 
 function TopBar() {
     const signedContext = useContext(AccountContext);
-
-    console.log(signedContext);
+    function logoutHandler(){
+        signedContext.setSignState(false);
+    }
+    
     return (
         <header className={classes.header}>
             <Link className={classes.logo} to="/">Main Page</Link>
@@ -19,6 +21,7 @@ function TopBar() {
                     <><li><Link to="/new-offer">New Offer</Link></li>
                     <li><Link to="/my-offers">My Offers</Link></li>
                     <li><Link to="/favorites">Favorites</Link></li>
+                    <li><button onClick={logoutHandler}>{"Logout "}</button></li>
                     <li><h1>Welcome!</h1></li></>}
                 </ul>
             </nav>

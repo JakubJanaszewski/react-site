@@ -82,7 +82,6 @@ function NewOfferForm(props) {
           <label htmlFor='description'>Description:</label>
           <textarea
             id='description'
-            required
             rows='5'
             ref={descriptionInputRef}
           ></textarea>
