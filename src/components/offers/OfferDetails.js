@@ -43,9 +43,28 @@ function OfferDetails(props) {
     }
 
     return (
-        <ShadowElement>
-            <img className={classes.image} src={props.image} alt={props.title} />
-        </ShadowElement>
+        <div className={classes.conteiner}>
+            <ShadowElement>
+                <img className={classes.image} src={props.image} alt={props.title} />
+            </ShadowElement>
+            <ShadowElement>
+                <div className={classes.description}>
+                    <h3>
+                        {props.title}
+                    </h3>
+                        <ul>
+                            <li>{props.year}</li>
+                            <li>·</li>
+                            <li>{props.mileage} km</li>
+                            <li>·</li>
+                            <li>{props.engineCapacity} cm3</li>
+                            <li>·</li>
+                            <li>{props.engineType}</li>
+                    </ul>
+                </div>
+            </ShadowElement>
+        </div>
+
         /*
         <ShadowElement>
                 <div className={classes.conteiner}>

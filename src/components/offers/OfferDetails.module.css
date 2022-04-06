@@ -1,3 +1,9 @@
+.conteiner{
+    display: grid;
+    grid-template-columns: 5fr 3fr;
+    grid-gap: 10rem;
+}
+
 .image{
     width: 100%;
     border-radius: 6px;
@@ -6,6 +12,26 @@
 }
 
 .image img{
-    max-width: 100%;
     height: auto;
+}
+
+.description h3{
+    font-family: 'Open Sans';
+    text-align: center;
+    font-size: 2rem;
+    padding-top: 1.5rem;
+  }
+  
+.description ul{
+    text-align: center;
+    padding-left: 0;
+}
+  
+.description li{
+    font-family: 'Open Sans';
+    text-align: center;
+    font-size: 1rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    display:inline;
 }
