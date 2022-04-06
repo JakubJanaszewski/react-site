@@ -12,7 +12,7 @@ function SignUp() {
 
   return (
     <div className={classes.sign}>
-      <h1>Sign Up</h1>
+      <h1>Sign Up</h1>  
       <SignUpForm onSignUp={signUpHandler} />
     </div>
   );

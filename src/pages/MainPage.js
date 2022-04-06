@@ -1,4 +1,5 @@
 import OfferList from '../components/offers/OfferList';
+import classes from '../components/layout/Layout.module.css';
 
 const OFFER_LIST= [
   {
@@ -27,7 +28,7 @@ const OFFER_LIST= [
 
 function MainPage() {
   return (
-    <div>
+    <div className={classes.offers}>
       <h1>Main Page</h1>
       <OfferList offers={OFFER_LIST} />
     </div>

@@ -1,0 +1,11 @@
+.image{
+    width: 100%;
+    border-radius: 6px;
+    display:block;
+    overflow: hidden;
+}
+
+.image img{
+    max-width: 100%;
+    height: auto;
+}

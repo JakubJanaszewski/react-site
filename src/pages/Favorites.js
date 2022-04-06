@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 
+import classes from '../components/layout/Layout.module.css';
 import FavoritesContext from '../context/favorites-context';
 import OfferList from '../components/offers/OfferList';
 
@@ -15,10 +16,10 @@ function FavoritesPage() {
   }
 
   return (
-    <section>
+    <div className={classes.offers}>
       <h1>Your favorite offers</h1>
       {content}
-    </section>
+    </div>
   );
 }
 

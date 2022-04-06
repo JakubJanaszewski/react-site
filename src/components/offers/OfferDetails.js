@@ -1,12 +1,12 @@
 import { useContext } from 'react';
 import {useNavigate} from 'react-router-dom';
 
-import classes from './Offer.module.css';
+import classes from './OfferDetails.module.css';
 import ShadowElement from '../ui/ShadowElement'
 import FavoritesContext from '../../context/favorites-context';
 import AccountContext from '../../context/account-context';
 
-function Offer(props) {
+function OfferDetails(props) {
     const accContext = useContext(AccountContext);
     const favoritesCtx = useContext(FavoritesContext);
 
@@ -44,7 +44,10 @@ function Offer(props) {
 
     return (
         <ShadowElement>
-            <li className={classes.item}>
+            <img className={classes.image} src={props.image} alt={props.title} />
+        </ShadowElement>
+        /*
+        <ShadowElement>
                 <div className={classes.conteiner}>
                     <div className={classes.image}>
                         <img src={props.image} alt={props.title} />
@@ -82,9 +85,8 @@ function Offer(props) {
                         </ul>
                     </div>
                 </div>
-            </li>
-        </ShadowElement>
+        </ShadowElement>*/
     );
 }
 
-export default Offer;
+export default OfferDetails;
