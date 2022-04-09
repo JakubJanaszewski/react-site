@@ -38,8 +38,11 @@ function OfferDetails(props) {
         }
     }
 
-    function onViewDetails() {
-        navigate('/offer/' + props.id);
+    function onViewLocalization() {
+        window.scrollTo({
+            top: document.documentElement.scrollHeight,
+            behavior: 'smooth',
+        });
     }
 
     return (
@@ -48,33 +51,8 @@ function OfferDetails(props) {
                 <img className={classes.image} src={props.image} alt={props.title} />
             </ShadowElement>
             <ShadowElement>
-                <div className={classes.description}>
-                    <h3>
-                        {props.title}
-                    </h3>
-                        <ul>
-                            <li>{props.year}</li>
-                            <li>·</li>
-                            <li>{props.mileage} km</li>
-                            <li>·</li>
-                            <li>{props.engineCapacity} cm3</li>
-                            <li>·</li>
-                            <li>{props.engineType}</li>
-                    </ul>
-                </div>
-            </ShadowElement>
-        </div>
-
-        /*
-        <ShadowElement>
-                <div className={classes.conteiner}>
-                    <div className={classes.image}>
-                        <img src={props.image} alt={props.title} />
-                    </div>
-                    <div className={classes.description}>
-                        <h3>
-                            {props.title}
-                        </h3>
+                    <h3 className={classes.title}>{props.title}</h3>
+                    <div className={classes.attributes}>
                         <ul>
                             <li>{props.year}</li>
                             <li>·</li>
@@ -86,25 +64,14 @@ function OfferDetails(props) {
                         </ul>
                     </div>
                     <div className={classes.buttons}>
-                        <ul>
-                            <li>
-                                <div className={classes.actions}>
-                                    <button onClick={onViewDetails}>
-                                        {props.price} PLN
-                                    </button>
-                                </div>
-                            </li>
-                            <li>
-                                <div className={classes.actions}>
-                                    <button onClick={toggleFavoriteStatusHandler}>
-                                        {itemIsFavorite ? 'Stop observing' : 'Observe'}
-                                    </button>
-                                </div>
-                            </li>
-                        </ul>
+                        <button onClick={toggleFavoriteStatusHandler}>{itemIsFavorite ? 'Stop observing' : 'Observe'}</button>
+                        <button onClick={onViewLocalization}>View localization</button>
                     </div>
-                </div>
-        </ShadowElement>*/
+                    <div className={classes.description}>
+                        {props.description}
+                    </div>
+            </ShadowElement>
+        </div>
     );
 }
 

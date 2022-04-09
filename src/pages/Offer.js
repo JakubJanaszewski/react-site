@@ -13,7 +13,7 @@ function OfferPage() {
         mileage: 168154,
         engineCapacity: 1995,
         engineType: 'Benzyna',
-        description: 'Description of this car',
+        description: 'Description of this car asdgifghsdfhgsdfghksdf sdfsdjkhlfsd jksdfsdjkgsdjlg jksd sdfgjsdgjsddfnmasd qw3fws sfddgqwweg sdfsadfghjagj sdsdg',
     };
 
     let { id } = useParams();
