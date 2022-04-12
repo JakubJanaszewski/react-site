@@ -45,7 +45,7 @@ function OfferDetails(props) {
         });
     }
 
-    return (
+    return (<>
         <div className={classes.conteiner}>
             <ShadowElement>
                 <img className={classes.image} src={props.image} alt={props.title} />
@@ -72,7 +72,7 @@ function OfferDetails(props) {
                     </div>
             </ShadowElement>
         </div>
-    );
+    </>);
 }
 
 export default OfferDetails;
