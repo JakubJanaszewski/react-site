@@ -20,7 +20,7 @@ function SignIn() {
     console.log('Password: ' + signInData.password);
 
     fetch(
-      'localhost:8000/users/login',
+      'http://localhost:8000/users/login',
       {
         method: 'POST',
         body: JSON.stringify(signInData),
