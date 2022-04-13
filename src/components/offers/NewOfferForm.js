@@ -12,6 +12,10 @@ function NewOfferForm(props) {
   const engineCapacityInputRef = useRef();
   const engineTypeInputRef = useRef();
   const descriptionInputRef = useRef();
+  const countryInputRef = useRef();
+  const cityInputRef = useRef();
+  const streetInputRef = useRef();
+  
 
   function submitHandler(event) {
     event.preventDefault();
@@ -24,6 +28,9 @@ function NewOfferForm(props) {
     const enteredEngineCapacity = engineCapacityInputRef.current.value;
     const enteredEngineType = engineTypeInputRef.current.value;
     const enteredDescription = descriptionInputRef.current.value;
+    const enteredCountry = countryInputRef.current.value;
+    const enteredCity = cityInputRef.current.value;
+    const enteredStreet = streetInputRef.current.value;
 
     const newOfferData = {
       title: enteredTitle,
@@ -34,6 +41,9 @@ function NewOfferForm(props) {
       engineCapacity: enteredEngineCapacity,
       engineType: enteredEngineType,
       description: enteredDescription,
+      country: enteredCountry,
+      city: enteredCity,
+      street: enteredStreet
     };
 
     props.onNewOffer(newOfferData);
@@ -45,6 +55,9 @@ function NewOfferForm(props) {
     engineCapacityInputRef.current.value = '';
     engineTypeInputRef.current.value = '';
     descriptionInputRef.current.value = '';
+    countryInputRef.current.value = '';
+    cityInputRef.current.value = '';
+    streetInputRef.current.value = '';
   }
 
   return (
@@ -77,6 +90,18 @@ function NewOfferForm(props) {
         <div className={classes.control}>
           <label htmlFor='engineType'>Engine type:</label>
           <input type='text' required id='engineType' ref={engineTypeInputRef} />
+        </div>
+        <div className={classes.control}>
+          <label htmlFor='country'>Country:</label>
+          <input type='text' required id='country' ref={countryInputRef} />
+        </div>
+        <div className={classes.control}>
+          <label htmlFor='city'>City:</label>
+          <input type='text' required id='city' ref={cityInputRef} />
+        </div>
+        <div className={classes.control}>
+          <label htmlFor='street'>Street:</label>
+          <input type='text' required id='street' ref={streetInputRef} />
         </div>
         <div className={classes.control}>
           <label htmlFor='description'>Description:</label>

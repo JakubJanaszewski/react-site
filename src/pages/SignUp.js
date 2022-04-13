@@ -20,7 +20,7 @@ function SignUp() {
     console.log('Password: ' + signUpData.password);
 
     fetch(
-      'localhost:8000/users/register',
+      'http://localhost:8000/users/register',
       {
         method: 'POST',
         body: JSON.stringify(signUpData),
