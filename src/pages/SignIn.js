@@ -26,6 +26,9 @@ function SignIn() {
         body: JSON.stringify(signInData),
         headers: {
           'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': 'localhost',
+          'Access-Control-Allow-Methods': 'POST, GET',
+          'Access-Control-Allow-Headers': 'Content-Type'
         },
       }
     ).then((response) => {
