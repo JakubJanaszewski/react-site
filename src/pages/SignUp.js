@@ -20,7 +20,7 @@ function SignUp() {
     console.log('Password: ' + signUpData.password);
 
     fetch(
-      'https://reqbin.com/echo/post/json',
+      'localhost:8000/users/register',
       {
         method: 'POST',
         body: JSON.stringify(signUpData),
@@ -34,7 +34,7 @@ function SignUp() {
       if(response["status"] === 200){
         console.log(response["status"]);
         signedContext.setSignState(true);
-        signedContext.setToken(response["token"])
+        signedContext.setToken(response["jwtToken"])
         navigate('/');
       }
       else{

@@ -34,7 +34,7 @@ function SignIn() {
       if(response["status"] === 200){
         console.log(response["status"]);
         signedContext.setSignState(true);
-        signedContext.setToken(response["token"])
+        signedContext.setToken(response["jwtToken"])
         navigate('/');
       }
       else{
