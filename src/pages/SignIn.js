@@ -18,7 +18,7 @@ function SignIn() {
   function signInHandler(signInData) {
     console.log('E-mail: ' + signInData.email);
     console.log('Password: ' + signInData.password);
-    //TODO chceck if login and password match in database
+
     fetch(
       'https://reqbin.com/echo/post/json',
       {
@@ -34,6 +34,7 @@ function SignIn() {
       if(response["status"] === 200){
         console.log(response["status"]);
         signedContext.setSignState(true);
+        signedContext.setToken(response["token"])
         navigate('/');
       }
       else{
