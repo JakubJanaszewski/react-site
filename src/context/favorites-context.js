@@ -1,16 +1,39 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useContext } from 'react';
+import AccountContext from '../context/account-context';
 
 const FavoritesContext = createContext({
   favorites: [],
-  totalFavorites: 0,
+  getFavoriteFromDatabase: () => {},
   addFavorite: (favoriteMeetup) => {},
   removeFavorite: (meetupId) => {},
   itemIsFavorite: (meetupId) => {}
 });
 
 export function FavoritesContextProvider(props) {
+  const signedContext = useContext(AccountContext);
   const [userFavorites, setUserFavorites] = useState([]);
-  //TODO add favorites from database after user login
+
+  function getFavoriteFromDatabaseHandler() {
+
+    fetch(
+      'http://localhost:8000/favorites/get',
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer ' + signedContext.jwtToken,
+          'Content-Type': 'application/json',
+        },
+      }
+    ).then((response) => {
+      if(response["status"] === 200){
+        console.log(response["favorites"]);
+        setUserFavorites(response["favorites"])
+      }
+      else{
+        console.log("ERROR WHILE GETTING FAVORITES LIST")
+      }
+    });
+  }
 
   function addFavoriteHandler(favoriteOffer) {
     setUserFavorites((prevUserOffers) => {
@@ -30,7 +53,7 @@ export function FavoritesContextProvider(props) {
 
   const context = {
     favorites: userFavorites,
-    totalFavorites: userFavorites.length,
+    getFavoriteFromDatabase:   getFavoriteFromDatabaseHandler,
     addFavorite: addFavoriteHandler,
     removeFavorite: removeFavoriteHandler,
     itemIsFavorite: itemIsFavoriteHandler

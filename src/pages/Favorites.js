@@ -9,7 +9,7 @@ function FavoritesPage() {
 
   let content;
 
-  if (favoritesCtx.totalFavorites === 0) {
+  if (favoritesCtx.favorites.length === 0) {
     content = <p>You don't have favorites yet.</p>;
   } else {
     content = <OfferList offers={favoritesCtx.favorites} />;

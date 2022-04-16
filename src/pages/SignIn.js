@@ -3,11 +3,13 @@ import { useNavigate} from 'react-router-dom';
 import SignInForm from '../components/account/SignInForm';
 import classes from '../components/layout/Layout.module.css';
 import AccountContext from '../context/account-context';
+import FavoritesContext from '../context/favorites-context';
 import ErrorMessage from '../components/ui/ErrorMessage';
 
 function SignIn() {
 
   const signedContext = useContext(AccountContext);
+  const favoritesContext = useContext(FavoritesContext);
   const [dataMatch, changeDataMatch] = useState(true);
   let navigate = useNavigate();
 
@@ -35,6 +37,8 @@ function SignIn() {
         console.log(response["status"]);
         signedContext.setSignState(true);
         signedContext.setToken(response["jwtToken"])
+
+        favoritesContext.getFavoriteFromDatabase();
         navigate('/');
       }
       else{
