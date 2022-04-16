@@ -16,8 +16,6 @@ function SignUp() {
   }
 
   function signUpHandler(signUpData) {
-    console.log('E-mail: ' + signUpData.email);
-    console.log('Password: ' + signUpData.password);
 
     fetch(
       'http://localhost:8000/users/register',

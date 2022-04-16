@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import OfferDetails from '../components/offers/OfferDetails';
-import classes from '../components/layout/Layout.module.css';
+import MapComponent from '../components/offers/MapComponent';
 
 function OfferPage() {
     const OFFER= 
@@ -17,8 +17,8 @@ function OfferPage() {
     };
 
     let { id } = useParams();
-    return (
-        <div className={classes.offerDetails}>
+    return (<>
+        <div>
             <h1>Offer of id: {id}</h1>
             <OfferDetails key={OFFER.id}
                 id={OFFER.id}
@@ -31,8 +31,12 @@ function OfferPage() {
                 engineType={OFFER.engineType}
                 description={OFFER.description}/>
         </div>
-    );
+        <div><MapComponent/></div>
+        <div style={{ height: "200px" }} id="map"></div>
+    </>);
   }
   
   export default OfferPage;
+
+  
   

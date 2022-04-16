@@ -3,16 +3,6 @@ import { useRef, useState } from 'react';
 import classes from './Sign.module.css'
 import ShadowElement from '../ui/ShadowElement';
 import ErrorMessage from '../ui/ErrorMessage';
-/*
-"email": "rafał@brzozowski.net",
-    "password": "takblisko123",
-    "firstName": "Rafał",
-    "lastName": "Brzozowski",
-    "dateOfBirth": "1989-01-01",
-    "adressString": "Woronicza 17",
-    "zipCode": "00-000",
-    "location": "Warszawa",
-    "description": "Prawie wygrałem Eurowizję"*/
 
 function SignUpForm(props) {
   const emailInputRef = useRef();
