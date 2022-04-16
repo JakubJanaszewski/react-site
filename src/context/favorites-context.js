@@ -14,7 +14,6 @@ export function FavoritesContextProvider(props) {
   const [userFavorites, setUserFavorites] = useState([]);
 
   function getFavoriteFromDatabaseHandler() {
-
     fetch(
       'http://localhost:8000/favorites/get',
       {
@@ -36,12 +35,56 @@ export function FavoritesContextProvider(props) {
   }
 
   function addFavoriteHandler(favoriteOffer) {
+    fetch(
+      'http://localhost:8000/favorites/add',
+      {
+        method: 'POST',
+        body: JSON.stringify(favoriteOffer),
+        headers: {
+          'Authorization': 'Bearer ' + signedContext.jwtToken,
+          'Content-Type': 'application/json',
+        },
+      }
+    ).then((response) => {
+      if(response["status"] === 200){
+        setUserFavorites((prevUserOffers) => {
+          return prevUserOffers.concat(favoriteOffer);
+        });
+      }
+      else{
+        console.log("ERROR WHILE ADDING FAVORITE")
+      }
+    });
+
+    // \/ TODO DELETE THIS TEMPORARY CODE \/
     setUserFavorites((prevUserOffers) => {
       return prevUserOffers.concat(favoriteOffer);
     });
   }
 
   function removeFavoriteHandler(offerId) {
+    fetch(
+      'http://localhost:8000/favorites/delate',
+      {
+        method: 'POST',
+        body: JSON.stringify(offerId),
+        headers: {
+          'Authorization': 'Bearer ' + signedContext.jwtToken,
+          'Content-Type': 'application/json',
+        },
+      }
+    ).then((response) => {
+      if(response["status"] === 200){
+        setUserFavorites(prevUserFavorites => {
+          return prevUserFavorites.filter(offer => offer.id !== offerId);
+        });
+      }
+      else{
+        console.log("ERROR WHILE ADDING FAVORITE")
+      }
+    });
+
+    // \/ TODO DELETE THIS TEMPORARY CODE \/
     setUserFavorites(prevUserFavorites => {
       return prevUserFavorites.filter(offer => offer.id !== offerId);
     });
@@ -53,7 +96,7 @@ export function FavoritesContextProvider(props) {
 
   const context = {
     favorites: userFavorites,
-    getFavoriteFromDatabase:   getFavoriteFromDatabaseHandler,
+    getFavoriteFromDatabase: getFavoriteFromDatabaseHandler,
     addFavorite: addFavoriteHandler,
     removeFavorite: removeFavoriteHandler,
     itemIsFavorite: itemIsFavoriteHandler
