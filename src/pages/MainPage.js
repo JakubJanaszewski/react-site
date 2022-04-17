@@ -28,12 +28,14 @@ const OFFER_LIST= [
 ];
 
 function MainPage() {
-  return (
-    <div className={classes.offers}>
+  return (<>
+    <div className={classes.searcher}>
       <OfferSearcher/>
-      <OfferList offers={OFFER_LIST} />
     </div>
-  );
+    <div className={classes.offers}>
+      <OfferList offers={OFFER_LIST} />
+  </div>
+  </>);
 }
   
 export default MainPage;

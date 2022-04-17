@@ -24,6 +24,13 @@
     text-align: center;
 }
 
+.searcher{
+    text-align: center;
+    width:50%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
 .offers{
     text-align: center;
     width:70%;
