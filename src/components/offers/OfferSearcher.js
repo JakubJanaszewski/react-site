@@ -32,6 +32,8 @@ function OfferSearcher(){
   const [offers, setOffers] = useState([]);
   const [init, changeInit] = useState(true);
 
+  if(init) initSetup();
+
   const cityInputRef = useRef();
   const kilometersInputRef = useRef();
   const priceMinInputRef = useRef();
@@ -142,7 +144,6 @@ function OfferSearcher(){
         </div>
       </form>
     </div>
-    {(init) ? initSetup() : <></>}
     <div className={layout.offers}>
       <OfferList offers={offers} />
     </div>

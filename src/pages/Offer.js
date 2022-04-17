@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import OfferDetails from '../components/offers/OfferDetails';
 import MapComponent from '../components/offers/MapComponent';
+import classes from "../components/offers/MapComponent.module.css"
 
 function OfferPage() {
     const OFFER= 
@@ -32,7 +33,7 @@ function OfferPage() {
                 description={OFFER.description}/>
         </div>
         <div><MapComponent/></div>
-        <div style={{ height: "200px" }} id="map"></div>
+        <div className={classes.map} id="map"></div>
     </>);
   }
   

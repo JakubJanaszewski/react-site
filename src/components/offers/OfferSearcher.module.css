@@ -9,6 +9,11 @@
     margin-bottom: 3rem;
 }
 
+
+.control{
+    text-align: center;
+}
+
 .control input,
 .control textarea {
     display: block;
