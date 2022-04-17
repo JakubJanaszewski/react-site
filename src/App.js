@@ -10,7 +10,6 @@ import FavoritesPage from './pages/Favorites';
 import OfferPage from './pages/Offer';
 import NewOfferPage from './pages/NewOffer';
 import AccountContext from './context/account-context';
-import MapComponent from './components/offers/MapComponent';
 
 function App() {
     const accContext = useContext(AccountContext);
