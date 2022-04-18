@@ -4,6 +4,7 @@ import MapComponent from '../components/offers/MapComponent';
 import classes from "../components/offers/MapComponent.module.css"
 
 function OfferPage() {
+    const offer = {lat: 52.237049, lng: 21.017532 };
     const OFFER= 
     {
         id: 'id1',
@@ -32,7 +33,7 @@ function OfferPage() {
                 engineType={OFFER.engineType}
                 description={OFFER.description}/>
         </div>
-        <div><MapComponent/></div>
+        <div><MapComponent lat = {offer.lat} lng = {offer.lng}/></div>
         <div className={classes.map} id="map"></div>
     </>);
   }
