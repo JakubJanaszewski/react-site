@@ -14,7 +14,6 @@ function MapComponent(props){
   );
 };
 
-
 const MyMapComponent = (props) => {
   const map = new window.google.maps.Map(document.getElementById("map"), {
     center: {lat: props.lat, lng: props.lng},

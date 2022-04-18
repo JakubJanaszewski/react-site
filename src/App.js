@@ -16,12 +16,12 @@ function App() {
 
     return (
         <Routes>
-            <Route exact path='/'       element = {<MainPage/>}/>
-            <Route path='/sign-up'      element = {<SignUpPage/>}/>
-            <Route path='/sign-in'      element = {<SignInPage/>}/>
-            <Route path='/offer/:id'    element = {<OfferPage/>}/>
-            <Route path='/favorites'    element = {(accContext.isSignedIn) ? <FavoritesPage/> : <Navigate to='/'/>}/>
-            <Route path='/new-offer'    element = {(accContext.isSignedIn) ? <NewOfferPage/> : <Navigate to='/'/>}/>
+            <Route exact path='/' element = {<MainPage/>}/>
+            <Route path='/sign-up' element = {<SignUpPage/>}/>
+            <Route path='/sign-in' element = {<SignInPage/>}/>
+            <Route path='/offer/:offerId' element = {<OfferPage/>}/>
+            <Route path='/favorites' element = {(accContext.isSignedIn) ? <FavoritesPage/> : <Navigate to='/'/>}/>
+            <Route path='/new-offer' element = {(accContext.isSignedIn) ? <NewOfferPage/> : <Navigate to='/'/>}/>
         </Routes>
     );
   }

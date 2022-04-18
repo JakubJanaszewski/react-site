@@ -15,7 +15,7 @@ function NewOffer() {
 
   function newOfferHandler(newOfferData) {
     fetch(
-      'https://localhost:8000/offer/post',
+      'https://localhost:8000/offers',
       {
         method: 'POST',
         body: JSON.stringify(newOfferData),
