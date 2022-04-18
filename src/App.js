@@ -8,7 +8,7 @@ import SignUpPage from './pages/SignUp';
 import SignInPage from './pages/SignIn';
 import FavoritesPage from './pages/Favorites';
 import OfferPage from './pages/Offer';
-import MyOffers from './pages/MyOffers';
+import UserOffers from './pages/UserOffers';
 import NewOfferPage from './pages/NewOffer';
 import AccountContext from './context/account-context';
 
@@ -23,7 +23,7 @@ function App() {
             <Route path='/offer/:offerId' element = {<OfferPage/>}/>
             <Route path='/favorites' element = {(accContext.isSignedIn) ? <FavoritesPage/> : <Navigate to='/'/>}/>
             <Route path='/new-offer' element = {(accContext.isSignedIn) ? <NewOfferPage/> : <Navigate to='/'/>}/>
-            <Route path='/my-offers' element = {(accContext.isSignedIn) ? <MyOffers/> : <Navigate to='/'/>}/>
+            <Route path='/my-offers' element = {(accContext.isSignedIn) ? <UserOffers/> : <Navigate to='/'/>}/>
         </Routes>
     );
   }

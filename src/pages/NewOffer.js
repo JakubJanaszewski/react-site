@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 
 import NewOfferForm from '../components/offers/NewOfferForm';
 import classes from '../components/layout/Layout.module.css';
 import ErrorMessage from '../components/ui/ErrorMessage';
+import UserOffersContext from '../context/offers-context';
 
 
 function NewOffer() {
-
+  const userOffersContext = useContext(UserOffersContext);
   const [message, changeMessage] = useState(0);
 
   function cancelHandler() {
@@ -26,6 +27,7 @@ function NewOffer() {
     ).then((response) => {
       if(response["status"] === 200){
         changeMessage(1);
+        userOffersContext.getUserOfferFromDatabase();
       }
       else{
         changeMessage(-1);

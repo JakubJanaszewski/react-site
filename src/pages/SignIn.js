@@ -5,6 +5,7 @@ import classes from '../components/layout/Layout.module.css';
 import AccountContext from '../context/account-context';
 import FavoritesContext from '../context/favorites-context';
 import ErrorMessage from '../components/ui/ErrorMessage';
+import UserOffersContext from '../context/offers-context';
 
 function SignIn() {
 
@@ -39,6 +40,7 @@ function SignIn() {
         signedContext.setToken(response["jwtToken"])
 
         favoritesContext.getFavoriteFromDatabase();
+        UserOffersContext.getUserOfferFromDatabase();
         navigate('/');
       }
       else{

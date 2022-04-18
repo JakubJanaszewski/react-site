@@ -7,17 +7,20 @@ import App from './App';
 import Layout from './components/layout/Layout';
 import { FavoritesContextProvider } from './context/favorites-context';
 import { AccountContextProvider } from './context/account-context';
+import { UserOffersContextProvider } from './context/offers-context';
 
 const container = document.getElementById('root');
 const root = ReactDOMClient.createRoot(container);
 root.render(
     <AccountContextProvider>
-        <FavoritesContextProvider>
-            <BrowserRouter>
-                <Layout>
-                    <App/>
-                </Layout>
-            </BrowserRouter>
-        </FavoritesContextProvider>
+        <UserOffersContextProvider>
+            <FavoritesContextProvider>
+                <BrowserRouter>
+                    <Layout>
+                        <App/>
+                    </Layout>
+                </BrowserRouter>
+            </FavoritesContextProvider>
+        </UserOffersContextProvider>
     </AccountContextProvider>
 );

@@ -15,9 +15,9 @@ export function FavoritesContextProvider(props) {
 
   function getFavoriteFromDatabaseHandler() {
     fetch(
-      'http://localhost:8000/favorites/get',
+      'http://localhost:8000/favorites',
       {
-        method: 'POST',
+        method: 'GET',
         headers: {
           'Authorization': 'Bearer ' + signedContext.jwtToken,
           'Content-Type': 'application/json',
