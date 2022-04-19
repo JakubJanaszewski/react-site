@@ -28,12 +28,22 @@ const OFFER_LIST= [
   },
 ];
 
+const offersData = {
+  city: null,
+  kilometers: null,
+  priceMin: null,
+  priceMax: null,
+  yearMin: null,
+  yearMax: null,
+  milageMin: null,
+  milageMax: null,
+};
+
 function OfferSearcher(){
   const [offers, setOffers] = useState([]);
   const [init, changeInit] = useState(true);
 
-  if(init) initSetup();
-
+  const [wasCityGiven, changeCityState] = useState(false);
   const cityInputRef = useRef();
   const kilometersInputRef = useRef();
   const priceMinInputRef = useRef();
@@ -43,22 +53,21 @@ function OfferSearcher(){
   const milageMinInputRef = useRef();
   const milageMaxInputRef = useRef();
 
+  if(init) {initSetup();}
+
+  /*cityInputRef.current.value = "Worldwide";
+  kilometersInputRef.current.value = "No limit";
+  priceMinInputRef.current.value = "No limit";
+  priceMaxInputRef.current.value = "No limit";
+  yearMinInputRef.current.value = "No limit";
+  yearMaxInputRef.current.value = "No limit";
+  milageMinInputRef.current.value = "No limit";
+  milageMaxInputRef.current.value = "No limit";*/
+  
   function initSetup(){
     changeInit(false);
     setOffers(OFFER_LIST);
-
     /*
-    const offersData = {
-      city: null,
-      kilometers: null,
-      priceMin: null,
-      priceMax: null,
-      yearMin: null,
-      yearMax: null,
-      milageMin: null,
-      milageMax: null,
-    };
-
     fetch(
       'https://localhost:8000/offers/get',
       {
@@ -76,18 +85,27 @@ function OfferSearcher(){
 
   function submitHandler(event) {
     event.preventDefault();
-      /*
+
+    kilometersInputRef.current.value = isNaN(kilometersInputRef.current.value) ? "No limit" : kilometersInputRef.current.value;
+
+    if(isNaN(kilometersInputRef.current.value)){
+      kilometersInputRef.current.value="No limit";
+    }
+    
+    
+    /*
     const offersData = {
       city: cityInputRef.current.value,
-      kilometers: kilometersInputRef.current.value,
+      kilometers: (isNaN(kilometersInputRef.current.value)) ? null : kilometersInputRef.current.value,
       priceMin: priceMinInputRef.current.value,
       priceMax: priceMaxInputRef.current.value,
       yearMin: yearMinInputRef.current.value,
       yearMax: yearMaxInputRef.current.value,
       milageMin: milageMinInputRef.current.value,
       milageMax: milageMaxInputRef.current.value,
-    };
+    };*/
 
+    /*
     fetch(
       'https://localhost:8000/offers/get',
       {
@@ -108,7 +126,7 @@ function OfferSearcher(){
       <form className={classes.container} onSubmit={submitHandler}>
         <div className={classes.control}>
           <label htmlFor='city'>City:</label>
-          <input type='text' id='city' ref={cityInputRef} />
+          <input type='text' id='city' ref={cityInputRef}></input>
         </div>
         <div className={classes.control}>
           <label htmlFor='km'>Range:</label>

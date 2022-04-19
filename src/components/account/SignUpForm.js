@@ -116,7 +116,7 @@ function SignUpForm(props) {
               ></textarea>
             </div>
             <div className={classes.actions}>
-              <button>Sign In</button>
+              <button>Sign Up</button>
             </div>
         </form>
         </ShadowElement>
