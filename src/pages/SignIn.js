@@ -11,6 +11,8 @@ function SignIn() {
 
   const signedContext = useContext(AccountContext);
   const favoritesContext = useContext(FavoritesContext);
+  const userOffersContext = useContext(UserOffersContext);
+
   const [dataMatch, changeDataMatch] = useState(true);
   let navigate = useNavigate();
 
@@ -39,8 +41,9 @@ function SignIn() {
         signedContext.setSignState(true);
         signedContext.setToken(response["jwtToken"])
 
+        signedContext.setName();
         favoritesContext.getFavoriteFromDatabase();
-        UserOffersContext.getUserOfferFromDatabase();
+        userOffersContext.getUserOfferFromDatabase();
         navigate('/');
       }
       else{

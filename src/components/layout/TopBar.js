@@ -22,7 +22,7 @@ function TopBar() {
                     <li><Link to="/my-offers">My Offers</Link></li>
                     <li><Link to="/favorites">Favorites</Link></li>
                     <li><button onClick={logoutHandler}>{"Logout"}</button></li>
-                    <li><h1>Welcome!</h1></li></>}
+                    <li><h1>{"Welcome " + signedContext.name +" !"}</h1></li></>}
                 </ul>
             </nav>
         </header>

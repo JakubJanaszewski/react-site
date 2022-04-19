@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 
 import classes from '../components/layout/Layout.module.css';
 import UserOffersContext from '../context/offers-context';
@@ -11,6 +12,7 @@ function UserOffers() {
         return (
             <div className={classes.offers}>
                 <h1>You didn't upload any offer yet.</h1>
+                <Link to="/new-offer">Do you want to add one?</Link>
             </div>
         );
     } 

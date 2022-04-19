@@ -4,9 +4,11 @@ import NewOfferForm from '../components/offers/NewOfferForm';
 import classes from '../components/layout/Layout.module.css';
 import ErrorMessage from '../components/ui/ErrorMessage';
 import UserOffersContext from '../context/offers-context';
+import AccountContext from '../context/account-context';
 
 
 function NewOffer() {
+  const signedContext = useContext(AccountContext);
   const userOffersContext = useContext(UserOffersContext);
   const [message, changeMessage] = useState(0);
 
@@ -16,11 +18,12 @@ function NewOffer() {
 
   function newOfferHandler(newOfferData) {
     fetch(
-      'https://localhost:8000/offers',
+      'https://localhost:8000/offer',
       {
         method: 'POST',
         body: JSON.stringify(newOfferData),
         headers: {
+          'Authorization': 'Bearer ' + signedContext.jwtToken,
           'Content-Type': 'application/json',
         },
       }
