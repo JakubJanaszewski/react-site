@@ -1,19 +1,13 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate} from 'react-router-dom';
+
 import SignUpForm from '../components/account/SignUpForm';
 import classes from '../components/layout/Layout.module.css';
-import AccountContext from '../context/account-context';
 import ErrorMessage from '../components/ui/ErrorMessage';
 
 function SignUp() {
-
-  const signedContext = useContext(AccountContext);
-  const [dataMatch, changeDataMatch] = useState(true);
+  const [registrationStaus, setRegistrationStatus] = useState(0);
   let navigate = useNavigate();
-
-  function cancelHandler() {
-    changeDataMatch(true);
-  }
 
   function signUpHandler(signUpData) {
 
@@ -27,16 +21,11 @@ function SignUp() {
         },
       }
     ).then((response) => {
-      console.log(response);
-      console.log(response["status"]);
       if(response["status"] === 200){
-        console.log(response["status"]);
-        signedContext.setSignState(true);
-        signedContext.setToken(response["jwtToken"])
-        navigate('/');
+        setRegistrationStatus(1);
       }
       else{
-        changeDataMatch(false);
+        setRegistrationStatus(-1);
       }
     });
   }
@@ -46,7 +35,8 @@ function SignUp() {
       <h1>Sign Up</h1>  
       <SignUpForm onSignUp={signUpHandler} />
     </div>
-    {!dataMatch && <ErrorMessage description = "Account with such e-mail already exist. Try with diffrent e-mail." button = "Confirm" onCancel = {cancelHandler}/>}
+    {registrationStaus === 1 && <ErrorMessage description = "You just registered, congratulations!" button = "Confirm" onCancel = {() => {setRegistrationStatus(0); navigate('/sign-in');}}/>}
+    {registrationStaus === -1 && <ErrorMessage description = "Error ocurred during registration. Try again." button = "Confirm" onCancel = {() => {setRegistrationStatus(0);}}/>}
   </>);
 }
 

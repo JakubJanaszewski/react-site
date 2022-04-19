@@ -43,8 +43,8 @@ function NewOffer() {
       <h1>Add new offer</h1>
       <NewOfferForm onNewOffer={newOfferHandler} />
     </div>
-    {message === -1 && <ErrorMessage description = "Wrong data, Try again" button = "Confirm" onCancel = {cancelHandler}/>}
-    {message === 1 && <ErrorMessage description = "You added new offer" button = "Confirm" onCancel = {cancelHandler}/>}
+    {message === -1 && <ErrorMessage description = "Wrong data, Try again." button = "Confirm" onCancel = {cancelHandler}/>}
+    {message === 1 && <ErrorMessage description = "You added new offer." button = "Confirm" onCancel = {cancelHandler}/>}
   </>);
 }
 
