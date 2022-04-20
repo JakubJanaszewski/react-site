@@ -17,6 +17,7 @@ function SignUpForm(props) {
   const zipCodeInputRef = useRef();
   const cityInputRef = useRef();
   const descriptionInputRef = useRef();
+  const phoneNumberInputRef = useRef();
 
   function submitHandler(event) {
     event.preventDefault();
@@ -31,6 +32,7 @@ function SignUpForm(props) {
     const enteredZipCode = zipCodeInputRef.current.value;
     const enteredCity = cityInputRef.current.value;
     const enteredDescription = descriptionInputRef.current.value;
+    const enteredPhoneNumber= phoneNumberInputRef.current.value;
 
     emailInputRef.current.value     = '';
     passwordInputRef.current.value  = '';
@@ -42,12 +44,14 @@ function SignUpForm(props) {
     zipCodeInputRef.current.value = '';
     cityInputRef.current.value = '';
     descriptionInputRef.current.value = '';
+    phoneNumberInputRef.current.value = '';
 
     const signUpData = {
       email: enteredEmail,
       password: enteredpassword,
       firstName: enteredFirstName,
       lastName: enteredLastName,
+      SMS: enteredPhoneNumber,
       dateOfBirth: enteredDateOfBirth,
       adressString: enteredStreetInput,
       zipCode: enteredZipCode,
@@ -90,6 +94,10 @@ function SignUpForm(props) {
             <div className={classes.control}>
               <label htmlFor='lastName'>Last name:</label>
               <input type='text' required id='lastName' ref={lastNameInputRef} />
+            </div>
+            <div className={classes.control}>
+              <label htmlFor='phone'>Phone number:</label>
+              <input type='text' required id='phone' ref={phoneNumberInputRef} />
             </div>
             <div className={classes.control}>
               <label htmlFor='dateOfBirth'>Date of birth:</label>
