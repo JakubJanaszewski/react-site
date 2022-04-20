@@ -4,7 +4,7 @@ import classes from './OfferList.module.css';
 function OfferList(props) {
     return (
         <ul className={classes.list}>
-            {props.offers.map((offer) => (
+            {props.offers?.map((offer) => (
                 <Offer
                 key={offer.id}
                 id={offer.id}

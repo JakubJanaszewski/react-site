@@ -99,7 +99,7 @@ function OfferPage() {
         <div><MapComponent lat = {offerData.lat} lng = {offerData.lng}/></div>
         <div className={classes.map} id="map"></div> </>}
         {(loadingData === -1 || loadingAccount === -1) && 
-        <ErrorMessage description = "Error while getting offer dtails." button = "Confirm" onCancel = {cancelHandler}/>}
+        <ErrorMessage description = "Error while getting offer details." button = "Confirm" onCancel = {cancelHandler}/>}
     </>);
   }
   

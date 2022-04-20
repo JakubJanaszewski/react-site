@@ -1,9 +1,9 @@
-import {useRef, useState} from 'react';
+import React from 'react';
 import classes from './OfferSearcher.module.css'
 import layout from '../layout/Layout.module.css';
 import OfferList from './OfferList';
 
-const OFFER_LIST= [
+const OFFER_LIST = [
   {
     id: 'id1',
     title: 'BMW Seria 3 320i',
@@ -28,144 +28,184 @@ const OFFER_LIST= [
   },
 ];
 
-const offersData = {
-  city: null,
-  kilometers: null,
-  priceMin: null,
-  priceMax: null,
-  yearMin: null,
-  yearMax: null,
-  milageMin: null,
-  milageMax: null,
-};
-
-function OfferSearcher(){
-  const [offers, setOffers] = useState([]);
-  const [init, changeInit] = useState(true);
-
-  const [wasCityGiven, changeCityState] = useState(false);
-  const cityInputRef = useRef();
-  const kilometersInputRef = useRef();
-  const priceMinInputRef = useRef();
-  const priceMaxInputRef = useRef();
-  const yearMinInputRef = useRef();
-  const yearMaxInputRef = useRef();
-  const milageMinInputRef = useRef();
-  const milageMaxInputRef = useRef();
-
-  if(init) {initSetup();}
-
-  /*cityInputRef.current.value = "Worldwide";
-  kilometersInputRef.current.value = "No limit";
-  priceMinInputRef.current.value = "No limit";
-  priceMaxInputRef.current.value = "No limit";
-  yearMinInputRef.current.value = "No limit";
-  yearMaxInputRef.current.value = "No limit";
-  milageMinInputRef.current.value = "No limit";
-  milageMaxInputRef.current.value = "No limit";*/
+class OfferSearcher extends React.Component {
   
-  function initSetup(){
-    changeInit(false);
-    setOffers(OFFER_LIST);
-    /*
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      offers: [],
+      offersData: {
+        city: null,
+        kilometers: null,
+        priceMin: null,
+        priceMax: null,
+        yearMin: null,
+        yearMax: null,
+        milageMin: null,
+        milageMax: null,
+      }
+    }
+
+    this.cityRef = React.createRef();
+    this.kilometersRef = React.createRef();
+    this.priceMinRef = React.createRef();
+    this.priceMaxRef = React.createRef();
+    this.yearMinRef = React.createRef();
+    this.yearMaxRef = React.createRef();
+    this.milageMinRef = React.createRef();
+    this.milageMaxRef = React.createRef();
+
+    this.submitHandler = this.submitHandler.bind(this);
+    this.fetchOffers = this.fetchOffers.bind(this);
+    this.init = this.init.bind(this);
+  }
+
+  componentDidMount(){
+    this.init();
+  }
+
+  init(){
+    this.cityRef.current.value = "Worldwide";
+    this.kilometersRef.current.value = "No limit";
+    this.priceMinRef.current.value = "No limit";
+    this.priceMaxRef.current.value = "No limit";
+    this.yearMinRef.current.value = "No limit";
+    this.yearMaxRef.current.value = "No limit";
+    this.milageMinRef.current.value = "No limit";
+    this.milageMaxRef.current.value = "No limit";
+    this.fetchOffers();
+  }
+
+  fetchOffers(){
+    //TODO DELETE THIS \/
+    this.setState({offers: OFFER_LIST});
+    
     fetch(
       'https://localhost:8000/offers/get',
       {
         method: 'POST',
-        body: JSON.stringify(offersData),
+        body: JSON.stringify(this.offersData),
         headers: {
           'Content-Type': 'application/json'
         },
       }).then((response) => {
         if(response["status"] === 200){
-          setOffers(response["offers"]);
+          this.setState({offers: response["offers"]});
         }
-    });*/
+    });
   }
 
-  function submitHandler(event) {
+  submitHandler(event) {
     event.preventDefault();
 
-    kilometersInputRef.current.value = isNaN(kilometersInputRef.current.value) ? "No limit" : kilometersInputRef.current.value;
-
-    if(isNaN(kilometersInputRef.current.value)){
-      kilometersInputRef.current.value="No limit";
+    console.log(this.kilometersRef.current.value);
+    if(isNaN(this.kilometersRef.current.value)){
+      this.kilometersRef.current.value = "No limit";
+      this.setState({offers: {kilometers: null}});
     }
-    
-    
-    /*
-    const offersData = {
-      city: cityInputRef.current.value,
-      kilometers: (isNaN(kilometersInputRef.current.value)) ? null : kilometersInputRef.current.value,
-      priceMin: priceMinInputRef.current.value,
-      priceMax: priceMaxInputRef.current.value,
-      yearMin: yearMinInputRef.current.value,
-      yearMax: yearMaxInputRef.current.value,
-      milageMin: milageMinInputRef.current.value,
-      milageMax: milageMaxInputRef.current.value,
-    };*/
+    else{
+      this.setState({offers: {kilometers: this.kilometersRef.current.value}});
+    }
 
-    /*
-    fetch(
-      'https://localhost:8000/offers/get',
-      {
-        method: 'POST',
-        body: JSON.stringify(offersData),
-        headers: {
-          'Content-Type': 'application/json'
-        },
-      }).then((response) => {
-        if(response["status"] === 200){
-          setOffers(response["offers"]);
-        }
-    });*/
+    if(isNaN(this.priceMinRef.current.value)){
+      this.priceMinRef.current.value = "No limit";
+      this.setState({offers: {priceMin: null}});
+    }
+    else{
+      this.setState({offers: {priceMin: this.priceMinRef.current.value}});
+    }
+
+    if(isNaN(this.priceMaxRef.current.value)){
+      this.priceMaxRef.current.value = "No limit";
+      this.setState({offers: {priceMax: null}});
+    }
+    else{
+      this.setState({offers: {priceMax: this.priceMaxRef.current.value}});
+    }
+
+    if(isNaN(this.yearMinRef.current.value)){
+      this.yearMinRef.current.value = "No limit";
+      this.setState({offers: {yearMin: null}});
+    }
+    else{
+      this.setState({offers: {yearMin: this.yearMinRef.current.value}});
+    }
+
+    if(isNaN(this.yearMaxRef.current.value)){
+      this.yearMaxRef.current.value = "No limit";
+      this.setState({offers: {yearMax: null}});
+    }
+    else{
+      this.setState({offers: {yearMax: this.yearMaxRef.current.value}});
+    }
+
+    if(isNaN(this.milageMinRef.current.value)){
+      this.milageMinRef.current.value = "No limit";
+      this.setState({offers: {milageMin: null}});
+    }
+    else{
+      this.setState({offers: {milageMin: this.milageMinRef.current.value}});
+    }
+
+    if(isNaN(this.milageMaxRef.current.value)){
+      this.milageMaxRef.current.value = "No limit";
+      this.setState({offers: {milageMax: null}});
+    }
+    else{
+      this.setState({offers: {milageMax: this.milageMaxRef.current.value}});
+    }
+
+    this.fetchOffers();  
   }
 
-  return (<>
-    <div className={layout.searcher}>
-      <form className={classes.container} onSubmit={submitHandler}>
-        <div className={classes.control}>
-          <label htmlFor='city'>City:</label>
-          <input type='text' id='city' ref={cityInputRef}></input>
-        </div>
-        <div className={classes.control}>
-          <label htmlFor='km'>Range:</label>
-          <input type='text' id='km' ref={kilometersInputRef} />
-        </div>
-        <div className={classes.control}>
-          <label htmlFor='priceMin'>Min km:</label>
-          <input type='text' id='priceMin' ref={priceMinInputRef} />
-        </div>
-        <div className={classes.control}>
-          <label htmlFor='priceMax'>Max km:</label>
-          <input type='text' id='priceMax' ref={priceMaxInputRef} />
-        </div>
-        <div className={classes.control}>
-          <label htmlFor='yearMin'>Min year:</label>
-          <input type='text' id='yearMin' ref={yearMinInputRef} />
-        </div>
-        <div className={classes.control}>
-          <label htmlFor='yearMax'>Max year:</label>
-          <input type='text' id='yearMax' ref={yearMaxInputRef} />
-        </div>
-        <div className={classes.control}>
-          <label htmlFor='milageMin'>Min milage:</label>
-          <input type='text' id='milageMin' ref={milageMinInputRef} />
-        </div>
-        <div className={classes.control}>
-          <label htmlFor='milageMax'>Max milage:</label>
-          <input type='text' id='milageMax' ref={milageMaxInputRef} />
-       </div>
-                
-        <div className={classes.actions}>
-          <button>Search</button>
-        </div>
-      </form>
-    </div>
-    <div className={layout.offers}>
-      <OfferList offers={offers} />
-    </div>
-  </>);
+  render() {
+    return (<>
+      <div className={layout.searcher}>
+        <form className={classes.container} onSubmit={this.submitHandler}>
+          <div className={classes.control}>
+            <label htmlFor='city'>City:</label>
+            <input type='text' id='city' ref={this.cityRef}></input>
+          </div>
+          <div className={classes.control}>
+            <label htmlFor='km'>Range:</label>
+            <input type='text' id='km' ref={this.kilometersRef} />
+          </div>
+          <div className={classes.control}>
+            <label htmlFor='priceMin'>Min km:</label>
+            <input type='text' id='priceMin' ref={this.priceMinRef} />
+          </div>
+          <div className={classes.control}>
+            <label htmlFor='priceMax'>Max km:</label>
+            <input type='text' id='priceMax' ref={this.priceMaxRef} />
+          </div>
+          <div className={classes.control}>
+            <label htmlFor='yearMin'>Min year:</label>
+            <input type='text' id='yearMin' ref={this.yearMinRef} />
+          </div>
+          <div className={classes.control}>
+            <label htmlFor='yearMax'>Max year:</label>
+            <input type='text' id='yearMax' ref={this.yearMaxRef} />
+          </div>
+          <div className={classes.control}>
+            <label htmlFor='milageMin'>Min milage:</label>
+            <input type='text' id='milageMin' ref={this.milageMinRef} />
+          </div>
+          <div className={classes.control}>
+            <label htmlFor='milageMax'>Max milage:</label>
+            <input type='text' id='milageMax' ref={this.milageMaxRef} />
+         </div>
+                  
+          <div className={classes.actions}>
+            <button>Search</button>
+          </div>
+        </form>
+      </div>
+      <div className={layout.offers}>
+        <OfferList offers={this.state.offers} />
+      </div>
+    </>);
+  }
 }
 
 export default OfferSearcher;
