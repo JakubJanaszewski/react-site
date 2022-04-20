@@ -51,25 +51,32 @@ function OfferDetails(props) {
                 <img className={classes.image} src={props.image} alt={props.title} />
             </ShadowElement>
             <ShadowElement>
-                    <h3 className={classes.title}>{props.title}</h3>
-                    <div className={classes.attributes}>
-                        <ul>
-                            <li>{props.year}</li>
-                            <li>·</li>
-                            <li>{props.mileage} km</li>
-                            <li>·</li>
-                            <li>{props.engineCapacity} cm3</li>
-                            <li>·</li>
-                            <li>{props.engineType}</li>
-                        </ul>
-                    </div>
-                    <div className={classes.buttons}>
-                        <button onClick={toggleFavoriteStatusHandler}>{itemIsFavorite ? 'Stop observing' : 'Observe'}</button>
-                        <button onClick={onViewLocalization}>View localization</button>
-                    </div>
-                    <div className={classes.description}>
-                        {props.description}
-                    </div>
+                <h3 className={classes.title}>{props.title}</h3>
+                <div className={classes.attributes}>
+                    <ul>
+                        <li>{props.year}</li>
+                        <li>·</li>
+                        <li>{props.mileage} km</li>
+                        <li>·</li>
+                        <li>{props.engineCapacity} cm3</li>
+                        <li>·</li>
+                        <li>{props.engineType}</li>
+                    </ul>
+                </div>
+                <div className={classes.buttons}>
+                    <button onClick={toggleFavoriteStatusHandler}>{itemIsFavorite ? 'Stop observing' : 'Observe'}</button>
+                    <button onClick={onViewLocalization}>View localization</button>
+                </div>
+                <div className={classes.account}>
+                    <ul>
+                        <li>{props.firstName}</li>
+                        <li>{props.lastName}</li>
+                        <li>{props.phone}</li>
+                    </ul>
+                </div>
+                <div className={classes.description}>
+                    {props.description}
+                </div>
             </ShadowElement>
         </div>
     </>);

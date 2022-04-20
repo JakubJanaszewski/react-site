@@ -51,7 +51,7 @@ function SignUpForm(props) {
       password: enteredpassword,
       firstName: enteredFirstName,
       lastName: enteredLastName,
-      SMS: enteredPhoneNumber,
+      phone: enteredPhoneNumber,
       dateOfBirth: enteredDateOfBirth,
       adressString: enteredStreetInput,
       zipCode: enteredZipCode,
