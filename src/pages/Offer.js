@@ -30,15 +30,8 @@ function OfferPage() {
     console.log(offerId);
 
     //TODO: REPLACE WHEN CONECTION WITH DATABASE WILL BE DONE
-    const [loadingData, setLoadingData] = useState(0);
-    const [loadingAccount, setLoadingAccount] = useState(0);
-    //const [loadingData, setLoadingData] = useState(1);
-    //const [loadingAccount, setLoadingAccount]= useState(1);
-
-    function cancelHandler() {
-        setLoadingData(1);
-        setLoadingAccount(1);
-    }
+    const [loading, setLoading] = useState(0);
+    //const [loading, setLoading] = useState(1);
 
     function showOfferHandler() {    
         fetch(
@@ -52,35 +45,33 @@ function OfferPage() {
         ).then((response) => {
             if(response["status"] === 200){
                 offerData = response["offer"];
-                setLoadingData(0);
+                fetch(
+                    'https://localhost:8000/users/?id=' + response["offer"]["email"],
+                    {
+                        method: 'GET',
+                        headers: {
+                        'Content-Type': 'application/json'
+                        },
+                    }
+                ).then((responseAcc) => {
+                    if(responseAcc["status"] === 200){
+                        accountData = responseAcc["account"]; 
+                        setLoading(0);
+                    }
+                    else{
+                        setLoading(-1);
+                    }
+                });
             }
             else{
-                setLoadingData(-1);
+                setLoading(-1);
             }
-        });
-
-        fetch(
-            'https://localhost:8000/users/?id=' + offerId,
-            {
-                method: 'GET',
-                headers: {
-                'Content-Type': 'application/json'
-                },
-            }
-        ).then((response) => {
-            if(response["status"] === 200){
-                accountData = response["account"];
-                setLoadingAccount(0);
-            }
-            else{
-                setLoadingAccount(-1);
-            }
-        });
+        });       
     }
 
     return (<>
-        {loadingData === 1 && loadingAccount === 1 && showOfferHandler()}
-        {loadingData === 0 && loadingAccount === 0 && <> 
+        {loading === 1 && showOfferHandler()}
+        {loading === 0 &&  <> 
         <div>
             <OfferDetails key={offerData.id}
                 id={offerData.id}
@@ -98,8 +89,7 @@ function OfferPage() {
         </div>
         <div><MapComponent lat = {offerData.lat} lng = {offerData.lng}/></div>
         <div className={classes.map} id="map"></div> </>}
-        {(loadingData === -1 || loadingAccount === -1) && 
-        <ErrorMessage description = "Error while getting offer details." button = "Confirm" onCancel = {cancelHandler}/>}
+        {loading === -1 && <ErrorMessage description = "Error while getting offer details." button = "Confirm" onCancel = {() => {setLoading(1);}} />}
     </>);
   }
   
