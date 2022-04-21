@@ -5,10 +5,13 @@ import classes from './Offer.module.css';
 import ShadowElement from '../ui/ShadowElement'
 import FavoritesContext from '../../context/favorites-context';
 import AccountContext from '../../context/account-context';
+import UserOffersContext from '../../context/offers-context';
+
 
 function Offer(props) {
     const accContext = useContext(AccountContext);
     const favoritesCtx = useContext(FavoritesContext);
+    const userOffersContext = useContext(UserOffersContext);
 
     const itemIsFavorite = favoritesCtx.itemIsFavorite(props.id);
 
@@ -42,6 +45,11 @@ function Offer(props) {
         navigate('/offer/' + props.id);
     }
 
+    function onDeleteOffer(){
+        userOffersContext.deleteOffer({id: props.id});
+        userOffersContext.getUserOfferFromDatabase();
+    }
+
     return (
         <ShadowElement>
             <li className={classes.item}>
@@ -72,6 +80,14 @@ function Offer(props) {
                                     </button>
                                 </div>
                             </li>
+                            {props.delete === '1' &&
+                            <li>
+                                <div className={classes.actions}>
+                                    <button onClick={onDeleteOffer}>
+                                        Delete
+                                    </button>
+                                </div>
+                            </li>}
                             <li>
                                 <div className={classes.actions}>
                                     <button onClick={toggleFavoriteStatusHandler}>

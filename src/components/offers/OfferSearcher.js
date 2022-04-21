@@ -99,7 +99,6 @@ class OfferSearcher extends React.Component {
   submitHandler(event) {
     event.preventDefault();
 
-    console.log(this.kilometersRef.current.value);
     if(isNaN(this.kilometersRef.current.value)){
       this.kilometersRef.current.value = "No limit";
       this.setState({offers: {kilometers: null}});
@@ -202,7 +201,7 @@ class OfferSearcher extends React.Component {
         </form>
       </div>
       <div className={layout.offers}>
-        <OfferList offers={this.state.offers} />
+        <OfferList offers={this.state.offers} delete = '0'/>
       </div>
     </>);
   }

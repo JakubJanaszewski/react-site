@@ -51,19 +51,14 @@
 }
 
 .buttons ul{
+  display: grid;
+  align-items: center;
   height: 100%;
   padding-left: 0;
 }
 
 .buttons li{
-  max-height: 50%;
   list-style: none;
-}
-
-.actions{
-  padding-top: 13%;
-  padding-bottom: 13%;
-  padding-left: 10%;
 }
 
 .actions button {

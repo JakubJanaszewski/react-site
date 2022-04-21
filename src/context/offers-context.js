@@ -4,6 +4,7 @@ import AccountContext from '../context/account-context';
 const UserOffersContext = createContext({
     userOffers: [],
     getUserOfferFromDatabase: () => {},
+    deleteOffer: () => {},
 });
 
 export function UserOffersContextProvider(props) {
@@ -30,9 +31,31 @@ export function UserOffersContextProvider(props) {
         });
     }
 
+    function deleteOfferHandler(offerID) {
+        fetch(
+            'http://localhost:8000/offer',
+            {
+                method: 'DELETE',
+                body: JSON.stringify(offerID),
+                headers: {
+                    'Authorization': 'Bearer ' + signedContext.jwtToken,
+                    'Content-Type': 'application/json',
+                },
+            }
+        ).then((response) => {
+            if(response["status"] === 200){
+                getFavoriteFromDatabaseHandler();
+            }
+            else{
+                console.log("ERROR DURING DELETING OFFER");
+            }
+        });
+    }
+
     const context = {
         userOffers: userOffers,
         getUserOfferFromDatabase: getFavoriteFromDatabaseHandler,
+        deleteOffer: deleteOfferHandler,
     };
 
     return (
