@@ -47,7 +47,6 @@ function Offer(props) {
 
     function onDeleteOffer(){
         userOffersContext.deleteOffer({id: props.id});
-        userOffersContext.getUserOfferFromDatabase();
     }
 
     return (

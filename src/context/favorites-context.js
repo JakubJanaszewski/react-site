@@ -36,7 +36,7 @@ export function FavoritesContextProvider(props) {
 
   function addFavoriteHandler(favoriteOffer) {
     fetch(
-      'http://localhost:8000/favorites/add',
+      'http://localhost:8000/favorites',
       {
         method: 'POST',
         body: JSON.stringify(favoriteOffer),
@@ -64,10 +64,10 @@ export function FavoritesContextProvider(props) {
 
   function removeFavoriteHandler(offerId) {
     fetch(
-      'http://localhost:8000/favorites/delate',
+      'http://localhost:8000/favorites',
       {
-        method: 'POST',
-        body: JSON.stringify(offerId),
+        method: 'DELETE',
+        body: JSON.stringify({id: offerId}),
         headers: {
           'Authorization': 'Bearer ' + signedContext.jwtToken,
           'Content-Type': 'application/json',
