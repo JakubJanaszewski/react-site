@@ -34,7 +34,7 @@ function OfferPage() {
 
     function showOfferHandler() {    
         fetch(
-            'http://localhost:8000/offer/' + offerId,
+            'http://localhost:8000/offer/2',
             {
                 method: 'GET',
                 headers: {
