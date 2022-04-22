@@ -27,15 +27,14 @@ function OfferPage() {
     };
 
     const { offerId } = useParams();
-    console.log(offerId);
 
     //TODO: REPLACE WHEN CONECTION WITH DATABASE WILL BE DONE
-    const [loading, setLoading] = useState(1);
+    const [loading, setLoading] = useState(0);
     //const [loading, setLoading] = useState(1);
 
     function showOfferHandler() {    
         fetch(
-            'http://localhost:8000/offer/2',
+            'http://localhost:8000/offer/' + offerId,
             {
                 method: 'GET',
                 headers: {
@@ -43,30 +42,35 @@ function OfferPage() {
                 },
             }
         ).then((response) => {
-            if(response["status"] === 200){
-                offerData = response["offer"];
-                fetch(
-                    'http://localhost:8000/users/' + response["offer"]["email"],
-                    {
-                        method: 'GET',
-                        headers: {
-                        'Content-Type': 'application/json'
-                        },
-                    }
-                ).then((responseAcc) => {
-                    if(responseAcc["status"] === 200){
-                        accountData = responseAcc["account"]; 
-                        setLoading(0);
-                    }
-                    else{
-                        setLoading(-1);
-                    }
-                });
-            }
-            else{
+            if(!response.ok){
                 setLoading(-1);
             }
-        });       
+            return response.json()
+        })
+        .then(json =>  {
+            for(var key in json) {
+                offerData[key] = json[key];
+            }
+
+            fetch(
+                'http://localhost:8000/users/' + offerData["email"],
+                {
+                    method: 'GET',
+                    headers: {
+                    'Content-Type': 'application/json'
+                    },
+                }.then((response) => {
+                    if(!response.ok){
+                        setLoading(-1);
+                    }
+                    return response.json()
+                }).then(json =>  {
+                    for(var key in json) {
+                        accountData[key] = json[key];
+                    }
+                })
+            )
+        });
     }
 
     return (<>
