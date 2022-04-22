@@ -53,7 +53,7 @@ function OfferPage() {
             }
 
             fetch(
-                'http://localhost:8000/users/' + offerData["email"],
+                'http://localhost:8000/users/' + offerData["userEmail"],
                 {
                     method: 'GET',
                     headers: {
@@ -68,6 +68,7 @@ function OfferPage() {
                     for(var key in json) {
                         accountData[key] = json[key];
                     }
+                    setLoading(0);
                 })
             )
         });
