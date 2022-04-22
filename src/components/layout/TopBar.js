@@ -7,6 +7,7 @@ function TopBar() {
     const signedContext = useContext(AccountContext);
     function logoutHandler(){
         signedContext.setSignState(false);
+        signedContext.setToken(0);
     }
     
     return (

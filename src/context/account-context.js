@@ -1,7 +1,7 @@
 import { createContext, useState } from 'react';
 
 const AccountContext = createContext({
-  isSignedIn: true,
+  isSignedIn: false,
   setSignState: () => {},
   jwtToken: 0,
   setToken: () => {},
@@ -10,7 +10,7 @@ const AccountContext = createContext({
 });
 
 export function AccountContextProvider(props) {
-  const [isSignedIn, setSign] = useState(true);
+  const [isSignedIn, setSign] = useState(false);
   const [token, setToken] = useState(0);
   const [name, setName] = useState("");
 
