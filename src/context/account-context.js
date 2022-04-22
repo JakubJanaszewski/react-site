@@ -16,7 +16,7 @@ export function AccountContextProvider(props) {
 
   function setNameHandler(){
     fetch(
-      'https://localhost:8000/users/info',
+      'http://localhost:8000/users/info',
       {
         method: 'GET',
         headers: {

@@ -35,7 +35,7 @@ function OfferPage() {
 
     function showOfferHandler() {    
         fetch(
-            'https://localhost:8000/offer/2',
+            'http://localhost:8000/offer/2',
             {
                 method: 'GET',
                 headers: {
@@ -46,7 +46,7 @@ function OfferPage() {
             if(response["status"] === 200){
                 offerData = response["offer"];
                 fetch(
-                    'https://localhost:8000/users/' + response["offer"]["email"],
+                    'http://localhost:8000/users/' + response["offer"]["email"],
                     {
                         method: 'GET',
                         headers: {
