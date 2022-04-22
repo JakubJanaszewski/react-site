@@ -30,12 +30,12 @@ function OfferPage() {
     console.log(offerId);
 
     //TODO: REPLACE WHEN CONECTION WITH DATABASE WILL BE DONE
-    const [loading, setLoading] = useState(0);
+    const [loading, setLoading] = useState(1);
     //const [loading, setLoading] = useState(1);
 
     function showOfferHandler() {    
         fetch(
-            'https://localhost:8000/offer/?id=' + offerId,
+            'https://localhost:8000/offer/?id=2',
             {
                 method: 'GET',
                 headers: {
