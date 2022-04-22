@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 
 import classes from './Offer.module.css';
@@ -6,6 +6,7 @@ import ShadowElement from '../ui/ShadowElement'
 import FavoritesContext from '../../context/favorites-context';
 import AccountContext from '../../context/account-context';
 import UserOffersContext from '../../context/offers-context';
+import ChooseMessage from '../ui/ChooseMessage';
 
 
 function Offer(props) {
@@ -14,6 +15,8 @@ function Offer(props) {
     const userOffersContext = useContext(UserOffersContext);
 
     const itemIsFavorite = favoritesCtx.itemIsFavorite(props.id);
+
+    const [ isDeleteClicked, toggleDeleteState] = useState(false);
 
     let navigate = useNavigate(); 
     function toggleFavoriteStatusHandler() {
@@ -45,11 +48,7 @@ function Offer(props) {
         navigate('/offer/' + props.id);
     }
 
-    function onDeleteOffer(){
-        userOffersContext.deleteOffer({id: props.id});
-    }
-
-    return (
+    return (<>
         <ShadowElement>
             <li className={classes.item}>
                 <div className={classes.conteiner}>
@@ -82,7 +81,7 @@ function Offer(props) {
                             {props.delete === '1' &&
                             <li>
                                 <div className={classes.actions}>
-                                    <button onClick={onDeleteOffer}>
+                                    <button onClick={toggleDeleteState(true)}>
                                         Delete
                                     </button>
                                 </div>
@@ -99,7 +98,15 @@ function Offer(props) {
                 </div>
             </li>
         </ShadowElement>
-    );
+        {isDeleteClicked && 
+        <ChooseMessage 
+            onCancel = { () => {toggleDeleteState(false)}} 
+            onConfirm = { () => {userOffersContext.deleteOffer({id: props.id}); toggleDeleteState(false)} } 
+            buttonCancel = 'Cancel' 
+            buttonConfirm = 'Delete' 
+            description = 'Are you sure you want to delete an offer?'>
+        </ChooseMessage>}
+    </>);
 }
 
 export default Offer;

@@ -2,9 +2,7 @@ import Offer from './Offer';
 import classes from './OfferList.module.css';
 
 function OfferList(props) {
-
-    console.log("Offerlist: " + props.delete);
-    
+   
     return (
         <ul className={classes.list}>
             {props.offers?.map((offer) => (
