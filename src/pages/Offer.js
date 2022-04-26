@@ -9,7 +9,7 @@ function OfferPage() {
     let offerData = {
         id: 'id1',
         title: 'BMW Seria 3 320i',
-        image: 'https://ireland.apollo.olxcdn.com/v1/files/eyJmbiI6Imt3MXc3djNhMHR6dTEtT1RPTU9UT1BMIiwidyI6W3siZm4iOiJ3ZzRnbnFwNnkxZi1PVE9NT1RPUEwiLCJzIjoiMTYiLCJwIjoiMTAsLTEwIiwiYSI6IjAifV19.lydQA9BQN99fSinaqrnflwV3mAGJEXkUhT9IDWpkp8Q/image;s=1080x720',
+        image: 'https://media.istockphoto.com/photos/generic-red-suv-on-a-white-background-side-view-picture-id1157655660?s=612x612',
         price: 20900,
         year: 2005,
         mileage: 168154,
@@ -34,6 +34,7 @@ function OfferPage() {
 
     function showOfferHandler() {    
         fetch(
+            //'http://localhost:8000/offer/' + offerId,
             'http://localhost:8000/offer/2',
             {
                 method: 'GET',
@@ -53,7 +54,7 @@ function OfferPage() {
             }
 
             fetch(
-                'http://localhost:8000/users/' + offerData["userEmail"],
+                'http://localhost:8000/users/info/' + offerData["userEmail"],
                 {
                     method: 'GET',
                     headers: {

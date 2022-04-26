@@ -57,9 +57,9 @@ export function FavoritesContextProvider(props) {
     });
 
     // \/ TODO DELETE THIS TEMPORARY CODE \/
-    setUserFavorites((prevUserOffers) => {
+    /*setUserFavorites((prevUserOffers) => {
       return prevUserOffers.concat(favoriteOffer);
-    });
+    });*/
   }
 
   function removeFavoriteHandler(offerId) {
@@ -85,9 +85,9 @@ export function FavoritesContextProvider(props) {
     });
 
     // \/ TODO DELETE THIS TEMPORARY CODE \/
-    setUserFavorites(prevUserFavorites => {
+    /*setUserFavorites(prevUserFavorites => {
       return prevUserFavorites.filter(offer => offer.id !== offerId);
-    });
+    });*/
   }
 
   function itemIsFavoriteHandler(offerId) {

@@ -1,19 +1,15 @@
 import { useContext, useState } from 'react';
 import { useNavigate} from 'react-router-dom';
+
 import SignInForm from '../components/account/SignInForm';
 import classes from '../components/layout/Layout.module.css';
 import AccountContext from '../context/account-context';
-import FavoritesContext from '../context/favorites-context';
 import ErrorMessage from '../components/ui/ErrorMessage';
-import UserOffersContext from '../context/offers-context';
 
 function SignIn() {
-
-  const signedContext = useContext(AccountContext);
-  const favoritesContext = useContext(FavoritesContext);
-  const userOffersContext = useContext(UserOffersContext);
-
+  const accountContext = useContext(AccountContext);
   const [dataMatch, changeDataMatch] = useState(true);
+
   let navigate = useNavigate();
 
   function cancelHandler() {
@@ -21,35 +17,12 @@ function SignIn() {
   }
 
   function signInHandler(signInData) {
-    console.log('E-mail: ' + signInData.email);
-    console.log('Password: ' + signInData.password);
-
-    fetch(
-      'http://localhost:8000/users/login',
-      {
-        method: 'POST',
-        body: JSON.stringify(signInData),
-        headers: {
-          'Content-Type': 'application/json'
-        },
-      }
-    ).then((response) => {
-      console.log(response);
-      console.log(response["status"]);
-      if(response["status"] === 200){
-        console.log(response["status"]);
-        signedContext.setSignState(true);
-        signedContext.setToken(response["jwtToken"])
-
-        signedContext.setName();
-        favoritesContext.getFavoriteFromDatabase();
-        userOffersContext.getUserOfferFromDatabase();
-        navigate('/');
-      }
-      else{
-        changeDataMatch(false);
-      }
-    });
+    if(accountContext.signIn(signInData)){
+      navigate('/');
+    }
+    else{
+      changeDataMatch(false);
+    }
   }
 
   return (<>
