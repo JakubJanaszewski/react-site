@@ -21,8 +21,30 @@ export function AccountContextProvider(props) {
   const [init, setInit] = useState(true);
 
   if(init){
-    console.log(document.cookie);
     setInit(false);
+
+    const cookieToken = document.cookie.split('; ').find(row => row.startsWith('token: ')).split(':')[1]
+    console.log("token form cookies: " + cookieToken);
+
+    fetch(
+      'http://localhost:8000/user/validate',
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + cookieToken,
+        },
+      }
+    ).then((response) => {
+      if(response.ok){
+        setSign(true);
+        setToken(cookieToken);
+      }
+      else{
+        console.log("Cookie token is out of date.")
+        document.cookie = "token: 0";
+      }
+    });    
   }
   
   function signInHandler(signInData) {
