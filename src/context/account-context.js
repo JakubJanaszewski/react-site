@@ -67,7 +67,7 @@ export function AccountContextProvider(props) {
     .then((json) => {
       setSign(true);
       setToken(json["jwtToken"]);
-      document.cookie = "token: " + token + "; SameSite=None; Secure";
+      document.cookie = "token: " + json["jwtToken"] + "; SameSite=None; Secure";
 
       favoritesContext.getFavoriteFromDatabase();
       userOffersContext.getUserOfferFromDatabase();
