@@ -20,9 +20,9 @@ export function AccountContextProvider(props) {
   const [name, setName] = useState("");
   const [init, setInit] = useState(true);
 
-  if(init){
+  if(init && document.cookie){
     setInit(false);
-
+    
     const cookieToken = document.cookie.split('; ').find(row => row.startsWith('token: ')).split(':')[1]
     console.log("token form cookies: " + cookieToken);
 
