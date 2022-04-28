@@ -42,7 +42,7 @@ export function AccountContextProvider(props) {
       }
       else{
         console.log("Cookie token is out of date.")
-        document.cookie = "token: 0";
+        document.cookie = "token: 0; Secure";
       }
     });    
   }
@@ -66,7 +66,7 @@ export function AccountContextProvider(props) {
     .then((json) => {
       setSign(true);
       setToken(json["jwtToken"]);
-      document.cookie = "token: " + token;
+      document.cookie = "token: " + token + "; Secure";
 
       favoritesContext.getFavoriteFromDatabase();
       userOffersContext.getUserOfferFromDatabase();
