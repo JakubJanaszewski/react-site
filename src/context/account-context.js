@@ -27,7 +27,7 @@ export function AccountContextProvider(props) {
     console.log("token form cookies: " + cookieToken);
 
     fetch(
-      'http://localhost:8000/user/validate',
+      'http://localhost:8000/users/validate',
       {
         method: 'GET',
         headers: {
