@@ -28,7 +28,7 @@ export function AccountContextProvider(props) {
     console.log("token form cookies: " + cookieToken);
 
     fetch(
-      'http://localhost:8000/users/validate',
+      '',
       {
         method: 'GET',
         headers: {
@@ -49,8 +49,9 @@ export function AccountContextProvider(props) {
     });    
   }
   
-  function signInHandler(signInData) {
-    fetch(
+  async function signInHandler(signInData) {
+    let ans = false;
+    await fetch(
       'http://localhost:8000/users/login',
       {
         method: 'POST',
@@ -73,13 +74,13 @@ export function AccountContextProvider(props) {
       favoritesContext.getFavoriteFromDatabase();
       userOffersContext.getUserOfferFromDatabase();
 
-      return true;
+      ans = true;
     })
     .catch((error) => {
       console.log(error);
     });
 
-    return false;
+    return ans;
   }
 
   function signOutHandler(){

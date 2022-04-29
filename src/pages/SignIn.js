@@ -18,7 +18,8 @@ function SignIn() {
   }
 
   async function signInHandler(signInData) {
-    if(accountContext.signIn(signInData)){
+    const isSigned = await accountContext.signIn(signInData)
+    if(isSigned){
       navigate('/');
     }
     else{
