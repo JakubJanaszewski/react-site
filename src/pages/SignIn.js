@@ -6,6 +6,7 @@ import classes from '../components/layout/Layout.module.css';
 import AccountContext from '../context/account-context';
 import ErrorMessage from '../components/ui/ErrorMessage';
 
+
 function SignIn() {
   const accountContext = useContext(AccountContext);
   const [dataMatch, changeDataMatch] = useState(true);
@@ -16,7 +17,7 @@ function SignIn() {
     changeDataMatch(true);
   }
 
-  function signInHandler(signInData) {
+  async function signInHandler(signInData) {
     if(accountContext.signIn(signInData)){
       navigate('/');
     }

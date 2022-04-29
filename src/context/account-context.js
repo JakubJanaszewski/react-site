@@ -8,6 +8,7 @@ const AccountContext = createContext({
   jwtToken: 0,
   name: "",
   signIn:() => {},
+  signOut:() => {},
   setName:() => {},
 });
 
@@ -71,12 +72,20 @@ export function AccountContextProvider(props) {
 
       favoritesContext.getFavoriteFromDatabase();
       userOffersContext.getUserOfferFromDatabase();
+
+      return true;
     })
     .catch((error) => {
       console.log(error);
     });
 
-    return isSigned;
+    return false;
+  }
+
+  function signOutHandler(){
+    setSign(false);
+    setToken(0);
+    document.cookie = "token: 0; SameSite=None; Secure";
   }
   
   function setNameHandler(){
@@ -101,6 +110,7 @@ export function AccountContextProvider(props) {
     jwtToken: token,
     name: name,
     signIn: signInHandler,
+    signOut: signOutHandler,
     setName: setNameHandler,
   };
 
