@@ -36,10 +36,9 @@ export function FavoritesContextProvider(props) {
 
   function addFavoriteHandler(favoriteOffer) {
     fetch(
-      'http://localhost:8000/favorites',
+      'http://localhost:8000/offer/fav/' + favoriteOffer.offerId,
       {
-        method: 'POST',
-        body: JSON.stringify(favoriteOffer),
+        method: 'GET', //CHECK IF GET METHOD IS CORRECT (POST IN DOCUMENTATION)
         headers: {
           'Authorization': 'Bearer ' + signedContext.jwtToken,
           'Content-Type': 'application/json',
@@ -64,10 +63,10 @@ export function FavoritesContextProvider(props) {
 
   function removeFavoriteHandler(offerId) {
     fetch(
-      'http://localhost:8000/favorites',
+      'http://localhost:8000/offer/fav/' + offerId,
       {
         method: 'DELETE',
-        body: JSON.stringify({id: offerId}),
+        //body: JSON.stringify({id: offerId}), PROBABLY MUST BE DELETED
         headers: {
           'Authorization': 'Bearer ' + signedContext.jwtToken,
           'Content-Type': 'application/json',
