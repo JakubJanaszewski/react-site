@@ -15,7 +15,7 @@ export function FavoritesContextProvider(props) {
 
   function getFavoriteFromDatabaseHandler() {
     fetch(
-      'http://localhost:8000/favorites',
+      'http://localhost:8000/offer/fav',
       {
         method: 'GET',
         headers: {
@@ -24,8 +24,7 @@ export function FavoritesContextProvider(props) {
         },
       }
     ).then((response) => {
-      if(response["status"] === 200){
-        console.log(response["favorites"]);
+      if(response.ok){
         setUserFavorites(response["favorites"])
       }
       else{
@@ -38,14 +37,14 @@ export function FavoritesContextProvider(props) {
     fetch(
       'http://localhost:8000/offer/fav/' + favoriteOffer.offerId,
       {
-        method: 'GET', //CHECK IF GET METHOD IS CORRECT (POST IN DOCUMENTATION)
+        method: 'POST',
         headers: {
           'Authorization': 'Bearer ' + signedContext.jwtToken,
           'Content-Type': 'application/json',
         },
       }
     ).then((response) => {
-      if(response["status"] === 200){
+      if(response.ok){
         setUserFavorites((prevUserOffers) => {
           return prevUserOffers.concat(favoriteOffer);
         });
@@ -66,7 +65,6 @@ export function FavoritesContextProvider(props) {
       'http://localhost:8000/offer/fav/' + offerId,
       {
         method: 'DELETE',
-        //body: JSON.stringify({id: offerId}), PROBABLY MUST BE DELETED
         headers: {
           'Authorization': 'Bearer ' + signedContext.jwtToken,
           'Content-Type': 'application/json',

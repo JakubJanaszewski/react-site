@@ -6,6 +6,7 @@ import UserOffersContext from '../context/offers-context';
 const AccountContext = createContext({
   isSignedIn: false,
   jwtToken: 0,
+  email: "",
   name: "",
   signIn:() => {},
   signOut:() => {},
@@ -18,6 +19,7 @@ export function AccountContextProvider(props) {
 
   const [isSigned, setSign] = useState(false);
   const [token, setToken] = useState(0);
+  const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [init, setInit] = useState(true);
 
@@ -28,7 +30,7 @@ export function AccountContextProvider(props) {
     console.log("token form cookies: " + cookieToken);
 
     fetch(
-      '',
+      'http://localhost:8000/users/validate',
       {
         method: 'GET',
         headers: {
@@ -44,7 +46,7 @@ export function AccountContextProvider(props) {
       }
       else{
         console.log("Cookie token is out of date.")
-        document.cookie = "token: 0; SameSite=None; Secure";
+        document.cookie = `token: 0; email: 0; SameSite=None; Secure`;
       }
     });    
   }
@@ -69,7 +71,9 @@ export function AccountContextProvider(props) {
     .then((json) => {
       setSign(true);
       setToken(json["jwtToken"]);
-      document.cookie = "token: " + json["jwtToken"] + "; SameSite=None; Secure";
+      setEmail(signInData.email)
+
+      document.cookie = `token: ${json["jwtToken"]}; email: ${signInData.email}; SameSite=None; Secure`;
 
       favoritesContext.getFavoriteFromDatabase();
       userOffersContext.getUserOfferFromDatabase();
@@ -86,12 +90,13 @@ export function AccountContextProvider(props) {
   function signOutHandler(){
     setSign(false);
     setToken(0);
-    document.cookie = "token: 0; SameSite=None; Secure";
+    setEmail("");
+    document.cookie = `token: 0; email: 0; SameSite=None; Secure`;
   }
   
   function setNameHandler(){
     fetch(
-      'http://localhost:8000/users/info',
+      `http://localhost:8000/users/info/${email}`,
       {
         method: 'GET',
         headers: {
@@ -100,8 +105,8 @@ export function AccountContextProvider(props) {
         },
       }
     ).then((response) => {
-      if(response["status"] === 200){
-        setName(response["name"]);
+      if(response.ok){
+        setName(response["firstName"]);
       }
     });
   }
@@ -109,6 +114,7 @@ export function AccountContextProvider(props) {
   const context = {
     isSignedIn: isSigned,
     jwtToken: token,
+    email: email,
     name: name,
     signIn: signInHandler,
     signOut: signOutHandler,
