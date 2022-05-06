@@ -28,7 +28,7 @@ function NewOffer() {
         },
       }
     ).then((response) => {
-      if(response["status"] === 200){
+      if(response.ok){
         changeMessage(1);
         userOffersContext.getUserOfferFromDatabase();
       }

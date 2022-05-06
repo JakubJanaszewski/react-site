@@ -82,15 +82,15 @@ class OfferSearcher extends React.Component {
     this.setState({offers: OFFER_LIST});
     
     fetch(
-      'http://localhost:8000/offers',
+      'http://localhost:8000/offer/list',
       {
-        method: 'POST',
+        method: 'GET',
         body: JSON.stringify(this.offersData),
         headers: {
           'Content-Type': 'application/json'
         },
       }).then((response) => {
-        if(response["status"] === 200){
+        if(response.ok){
           this.setState({offers: response["offers"]});
         }
     });

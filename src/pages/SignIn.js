@@ -20,6 +20,7 @@ function SignIn() {
   async function signInHandler(signInData) {
     const isSigned = await accountContext.signIn(signInData)
     if(isSigned){
+      accountContext.setName()
       navigate('/');
     }
     else{

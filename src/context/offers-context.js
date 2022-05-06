@@ -11,18 +11,19 @@ export function UserOffersContextProvider(props) {
     const signedContext = useContext(AccountContext);
     const [userOffers, setUserOffers] = useState([]);
 
-    function getFavoriteFromDatabaseHandler() {
+    function getUserOfferFromDatabaseHandler() {
         fetch(
-            'http://localhost:8000/user/offers',
+            'http://localhost:8000/offer/list',
             {
                 method: 'GET',
+                body: {user: signedContext.email},
                 headers: {
                     'Authorization': 'Bearer ' + signedContext.jwtToken,
                     'Content-Type': 'application/json',
                 },
             }
         ).then((response) => {
-            if(response["status"] === 200){
+            if(response.ok){
                 setUserOffers(response["offers"])
             }
             else{
@@ -33,18 +34,17 @@ export function UserOffersContextProvider(props) {
 
     function deleteOfferHandler(offerID) {
         fetch(
-            'http://localhost:8000/offer',
+            `http://localhost:8000/offer/${offerID}`,
             {
                 method: 'DELETE',
-                body: JSON.stringify(offerID),
                 headers: {
                     'Authorization': 'Bearer ' + signedContext.jwtToken,
                     'Content-Type': 'application/json',
                 },
             }
         ).then((response) => {
-            if(response["status"] === 200){
-                getFavoriteFromDatabaseHandler();
+            if(response.ok){
+                getUserOfferFromDatabaseHandler();
             }
             else{
                 console.log("ERROR DURING DELETING OFFER");
@@ -54,7 +54,7 @@ export function UserOffersContextProvider(props) {
 
     const context = {
         userOffers: userOffers,
-        getUserOfferFromDatabase: getFavoriteFromDatabaseHandler,
+        getUserOfferFromDatabase: getUserOfferFromDatabaseHandler,
         deleteOffer: deleteOfferHandler,
     };
 

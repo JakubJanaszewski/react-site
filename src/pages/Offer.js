@@ -23,7 +23,7 @@ function OfferPage() {
     let accountData = {
         firstName: 'name',
         lastName: 'last name',
-        phone: '123 456 789',
+        phoneNumber: '123 456 789',
     };
 
     const { offerId } = useParams();
@@ -91,7 +91,7 @@ function OfferPage() {
                 description={offerData.description}
                 firstName = {accountData.firstName}
                 lastName = {accountData.lastName}
-                phone = {accountData.phone}/>
+                phone = {accountData.phoneNumber}/>
         </div>
         <div><MapComponent lat = {offerData.lat} lng = {offerData.lng}/></div>
         <div className={classes.map} id="map"></div> </>}

@@ -20,7 +20,7 @@ function UserOffers() {
     return (
         <div className={classes.offers}>
             <h1>My offers</h1>
-            <OfferList offers={userOffersContext.userOffers}  delete = '0' />
+            <OfferList offers={userOffersContext.userOffers}  delete = '1' />
         </div>
     );
 }

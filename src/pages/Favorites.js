@@ -12,7 +12,7 @@ function FavoritesPage() {
   if (favoritesCtx.favorites.length === 0) {
     content = <p>You don't have favorites yet.</p>;
   } else {
-    content = <OfferList offers={favoritesCtx.favorites} />;
+    content = <OfferList offers={favoritesCtx.favorites} delete = '0'/>;
   }
 
   return (
