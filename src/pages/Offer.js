@@ -29,13 +29,13 @@ function OfferPage() {
     const { offerId } = useParams();
 
     //TODO: REPLACE WHEN CONECTION WITH DATABASE WILL BE DONE
-    const [loading, setLoading] = useState(0);
-    //const [loading, setLoading] = useState(1);
+    //const [loading, setLoading] = useState(0);
+    const [loading, setLoading] = useState(1);
 
     function showOfferHandler() {    
         fetch(
-            //'http://localhost:8000/offer/' + offerId,
-            'http://localhost:8000/offer/2',
+            `http://localhost:8000/offer/${offerId}`,
+            //'http://localhost:8000/offer/2',
             {
                 method: 'GET',
                 headers: {

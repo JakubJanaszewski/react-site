@@ -79,7 +79,7 @@ class OfferSearcher extends React.Component {
 
   fetchOffers(){
     //TODO DELETE THIS \/
-    this.setState({offers: OFFER_LIST});
+    //this.setState({offers: OFFER_LIST});
     
     fetch(
       'http://localhost:8000/offer/list',
