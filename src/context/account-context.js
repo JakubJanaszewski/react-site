@@ -12,7 +12,6 @@ const AccountContext = createContext({
   name: "",
   signIn:() => {},
   signOut:() => {},
-  setName:() => {},
 });
 
 export function AccountContextProvider(props) {
@@ -50,13 +49,12 @@ export function AccountContextProvider(props) {
         setSign(true);
         setToken(cookieToken);
         setEmail(cookieEmail);
+        setNameHandler(cookieEmail);
       }
       else{
         signOutHandler();
       }
     });  
-    
-    setNameHandler();
   }
   
   async function signInHandler(signInData) {
@@ -86,15 +84,14 @@ export function AccountContextProvider(props) {
 
       favoritesContext.getFavoriteFromDatabase();
       userOffersContext.getUserOfferFromDatabase();
+      setNameHandler(signInData.email);
 
       ans = true;
     })
     .catch((error) => {
       console.log(error);
     });
-    
 
-    setNameHandler();
     return ans;
   }
 
@@ -107,9 +104,9 @@ export function AccountContextProvider(props) {
     cookies.set('email', "");
   }
   
-  function setNameHandler(){
+  function setNameHandler(givenEmail){
     fetch(
-      `http://localhost:8000/users/info?email=${email}`,
+      `http://localhost:8000/users/info?email=${givenEmail}`,
       {
         method: 'GET',
         headers: {
@@ -133,7 +130,6 @@ export function AccountContextProvider(props) {
     name: name,
     signIn: signInHandler,
     signOut: signOutHandler,
-    setName: setNameHandler,
   };
 
   return (
