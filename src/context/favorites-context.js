@@ -36,7 +36,7 @@ export function FavoritesContextProvider(props) {
 
   function addFavoriteHandler(favoriteOffer) {
     fetch(
-      'http://localhost:8000/offer/fav/' + favoriteOffer.id,
+      'http://localhost:8000/offer/fav/' + favoriteOffer.offerId,
       {
         method: 'POST',
         headers: {
@@ -74,7 +74,7 @@ export function FavoritesContextProvider(props) {
     ).then((response) => {
       if(response.ok){
         setUserFavorites(prevUserFavorites => {
-          return prevUserFavorites.filter(offer => offer.id !== offerId);
+          return prevUserFavorites.filter(offer => offer.offerId !== offerId);
         });
       }
       else{
@@ -89,7 +89,7 @@ export function FavoritesContextProvider(props) {
   }
 
   function itemIsFavoriteHandler(offerId) {
-    return userFavorites.some(offer => offer.id === offerId);
+    return userFavorites.some(offer => offer.offerId === offerId);
   }
 
   const context = {
