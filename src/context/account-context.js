@@ -49,6 +49,9 @@ export function AccountContextProvider(props) {
         setSign(true);
         setToken(cookieToken);
         setEmail(cookieEmail);
+        
+        favoritesContext.getFavoriteFromDatabase();
+        userOffersContext.getUserOfferFromDatabase();
         setNameHandler(cookieEmail);
       }
       else{
