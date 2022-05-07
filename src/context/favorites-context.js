@@ -80,7 +80,7 @@ export function FavoritesContextProvider(props) {
         });
       }
       else{
-        console.log("ERROR WHILE ADDING FAVORITE")
+        console.log("ERROR WHILE REMOVING FAVORITE")
       }
     });
 
