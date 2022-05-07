@@ -1,7 +1,9 @@
-import { createContext, useState, useContext } from 'react';
+import { createContext, useState} from 'react';
 
-import FavoritesContext from '../context/favorites-context';
-import UserOffersContext from '../context/offers-context';
+
+import {FavoritesContextProvider} from '../context/favorites-context';
+import {UserOffersContextProvider} from '../context/offers-context';
+
 import Cookies from 'universal-cookie';
 
 
@@ -15,8 +17,6 @@ const AccountContext = createContext({
 });
 
 export function AccountContextProvider(props) {
-  const favoritesContext = useContext(FavoritesContext);
-  const userOffersContext = useContext(UserOffersContext);
   const cookies = new Cookies();
 
   const [isSigned, setSign] = useState(false);
@@ -50,8 +50,9 @@ export function AccountContextProvider(props) {
         setToken(cookieToken);
         setEmail(cookieEmail);
         
-        favoritesContext.getFavoriteFromDatabase();
-        userOffersContext.getUserOfferFromDatabase();
+        FavoritesContextProvider.getFavoriteFromDatabase();
+        UserOffersContextProvider.getUserOfferFromDatabase();
+
         setNameHandler(cookieEmail);
       }
       else{
@@ -85,8 +86,9 @@ export function AccountContextProvider(props) {
       cookies.set('token', json["jwtToken"]);
       cookies.set('email', signInData.email);
 
-      favoritesContext.getFavoriteFromDatabase();
-      userOffersContext.getUserOfferFromDatabase();
+      FavoritesContextProvider.getFavoriteFromDatabase();
+      UserOffersContextProvider.getUserOfferFromDatabase();
+
       setNameHandler(signInData.email);
 
       ans = true;
