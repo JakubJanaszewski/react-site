@@ -54,7 +54,9 @@ export function AccountContextProvider(props) {
       else{
         signOutHandler();
       }
-    });    
+    });  
+    
+    setNameHandler();
   }
   
   async function signInHandler(signInData) {
@@ -90,7 +92,9 @@ export function AccountContextProvider(props) {
     .catch((error) => {
       console.log(error);
     });
+    
 
+    setNameHandler();
     return ans;
   }
 
