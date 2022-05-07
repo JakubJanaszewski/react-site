@@ -2,6 +2,8 @@ import { createContext, useState, useContext } from 'react';
 
 import FavoritesContext from '../context/favorites-context';
 import UserOffersContext from '../context/offers-context';
+import Cookies from 'universal-cookie';
+
 
 const AccountContext = createContext({
   isSignedIn: false,
@@ -16,6 +18,7 @@ const AccountContext = createContext({
 export function AccountContextProvider(props) {
   const favoritesContext = useContext(FavoritesContext);
   const userOffersContext = useContext(UserOffersContext);
+  const cookies = new Cookies();
 
   const [isSigned, setSign] = useState(false);
   const [token, setToken] = useState(0);
@@ -23,11 +26,14 @@ export function AccountContextProvider(props) {
   const [name, setName] = useState("");
   const [init, setInit] = useState(true);
 
-  if(init && document.cookie){
+  if(init && cookies.get('token') !== undefined){
     setInit(false);
-    
-    const cookieToken = document.cookie.split('; ').find(row => row.startsWith('token: ')).split(':')[1]
+
+    const cookieToken = cookies.get('token')
     console.log("token form cookies: " + cookieToken);
+    const cookieEmail = cookies.get('email')
+    console.log("email form cookies: " + cookieEmail);
+
 
     fetch(
       'http://localhost:8000/users/validate',
@@ -43,10 +49,10 @@ export function AccountContextProvider(props) {
       if(response.ok){
         setSign(true);
         setToken(cookieToken);
+        setEmail(cookieEmail);
       }
       else{
-        console.log("Cookie token is out of date.")
-        document.cookie = `token: 0; email: 0; SameSite=None; Secure`;
+        signOutHandler();
       }
     });    
   }
@@ -73,7 +79,8 @@ export function AccountContextProvider(props) {
       setToken(json["jwtToken"]);
       setEmail(signInData.email)
 
-      document.cookie = `token: ${json["jwtToken"]}; email: ${signInData.email}; SameSite=None; Secure`;
+      cookies.set('token', json["jwtToken"]);
+      cookies.set('email', signInData.email);
 
       favoritesContext.getFavoriteFromDatabase();
       userOffersContext.getUserOfferFromDatabase();
@@ -91,7 +98,9 @@ export function AccountContextProvider(props) {
     setSign(false);
     setToken(0);
     setEmail("");
-    document.cookie = `token: 0; email: 0; SameSite=None; Secure`;
+
+    cookies.set('token', 0);
+    cookies.set('email', "");
   }
   
   function setNameHandler(){
