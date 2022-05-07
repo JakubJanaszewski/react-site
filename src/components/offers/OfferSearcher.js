@@ -83,12 +83,11 @@ class OfferSearcher extends React.Component {
     
 
     fetch(
-      'http://localhost:8000/offer/list',
+      `http://localhost:8000/offer/list?city=${this.state.offersData.city}&kilometers=${this.state.offersData.kilometers}&priceMin=${this.state.offersData.priceMin}&priceMax=${this.state.offersData.priceMax}&yearMin=${this.state.offersData.yearMin}&yearMax=${this.state.offersData.yearMax}&milageMin=${this.state.offersData.milageMin}&milageMax=${this.state.offersData.milageMax}`,
       {
         method: 'GET',
-        body: JSON.stringify(this.state.offersData),
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/x-www-form-urlencoded'
         },
       }).then((response) => {
         if(response.ok){

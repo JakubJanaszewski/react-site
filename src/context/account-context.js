@@ -105,12 +105,12 @@ export function AccountContextProvider(props) {
   
   function setNameHandler(){
     fetch(
-      `http://localhost:8000/users/info/${email}`,
+      `http://localhost:8000/users/info?email=${email}`,
       {
         method: 'GET',
         headers: {
           'Authorization': 'Bearer ' + token,
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/x-www-form-urlencoded'
         },
       }
     ).then((response) => {
