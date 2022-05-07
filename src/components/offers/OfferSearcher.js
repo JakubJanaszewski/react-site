@@ -91,12 +91,15 @@ class OfferSearcher extends React.Component {
         },
       }).then((response) => {
         if(response.ok){
-          console.log("lista:")
-          console.log(response["list"])
-          this.setState({offers: response["list"]});
+          return response.json();
         }
+      }).then((json) => {
+        console.log("lista:")
+        console.log(json["list"])
+        this.setState({offers: json["list"]});
     });
   }
+
 
   submitHandler(event) {
     event.preventDefault();
