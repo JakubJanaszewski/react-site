@@ -30,6 +30,8 @@ export function FavoritesContextProvider(props) {
           console.log("ERROR WHILE GETTING FAVORITES LIST")
         }
       }).then((json) => {
+        console.log("pobrane obserwowane oferty:")
+        console.log(json)
         setUserFavorites(json)
     });
   }
