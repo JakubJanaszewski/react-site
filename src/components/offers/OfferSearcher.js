@@ -81,11 +81,12 @@ class OfferSearcher extends React.Component {
     //TODO DELETE THIS \/
     //this.setState({offers: OFFER_LIST});
     
+
     fetch(
       'http://localhost:8000/offer/list',
       {
         method: 'GET',
-        body: JSON.stringify(this.offersData),
+        body: JSON.stringify(this.state.offersData),
         headers: {
           'Content-Type': 'application/json'
         },
