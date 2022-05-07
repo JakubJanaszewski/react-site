@@ -21,7 +21,7 @@ function SignUp() {
         },
       }
     ).then((response) => {
-      if(response["status"] === 200){
+      if(response.ok){
         setRegistrationStatus(1);
       }
       else{

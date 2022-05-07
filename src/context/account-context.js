@@ -115,8 +115,10 @@ export function AccountContextProvider(props) {
       }
     ).then((response) => {
       if(response.ok){
-        setName(response["firstName"]);
+        return response.json();
       }
+    }).then((json) => {
+      setName(json["firstName"]);
     });
   }
 

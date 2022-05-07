@@ -23,11 +23,13 @@ export function UserOffersContextProvider(props) {
             }
         ).then((response) => {
             if(response.ok){
-                setUserOffers(response["offers"])
+                return response.json();
             }
             else{
                 console.log("ERROR WHILE GETTING USER OFFER LIST")
             }
+        }).then((json) => {
+            setUserOffers(json["list"])
         });
     }
 

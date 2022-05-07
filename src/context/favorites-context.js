@@ -22,14 +22,15 @@ export function FavoritesContextProvider(props) {
           'Authorization': 'Bearer ' + signedContext.jwtToken,
           'Content-Type': 'application/json',
         },
-      }
-    ).then((response) => {
-      if(response.ok){
-        setUserFavorites(response["favorites"])
-      }
-      else{
-        console.log("ERROR WHILE GETTING FAVORITES LIST")
-      }
+      }).then((response) => {
+        if(response.ok){
+          return response.json();
+        }
+        else{
+          console.log("ERROR WHILE GETTING FAVORITES LIST")
+        }
+      }).then((json) => {
+        setUserFavorites(json["favorites"])
     });
   }
 
@@ -71,7 +72,7 @@ export function FavoritesContextProvider(props) {
         },
       }
     ).then((response) => {
-      if(response["status"] === 200){
+      if(response.ok){
         setUserFavorites(prevUserFavorites => {
           return prevUserFavorites.filter(offer => offer.id !== offerId);
         });
