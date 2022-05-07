@@ -10,6 +10,9 @@ import ChooseMessage from '../ui/ChooseMessage';
 
 
 function Offer(props) {
+
+    console.log(props)
+
     const accContext = useContext(AccountContext);
     const favoritesCtx = useContext(FavoritesContext);
     const userOffersContext = useContext(UserOffersContext);
@@ -100,7 +103,7 @@ function Offer(props) {
         </ShadowElement>
         {isDeleteClicked && 
         <ChooseMessage 
-            onCancel = { () => {toggleDeleteState(false)}} 
+            onCancel = { () => {toggleDeleteState(true)}} 
             onConfirm = { () => {userOffersContext.deleteOffer({offerId: props.offerId}); toggleDeleteState(false)} } 
             buttonCancel = 'Cancel' 
             buttonConfirm = 'Delete' 
