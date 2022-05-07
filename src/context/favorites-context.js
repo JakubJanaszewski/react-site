@@ -4,9 +4,9 @@ import AccountContext from '../context/account-context';
 const FavoritesContext = createContext({
   favorites: [],
   getFavoriteFromDatabase: () => {},
-  addFavorite: (favoriteMeetup) => {},
-  removeFavorite: (meetupId) => {},
-  itemIsFavorite: (meetupId) => {}
+  addFavorite: () => {},
+  removeFavorite: () => {},
+  itemIsFavorite: () => {}
 });
 
 export function FavoritesContextProvider(props) {
