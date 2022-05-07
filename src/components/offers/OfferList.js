@@ -8,14 +8,14 @@ function OfferList(props) {
             {props.offers?.map((offer) => (
                 <Offer
                 key={offer.id}
-                id={offer.id}
+                id={offer.offerId}
                 image={offer.image}
                 price={offer.price}
                 title={offer.title}
-                year={offer.year}
+                year={offer.modelYear}
                 mileage={offer.mileage}
                 engineCapacity={offer.engineCapacity}
-                engineType={offer.engineType}
+                engineType={offer.EngineTypeName}
                 description={offer.description}
 
                 delete = {props.delete}
