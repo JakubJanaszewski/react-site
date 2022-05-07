@@ -7,14 +7,14 @@ import classes from "../components/offers/MapComponent.module.css"
 
 function OfferPage() {
     let offerData = {
-        id: 'id1',
+        pfferId: 'id1',
         title: 'BMW Seria 3 320i',
         image: 'https://media.istockphoto.com/photos/generic-red-suv-on-a-white-background-side-view-picture-id1157655660?s=612x612',
         price: 20900,
-        year: 2005,
+        modelYear: 2005,
         mileage: 168154,
         engineCapacity: 1995,
-        engineType: 'Benzyna',
+        EngineTypeName: 'Benzyna',
         description: 'Description of this car.',
         lat: 52.237049,
         lng: 21.017532,
@@ -79,15 +79,15 @@ function OfferPage() {
         {loading === 1 && showOfferHandler()}
         {loading === 0 &&  <> 
         <div>
-            <OfferDetails key={offerData.id}
-                id={offerData.id}
+            <OfferDetails key={offerData.offerId}
+                offerId={offerData.offerId}
                 image={offerData.image}
                 price={offerData.price}
                 title={offerData.title}
-                year={offerData.year}
+                modelYear={offerData.modelYear}
                 mileage={offerData.mileage}
                 engineCapacity={offerData.engineCapacity}
-                engineType={offerData.engineType}
+                EngineTypeName={offerData.EngineTypeName}
                 description={offerData.description}
                 firstName = {accountData.firstName}
                 lastName = {accountData.lastName}

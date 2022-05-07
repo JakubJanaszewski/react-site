@@ -14,7 +14,7 @@ function Offer(props) {
     const favoritesCtx = useContext(FavoritesContext);
     const userOffersContext = useContext(UserOffersContext);
 
-    const itemIsFavorite = favoritesCtx.itemIsFavorite(props.id);
+    const itemIsFavorite = favoritesCtx.itemIsFavorite(props.offerId);
 
     const [ isDeleteClicked, toggleDeleteState] = useState(false);
 
@@ -25,19 +25,19 @@ function Offer(props) {
         }
         else{
             if (itemIsFavorite) {
-                favoritesCtx.removeFavorite(props.id);
+                favoritesCtx.removeFavorite(props.offerId);
             } 
             else
             {
                 favoritesCtx.addFavorite({
-                    id: props.id,
+                    offerId: props.offerId,
                     image: props.image,
                     price: props.price,
                     title: props.title,
-                    year: props.year,
+                    modelYear: props.modelYear,
                     mileage: props.mileage,
                     engineCapacity: props.engineCapacity,
-                    engineType: props.engineType,
+                    EngineTypeName: props.EngineTypeName,
                     description: props.description,
                 });
             }
@@ -45,7 +45,7 @@ function Offer(props) {
     }
 
     function onViewDetails() {
-        navigate('/offer/' + props.id);
+        navigate('/offer/' + props.offerId);
     }
 
     return (<>
@@ -60,13 +60,13 @@ function Offer(props) {
                             {props.title}
                         </h3>
                         <ul>
-                            <li>{props.year}</li>
+                            <li>{props.modelYear}</li>
                             <li>·</li>
                             <li>{props.mileage} km</li>
                             <li>·</li>
                             <li>{props.engineCapacity} cm3</li>
                             <li>·</li>
-                            <li>{props.engineType}</li>
+                            <li>{props.EngineTypeName}</li>
                         </ul>
                     </div>
                     <div className={classes.buttons}>
@@ -101,7 +101,7 @@ function Offer(props) {
         {isDeleteClicked && 
         <ChooseMessage 
             onCancel = { () => {toggleDeleteState(false)}} 
-            onConfirm = { () => {userOffersContext.deleteOffer({id: props.id}); toggleDeleteState(false)} } 
+            onConfirm = { () => {userOffersContext.deleteOffer({offerId: props.offerId}); toggleDeleteState(false)} } 
             buttonCancel = 'Cancel' 
             buttonConfirm = 'Delete' 
             description = 'Are you sure you want to delete an offer?'>
