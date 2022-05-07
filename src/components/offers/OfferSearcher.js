@@ -99,6 +99,13 @@ class OfferSearcher extends React.Component {
   submitHandler(event) {
     event.preventDefault();
 
+    if(this.cityRef.current.value === 'Worldwide'){
+      this.setState({offers: {city: null}});
+    }
+    else{
+      this.setState({offers: {city: this.cityRef.current.value}});
+    }
+    
     this.setState({offers: {city: this.cityRef.current.value}});
 
     if(isNaN(this.kilometersRef.current.value)){
