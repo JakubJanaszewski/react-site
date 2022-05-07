@@ -36,7 +36,7 @@ export function FavoritesContextProvider(props) {
 
   function addFavoriteHandler(favoriteOffer) {
     fetch(
-      'http://localhost:8000/offer/fav/' + favoriteOffer.offerId,
+      'http://localhost:8000/offer/fav/' + favoriteOffer.id,
       {
         method: 'POST',
         headers: {
