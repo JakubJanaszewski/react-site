@@ -13,13 +13,12 @@ export function UserOffersContextProvider(props) {
 
     function getUserOfferFromDatabaseHandler() {
         fetch(
-            'http://localhost:8000/offer/list',
+            `http://localhost:8000/offer/list?user=${signedContext.email}`,
             {
                 method: 'GET',
-                body: {user: signedContext.email},
                 headers: {
                     'Authorization': 'Bearer ' + signedContext.jwtToken,
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 },
             }
         ).then((response) => {
