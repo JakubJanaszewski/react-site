@@ -14,6 +14,10 @@ export function FavoritesContextProvider(props) {
   const [userFavorites, setUserFavorites] = useState([]);
 
   function getFavoriteFromDatabaseHandler() {
+
+    console.log("GETTING FAVS FROM DATABES FUNCTION")
+
+
     fetch(
       'http://localhost:8000/offer/fav',
       {
