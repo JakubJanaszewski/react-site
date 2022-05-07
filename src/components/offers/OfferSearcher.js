@@ -91,7 +91,7 @@ class OfferSearcher extends React.Component {
         },
       }).then((response) => {
         if(response.ok){
-          this.setState({offers: response["offers"]});
+          this.setState({offers: response["list"]});
         }
     });
   }
