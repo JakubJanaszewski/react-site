@@ -99,6 +99,8 @@ class OfferSearcher extends React.Component {
   submitHandler(event) {
     event.preventDefault();
 
+    this.setState({offers: {city: this.cityRef.current.value}});
+
     if(isNaN(this.kilometersRef.current.value)){
       this.kilometersRef.current.value = "No limit";
       this.setState({offers: {kilometers: null}});
