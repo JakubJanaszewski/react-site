@@ -30,7 +30,7 @@ export function FavoritesContextProvider(props) {
           console.log("ERROR WHILE GETTING FAVORITES LIST")
         }
       }).then((json) => {
-        setUserFavorites(json["favorites"])
+        setUserFavorites(json)
     });
   }
 
