@@ -14,7 +14,7 @@ const AccountContext = createContext({
 export function AccountContextProvider(props) {
   const cookies = new Cookies();
 
-  const [isSigned, setSign] = useState(false);
+  const [isSigned, setSign] = useState(undefined);
   const [token, setToken] = useState(0);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");

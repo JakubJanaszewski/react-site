@@ -17,6 +17,10 @@ export function FavoritesContextProvider(props) {
   if(init){
     console.log("init offers context");
     setInit(false);
+
+    while(signedContext.isSignedIn === undefined){
+      console.log(signedContext.isSignedIn);
+    }
     /*if(signedContext.isSignedIn){
       console.log("offers is signed in");
       getFavoriteFromDatabaseHandler();

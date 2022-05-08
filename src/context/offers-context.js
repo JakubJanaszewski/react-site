@@ -14,8 +14,13 @@ export function UserOffersContextProvider(props) {
 
 
     if(init){
+
         console.log("init fav context");
         setInit(false);
+        while(signedContext.isSignedIn === undefined){
+            console.log(signedContext.isSignedIn);
+        }
+        
         /*if(signedContext.isSignedIn){
             console.log("fav is signed in");
             getUserOfferFromDatabaseHandler();
