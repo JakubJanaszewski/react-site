@@ -12,11 +12,11 @@ export function UserOffersContextProvider(props) {
     const signedContext = useContext(AccountContext);
     const [userOffers, setUserOffers] = useState([]);
 
-    function getUserOfferFromDatabaseHandler() {
+    async function getUserOfferFromDatabaseHandler() {
 
         console.log("GETTING OFFERS FROM DATABES FUNCTION")
 
-        fetch(
+        await fetch(
             `http://localhost:8000/offer/list?user=${signedContext.email}`,
             {
                 method: 'GET',
