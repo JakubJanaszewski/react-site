@@ -43,9 +43,9 @@ export function AccountContextProvider(props) {
         }
       )
       if (response.ok){
+        setEmail(cookieEmail);
         setSign(true);
         setToken(cookieToken);
-        setEmail(cookieEmail);
         setNameHandler(cookieEmail);
       }
       else{
@@ -73,9 +73,9 @@ export function AccountContextProvider(props) {
       throw new Error('Response not ok.');
     })
     .then((json) => {
+      setEmail(signInData.email)
       setSign(true);
       setToken(json["jwtToken"]);
-      setEmail(signInData.email)
 
       cookies.set('token', json["jwtToken"]);
       cookies.set('email', signInData.email);

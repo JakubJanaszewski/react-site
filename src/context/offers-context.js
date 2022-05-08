@@ -12,11 +12,14 @@ export function UserOffersContextProvider(props) {
     const signedContext = useContext(AccountContext);
     const [userOffers, setUserOffers] = useState([]);
 
-    /*useEffect(() => { 
+    useEffect(() => { 
         if(signedContext.isSignedIn){
             getUserOfferFromDatabaseHandler();
         }
-    })*/
+        else{
+            setUserOffers([]);
+        }
+    },[signedContext.isSignedIn, getUserOfferFromDatabaseHandler])
 
     function getUserOfferFromDatabaseHandler() {
 
