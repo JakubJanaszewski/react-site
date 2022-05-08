@@ -15,17 +15,13 @@ export function FavoritesContextProvider(props) {
   const [init, setInit] = useState(true);
 
   if(init){
-    console.log("init offers context");
     setInit(false);
+    console.log("init favs context");
 
-    while(signedContext.isSignedIn === undefined){
-      console.log(signedContext.isSignedIn);
-    }
-    /*if(signedContext.isSignedIn){
+    if(signedContext.isSignedIn){
       console.log("offers is signed in");
       getFavoriteFromDatabaseHandler();
-    }*/
-    getFavoriteFromDatabaseHandler();
+    }
   }
 
 

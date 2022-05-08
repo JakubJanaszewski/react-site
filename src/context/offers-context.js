@@ -14,21 +14,19 @@ export function UserOffersContextProvider(props) {
 
 
     if(init){
-
-        console.log("init fav context");
         setInit(false);
-        while(signedContext.isSignedIn === undefined){
-            console.log(signedContext.isSignedIn);
-        }
+        console.log("init offers context");
         
-        /*if(signedContext.isSignedIn){
+        if(signedContext.isSignedIn){
             console.log("fav is signed in");
             getUserOfferFromDatabaseHandler();
-        }*/
-        getUserOfferFromDatabaseHandler();
+        }
     }
 
     function getUserOfferFromDatabaseHandler() {
+
+        console.log("GETTING OFFERS FROM DATABES FUNCTION")
+
         fetch(
             `http://localhost:8000/offer/list?user=${signedContext.email}`,
             {

@@ -14,43 +14,46 @@ const AccountContext = createContext({
 export function AccountContextProvider(props) {
   const cookies = new Cookies();
 
-  const [isSigned, setSign] = useState(undefined);
+  const [isSigned, setSign] = useState(false);
   const [token, setToken] = useState(0);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [init, setInit] = useState(true);
 
-  if(init && cookies.get('token') !== undefined){
+  if(init){
     setInit(false);
+    validate();
+  }
 
+  async function validate(){
     const cookieToken = cookies.get('token')
     console.log("token form cookies: " + cookieToken);
     const cookieEmail = cookies.get('email')
     console.log("email form cookies: " + cookieEmail);
 
+    if(cookieToken !== undefined && cookieEmail !== undefined){
+      const response = await fetch(
+        'http://localhost:8000/users/validate',
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + cookieToken,
+          },
+        }
+      );
 
-    fetch(
-      'http://localhost:8000/users/validate',
-      {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + cookieToken,
-        },
-      }
-    ).then((response) => {
-      console.log(response)
-      if(response.ok){
-        setSign(true);
+      if (response.ok){
+        await setSign(true);
         setToken(cookieToken);
         setEmail(cookieEmail);
-        
         setNameHandler(cookieEmail);
       }
       else{
+        console.log("not valid - log out");
         signOutHandler();
       }
-    });  
+    }
   }
   
   async function signInHandler(signInData) {
