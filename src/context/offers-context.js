@@ -16,10 +16,11 @@ export function UserOffersContextProvider(props) {
     if(init){
         console.log("init fav context");
         setInit(false);
-        if(signedContext.isSignedIn){
+        /*if(signedContext.isSignedIn){
             console.log("fav is signed in");
             getUserOfferFromDatabaseHandler();
-        }
+        }*/
+        getUserOfferFromDatabaseHandler();
     }
 
     function getUserOfferFromDatabaseHandler() {

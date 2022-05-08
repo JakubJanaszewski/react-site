@@ -17,10 +17,11 @@ export function FavoritesContextProvider(props) {
   if(init){
     console.log("init offers context");
     setInit(false);
-    if(signedContext.isSignedIn){
+    /*if(signedContext.isSignedIn){
       console.log("offers is signed in");
       getFavoriteFromDatabaseHandler();
-    }
+    }*/
+    getFavoriteFromDatabaseHandler();
   }
 
 
