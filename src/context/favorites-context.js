@@ -17,7 +17,7 @@ export function FavoritesContextProvider(props) {
     if(signedContext.isSignedIn){
       getFavoriteFromDatabaseHandler();
     }
-}, [signedContext.jwtToken])
+  }, [signedContext.jwtToken])
 
 
   function getFavoriteFromDatabaseHandler() {
