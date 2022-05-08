@@ -41,8 +41,7 @@ export function AccountContextProvider(props) {
             'Authorization': 'Bearer ' + cookieToken,
           },
         }
-      );
-
+      )
       if (response.ok){
         setSign(true);
         setToken(cookieToken);
@@ -53,7 +52,7 @@ export function AccountContextProvider(props) {
         console.log("not valid - log out");
         signOutHandler();
       }
-    }
+    }   
   }
   
   async function signInHandler(signInData) {

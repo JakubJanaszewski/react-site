@@ -1,4 +1,4 @@
-import { createContext, useState, useContext } from 'react';
+import { createContext, useState, useContext, useEffect  } from 'react';
 import AccountContext from '../context/account-context';
 
 const FavoritesContext = createContext({
@@ -12,23 +12,17 @@ const FavoritesContext = createContext({
 export function FavoritesContextProvider(props) {
   const signedContext = useContext(AccountContext);
   const [userFavorites, setUserFavorites] = useState([]);
-  const [init, setInit] = useState(true);
 
-  if(init){
-    setInit(false);
-    console.log("init favs context");
-
+  useEffect(() => { 
     if(signedContext.isSignedIn){
-      console.log("offers is signed in");
       getFavoriteFromDatabaseHandler();
     }
-  }
+}, [signedContext.jwtToken])
 
 
   function getFavoriteFromDatabaseHandler() {
 
     console.log("GETTING FAVS FROM DATABES FUNCTION")
-
 
     fetch(
       'http://localhost:8000/offer/fav',

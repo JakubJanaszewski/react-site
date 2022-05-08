@@ -1,4 +1,4 @@
-import { createContext, useState, useContext } from 'react';
+import { createContext, useState, useContext, useEffect } from 'react';
 import AccountContext from '../context/account-context';
 
 const UserOffersContext = createContext({
@@ -10,18 +10,12 @@ const UserOffersContext = createContext({
 export function UserOffersContextProvider(props) {
     const signedContext = useContext(AccountContext);
     const [userOffers, setUserOffers] = useState([]);
-    const [init, setInit] = useState(true);
 
-
-    if(init){
-        setInit(false);
-        console.log("init offers context");
-        
+    useEffect(() => { 
         if(signedContext.isSignedIn){
-            console.log("fav is signed in");
             getUserOfferFromDatabaseHandler();
         }
-    }
+    }, [signedContext.email])
 
     function getUserOfferFromDatabaseHandler() {
 
