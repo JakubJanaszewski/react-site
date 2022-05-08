@@ -10,6 +10,17 @@ const UserOffersContext = createContext({
 export function UserOffersContextProvider(props) {
     const signedContext = useContext(AccountContext);
     const [userOffers, setUserOffers] = useState([]);
+    const [init, setInit] = useState(true);
+
+
+    if(init){
+        console.log("init fav context");
+        setInit(false);
+        if(signedContext.isSignedIn){
+            console.log("fav is signed in");
+            getUserOfferFromDatabaseHandler();
+        }
+    }
 
     function getUserOfferFromDatabaseHandler() {
         fetch(

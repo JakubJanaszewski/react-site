@@ -12,6 +12,17 @@ const FavoritesContext = createContext({
 export function FavoritesContextProvider(props) {
   const signedContext = useContext(AccountContext);
   const [userFavorites, setUserFavorites] = useState([]);
+  const [init, setInit] = useState(true);
+
+  if(init){
+    console.log("init offers context");
+    setInit(false);
+    if(signedContext.isSignedIn){
+      console.log("offers is signed in");
+      getFavoriteFromDatabaseHandler();
+    }
+  }
+
 
   function getFavoriteFromDatabaseHandler() {
 

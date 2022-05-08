@@ -1,9 +1,4 @@
 import { createContext, useState} from 'react';
-
-
-import {FavoritesContextProvider} from '../context/favorites-context';
-import {UserOffersContextProvider} from '../context/offers-context';
-
 import Cookies from 'universal-cookie';
 
 
@@ -50,9 +45,6 @@ export function AccountContextProvider(props) {
         setToken(cookieToken);
         setEmail(cookieEmail);
         
-        FavoritesContextProvider.getFavoriteFromDatabase();
-        UserOffersContextProvider.getUserOfferFromDatabase();
-
         setNameHandler(cookieEmail);
       }
       else{
@@ -85,9 +77,6 @@ export function AccountContextProvider(props) {
 
       cookies.set('token', json["jwtToken"]);
       cookies.set('email', signInData.email);
-
-      FavoritesContextProvider.getFavoriteFromDatabase();
-      UserOffersContextProvider.getUserOfferFromDatabase();
 
       setNameHandler(signInData.email);
 
