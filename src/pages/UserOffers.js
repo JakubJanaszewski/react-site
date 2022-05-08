@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import classes from '../components/layout/Layout.module.css';
@@ -9,10 +9,10 @@ function UserOffers() {
     const userOffersContext = useContext(UserOffersContext);
     const [init, setInit] = useState(true);
 
-    if(init){
-        setInit(false);
+    useEffect(() => {
         userOffersContext.getUserOfferFromDatabase();
-    }
+    });
+    setInit(false);
 
     if (userOffersContext.userOffers.length === 0) {
         return (
