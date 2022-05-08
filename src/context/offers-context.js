@@ -3,7 +3,6 @@ import AccountContext from '../context/account-context';
 
 const UserOffersContext = createContext({
     userOffers: [],
-    getUserOfferFromDatabase: () => {},
     addOffer: () => {},
     deleteOffer: () => {},
 });
@@ -14,37 +13,32 @@ export function UserOffersContextProvider(props) {
 
     useEffect(() => { 
         if(signedContext.isSignedIn){
-            getUserOfferFromDatabaseHandler();
+            console.log("GETTING OFFERS FROM DATABES FUNCTION")
+
+            fetch(
+                `http://localhost:8000/offer/list?user=${signedContext.email}`,
+                {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': 'Bearer ' + signedContext.jwtToken,
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                }
+            ).then((response) => {
+                if(response.ok){
+                    return response.json();
+                }
+                else{
+                    console.log("ERROR WHILE GETTING USER OFFER LIST")
+                }
+            }).then((json) => {
+                setUserOffers(json["list"])
+            });
         }
         else{
             setUserOffers([]);
         }
-    },[signedContext.isSignedIn, getUserOfferFromDatabaseHandler])
-
-    function getUserOfferFromDatabaseHandler() {
-
-        console.log("GETTING OFFERS FROM DATABES FUNCTION")
-
-        fetch(
-            `http://localhost:8000/offer/list?user=${signedContext.email}`,
-            {
-                method: 'GET',
-                headers: {
-                    'Authorization': 'Bearer ' + signedContext.jwtToken,
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-            }
-        ).then((response) => {
-            if(response.ok){
-                return response.json();
-            }
-            else{
-                console.log("ERROR WHILE GETTING USER OFFER LIST")
-            }
-        }).then((json) => {
-            setUserOffers(json["list"])
-        });
-    }
+    }, [signedContext.isSignedIn, signedContext.email, signedContext.jwtToken])
 
     async function addOfferHandler(newOfferData) {
 
@@ -99,7 +93,6 @@ export function UserOffersContextProvider(props) {
 
     const context = {
         userOffers: userOffers,
-        getUserOfferFromDatabase: getUserOfferFromDatabaseHandler,
         addOffer: addOfferHandler,
         deleteOffer: deleteOfferHandler,
     };
