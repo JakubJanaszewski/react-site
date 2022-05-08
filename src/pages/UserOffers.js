@@ -8,8 +8,6 @@ import OfferList from '../components/offers/OfferList';
 function UserOffers() {
     const userOffersContext = useContext(UserOffersContext);
     
-    userOffersContext.getUserOfferFromDatabase();
-
     if (userOffersContext.userOffers.length === 0) {
         return (
             <div className={classes.offers}>
