@@ -44,7 +44,7 @@ export function AccountContextProvider(props) {
       );
 
       if (response.ok){
-        await setSign(true);
+        setSign(true);
         setToken(cookieToken);
         setEmail(cookieEmail);
         setNameHandler(cookieEmail);
