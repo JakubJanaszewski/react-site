@@ -103,7 +103,7 @@ function Offer(props) {
         </ShadowElement>
         {isDeleteClicked && 
         <ChooseMessage 
-            onCancel = { () => {toggleDeleteState(true)}} 
+            onCancel = { () => {toggleDeleteState(false)}} 
             onConfirm = { () => {userOffersContext.deleteOffer({offerId: props.offerId}); toggleDeleteState(false)} } 
             buttonCancel = 'Cancel' 
             buttonConfirm = 'Delete' 

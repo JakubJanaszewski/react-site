@@ -4,6 +4,7 @@ import AccountContext from '../context/account-context';
 const UserOffersContext = createContext({
     userOffers: [],
     getUserOfferFromDatabase: () => {},
+    addOffer: () => {},
     deleteOffer: () => {},
 });
 
@@ -42,6 +43,35 @@ export function UserOffersContextProvider(props) {
         });
     }
 
+    async function addOfferHandler(newOfferData) {
+
+        let result = -1;
+
+        await fetch(
+            'http://localhost:8000/offer',
+            {
+              method: 'POST',
+              body: JSON.stringify(newOfferData),
+              headers: {
+                'Authorization': 'Bearer ' + signedContext.jwtToken,
+                'Content-Type': 'application/json',
+              },
+            }
+          ).then((response) => {
+            if(response.ok){
+                result = 1;
+                setUserOffers((prevUserOffers) => {
+                    return prevUserOffers.concat(newOfferData);
+                });
+            }
+            else{
+                console.log("ERROR DURING ADDING OFFER");
+            }
+        });
+
+        return result;
+    }
+
     function deleteOfferHandler(offerID) {
         fetch(
             `http://localhost:8000/offer/${offerID}`,
@@ -54,7 +84,9 @@ export function UserOffersContextProvider(props) {
             }
         ).then((response) => {
             if(response.ok){
-                getUserOfferFromDatabaseHandler();
+                setUserOffers(prevUserOffers => {
+                    return prevUserOffers.filter(offer => offer.offerId !== offerID);
+                });
             }
             else{
                 console.log("ERROR DURING DELETING OFFER");
@@ -65,6 +97,7 @@ export function UserOffersContextProvider(props) {
     const context = {
         userOffers: userOffers,
         getUserOfferFromDatabase: getUserOfferFromDatabaseHandler,
+        addOffer: addOfferHandler,
         deleteOffer: deleteOfferHandler,
     };
 
