@@ -8,6 +8,12 @@ import UserOffersContext from '../context/offers-context';
 function NewOffer() {
   const userOffersContext = useContext(UserOffersContext);
   const [message, changeMessage] = useState(0);
+  const [init, setInit] = useState(true);
+
+  if(init){
+    setInit(false);
+    userOffersContext.getUserOfferFromDatabase();
+  }
 
   function cancelHandler() {
     changeMessage(0);
