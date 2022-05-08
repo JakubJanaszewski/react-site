@@ -16,7 +16,7 @@ export function UserOffersContextProvider(props) {
         if(signedContext.isSignedIn){
             getUserOfferFromDatabaseHandler();
         }
-    }, [signedContext.email])
+    }, [signedContext.jwtToken])
 
     function getUserOfferFromDatabaseHandler() {
 
