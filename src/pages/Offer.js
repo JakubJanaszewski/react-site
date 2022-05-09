@@ -6,25 +6,9 @@ import ErrorMessage from '../components/ui/ErrorMessage';
 import classes from "../components/offers/MapComponent.module.css"
 
 function OfferPage() {
-    let offerData = {
-        pfferId: 'id1',
-        title: 'BMW Seria 3 320i',
-        image: 'https://media.istockphoto.com/photos/generic-red-suv-on-a-white-background-side-view-picture-id1157655660?s=612x612',
-        price: 20900,
-        modelYear: 2005,
-        mileage: 168154,
-        engineCapacity: 1995,
-        EngineTypeName: 'Benzyna',
-        description: 'Description of this car.',
-        lat: 52.237049,
-        lng: 21.017532,
-    };
 
-    let accountData = {
-        firstName: 'name',
-        lastName: 'last name',
-        phoneNumber: '123 456 789',
-    };
+    const [ offerData, setOfferData ] = useState({});
+    const [ accountData, setAccountData ] = useState({});
 
     const { offerId } = useParams();
 
@@ -32,68 +16,74 @@ function OfferPage() {
     //const [loading, setLoading] = useState(0);
     const [loading, setLoading] = useState(1);
 
-    function showOfferHandler() {    
-        fetch(
+    async function showOfferHandler() {  
+        
+        const responseOfferData = await fetch(
             `http://localhost:8000/offer/${offerId}`,
-            //'http://localhost:8000/offer/2',
             {
                 method: 'GET',
                 headers: {
                 'Content-Type': 'application/json'
                 },
             }
-        ).then((response) => {
-            if(!response.ok){
-                setLoading(-1);
-            }
-            return response.json()
-        })
-        .then(json =>  {
-            for(var key in json) {
-                offerData[key] = json[key];
-            }
+        )
 
-            fetch(
-                'http://localhost:8000/users/info/' + offerData["userEmail"],
+        if(responseOfferData.ok){
+            const jsonOfferData = await responseOfferData.json();
+
+            setOfferData(jsonOfferData);
+
+            //console.log(offerData);
+
+            const responseUserData = await fetch(
+                'http://localhost:8000/users/info/' + jsonOfferData["UserEmail"],
                 {
                     method: 'GET',
                     headers: {
                     'Content-Type': 'application/json'
                     },
-                }.then((response) => {
-                    if(!response.ok){
-                        setLoading(-1);
-                    }
-                    return response.json()
-                }).then(json =>  {
-                    for(var key in json) {
-                        accountData[key] = json[key];
-                    }
-                    setLoading(0);
-                })
+                }
             )
-        });
+            
+            if(responseUserData.ok){
+                const jsonUserData = await responseUserData.json();
+
+                setAccountData(jsonUserData);
+
+                setLoading(0);
+            }
+            else{
+                console.log("Error while gettin user data")
+                setLoading(-1);
+            }
+        }
+        else{
+            console.log("Error while gettin offer data")
+            setLoading(-1);
+        }
+
+        return true;
     }
 
     return (<>
-        {loading === 1 && showOfferHandler()}
+        {loading === 1 && showOfferHandler() === true}
         {loading === 0 &&  <> 
         <div>
             <OfferDetails key={offerData.offerId}
-                offerId={offerData.offerId}
+                id={offerData.offerId}
                 image={offerData.image}
                 price={offerData.price}
                 title={offerData.title}
-                modelYear={offerData.modelYear}
+                year={offerData.modelYear}
                 mileage={offerData.mileage}
                 engineCapacity={offerData.engineCapacity}
-                EngineTypeName={offerData.EngineTypeName}
+                engineType={offerData.EngineTypeName}
                 description={offerData.description}
                 firstName = {accountData.firstName}
                 lastName = {accountData.lastName}
                 phone = {accountData.phoneNumber}/>
         </div>
-        <div><MapComponent lat = {offerData.lat} lng = {offerData.lng}/></div>
+        <div><MapComponent lat = {parseFloat(offerData.latiture)} lng = {parseFloat(offerData.longitude)}/></div>
         <div className={classes.map} id="map"></div> </>}
         {loading === -1 && <ErrorMessage description = "Error while getting offer details." button = "Confirm" onCancel = {() => {setLoading(1);}} />}
     </>);

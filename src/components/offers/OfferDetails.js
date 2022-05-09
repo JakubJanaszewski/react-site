@@ -7,6 +7,9 @@ import FavoritesContext from '../../context/favorites-context';
 import AccountContext from '../../context/account-context';
 
 function OfferDetails(props) {
+
+    //console.log(props);
+
     const accContext = useContext(AccountContext);
     const favoritesCtx = useContext(FavoritesContext);
 

@@ -7,7 +7,7 @@ function OfferList(props) {
         <ul className={classes.list}>
             {props.offers?.map((offer) => (
                 <Offer
-                key={offer.id}
+                key={offer.offerId}
                 offerId={offer.offerId}
                 image={offer.image}
                 price={offer.price}
