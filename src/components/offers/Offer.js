@@ -84,7 +84,7 @@ function Offer(props) {
                             {props.delete === '1' &&
                             <li>
                                 <div className={classes.actions}>
-                                    <button onClick={toggleDeleteState(true)}>
+                                    <button onClick={() => {toggleDeleteState(true);}}>
                                         Delete
                                     </button>
                                 </div>
@@ -104,12 +104,13 @@ function Offer(props) {
         {isDeleteClicked && 
         <ChooseMessage 
             onCancel = { () => {toggleDeleteState(false)}} 
-            onConfirm = { () => {userOffersContext.deleteOffer({offerId: props.offerId}); toggleDeleteState(false)} } 
+            onConfirm = { () => {userOffersContext.deleteOffer(props.offerId); toggleDeleteState(false)} } 
             buttonCancel = 'Cancel' 
             buttonConfirm = 'Delete' 
             description = 'Are you sure you want to delete an offer?'>
         </ChooseMessage>}
     </>);
 }
+
 
 export default Offer;

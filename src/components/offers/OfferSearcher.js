@@ -105,68 +105,68 @@ class OfferSearcher extends React.Component {
     event.preventDefault();
 
     if(this.cityRef.current.value === 'Worldwide'){
-      this.setState({offers: {city: null}});
+      this.setState({offersData: {city: null}});
     }
     else{
-      this.setState({offers: {city: this.cityRef.current.value}});
+      this.setState({offersData: {city: this.cityRef.current.value}});
     }
     
-    this.setState({offers: {city: this.cityRef.current.value}});
+    this.setState({offersData: {city: this.cityRef.current.value}});
 
     if(isNaN(this.kilometersRef.current.value)){
       this.kilometersRef.current.value = "No limit";
-      this.setState({offers: {kilometers: null}});
+      this.setState({offersData: {kilometers: null}});
     }
     else{
-      this.setState({offers: {kilometers: this.kilometersRef.current.value}});
+      this.setState({offersData: {kilometers: this.kilometersRef.current.value}});
     }
 
     if(isNaN(this.priceMinRef.current.value)){
       this.priceMinRef.current.value = "No limit";
-      this.setState({offers: {priceMin: null}});
+      this.setState({offersData: {priceMin: null}});
     }
     else{
-      this.setState({offers: {priceMin: this.priceMinRef.current.value}});
+      this.setState({offersData: {priceMin: this.priceMinRef.current.value}});
     }
 
     if(isNaN(this.priceMaxRef.current.value)){
       this.priceMaxRef.current.value = "No limit";
-      this.setState({offers: {priceMax: null}});
+      this.setState({offersData: {priceMax: null}});
     }
     else{
-      this.setState({offers: {priceMax: this.priceMaxRef.current.value}});
+      this.setState({offersData: {priceMax: this.priceMaxRef.current.value}});
     }
 
     if(isNaN(this.yearMinRef.current.value)){
       this.yearMinRef.current.value = "No limit";
-      this.setState({offers: {yearMin: null}});
+      this.setState({offersData: {yearMin: null}});
     }
     else{
-      this.setState({offers: {yearMin: this.yearMinRef.current.value}});
+      this.setState({offersData: {yearMin: this.yearMinRef.current.value}});
     }
 
     if(isNaN(this.yearMaxRef.current.value)){
       this.yearMaxRef.current.value = "No limit";
-      this.setState({offers: {yearMax: null}});
+      this.setState({offersData: {yearMax: null}});
     }
     else{
-      this.setState({offers: {yearMax: this.yearMaxRef.current.value}});
+      this.setState({offersData: {yearMax: this.yearMaxRef.current.value}});
     }
 
     if(isNaN(this.milageMinRef.current.value)){
       this.milageMinRef.current.value = "No limit";
-      this.setState({offers: {milageMin: null}});
+      this.setState({offersData: {milageMin: null}});
     }
     else{
-      this.setState({offers: {milageMin: this.milageMinRef.current.value}});
+      this.setState({offersData: {milageMin: this.milageMinRef.current.value}});
     }
 
     if(isNaN(this.milageMaxRef.current.value)){
       this.milageMaxRef.current.value = "No limit";
-      this.setState({offers: {milageMax: null}});
+      this.setState({offersData: {milageMax: null}});
     }
     else{
-      this.setState({offers: {milageMax: this.milageMaxRef.current.value}});
+      this.setState({offersData: {milageMax: this.milageMaxRef.current.value}});
     }
 
     this.fetchOffers();  

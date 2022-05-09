@@ -17,7 +17,7 @@ export function FavoritesContextProvider(props) {
     if(signedContext.isSignedIn){
       getFavoriteFromDatabaseHandler();
     }
-}, [signedContext.jwtToken])
+}, [signedContext.isSignedIn])
 
 
   function getFavoriteFromDatabaseHandler() {
@@ -40,7 +40,7 @@ export function FavoritesContextProvider(props) {
           console.log("ERROR WHILE GETTING FAVORITES LIST")
         }
       }).then((json) => {
-        console.log("pobrane obserwowane oferty:")
+        console.log("FAVS:")
         console.log(json)
         setUserFavorites(json)
     });

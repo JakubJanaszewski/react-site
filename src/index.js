@@ -5,22 +5,22 @@ import { BrowserRouter} from 'react-router-dom';
 import './index.css';
 import App from './App';
 import Layout from './components/layout/Layout';
-import { FavoritesContextProvider } from './context/favorites-context';
 import { AccountContextProvider } from './context/account-context';
 import { UserOffersContextProvider } from './context/offers-context';
+import { FavoritesContextProvider } from './context/favorites-context';
 
 const container = document.getElementById('root');
 const root = ReactDOMClient.createRoot(container);
 root.render(
-    <AccountContextProvider>
-        <UserOffersContextProvider>
-            <FavoritesContextProvider>
-                <BrowserRouter>
+    <BrowserRouter>
+        <AccountContextProvider>
+            <UserOffersContextProvider>
+                <FavoritesContextProvider>
                     <Layout>
                         <App/>
                     </Layout>
-                </BrowserRouter>
-            </FavoritesContextProvider>
-        </UserOffersContextProvider>
-    </AccountContextProvider>
+                </FavoritesContextProvider>
+            </UserOffersContextProvider>
+        </AccountContextProvider>
+    </BrowserRouter>
 );

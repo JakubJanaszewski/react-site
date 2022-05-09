@@ -8,6 +8,8 @@ import OfferList from '../components/offers/OfferList';
 function UserOffers() {
     const userOffersContext = useContext(UserOffersContext);
     
+    console.log("user offers")
+
     if (userOffersContext.userOffers.length === 0) {
         return (
             <div className={classes.offers}>

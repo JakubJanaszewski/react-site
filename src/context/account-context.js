@@ -1,4 +1,4 @@
-import { createContext, useState} from 'react';
+import { createContext, useState, useEffect} from 'react';
 import Cookies from 'universal-cookie';
 
 
@@ -18,12 +18,10 @@ export function AccountContextProvider(props) {
   const [token, setToken] = useState(0);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
-  const [init, setInit] = useState(true);
 
-  if(init){
-    setInit(false);
+  useEffect(() => {
     validate();
-  }
+  }, []);
 
   async function validate(){
     const cookieToken = cookies.get('token')

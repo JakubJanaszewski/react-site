@@ -16,7 +16,7 @@ export function UserOffersContextProvider(props) {
         if(signedContext.isSignedIn){
             getUserOfferFromDatabaseHandler();
         }
-    }, [signedContext.jwtToken])
+    }, [signedContext.isSignedIn])
 
     async function getUserOfferFromDatabaseHandler() {
 
@@ -40,6 +40,8 @@ export function UserOffersContextProvider(props) {
             }
         }).then((json) => {
             setUserOffers(json["list"])
+            console.log("OFFERS:");
+            console.log(json["list"]);
         });
     }
 
