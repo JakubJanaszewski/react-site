@@ -169,11 +169,11 @@ class OfferSearcher extends React.Component {
             <input type='text' id='yearMax' ref={this.yearMaxRef} />
           </div>
           <div className={classes.control}>
-            <label htmlFor='mileageMin'>Min mileage:</label>
+            <label htmlFor='mileageMin'>Min KM:</label>
             <input type='text' id='mileageMin' ref={this.mileageMinRef} />
           </div>
           <div className={classes.control}>
-            <label htmlFor='mileageMax'>Max mileage:</label>
+            <label htmlFor='mileageMax'>Max KM:</label>
             <input type='text' id='mileageMax' ref={this.mileageMaxRef} />
          </div>
                   
