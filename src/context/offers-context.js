@@ -53,12 +53,12 @@ export function UserOffersContextProvider(props) {
         await fetch(
             'http://localhost:8000/offer',
             {
-              method: 'POST',
-              body: JSON.stringify(newOfferData),
-              headers: {
-                'Authorization': 'Bearer ' + signedContext.jwtToken,
-                'Content-Type': 'application/json',
-              }, 
+                method: 'POST',
+                body: JSON.stringify(newOfferData),
+                headers: {
+                    'Authorization': 'Bearer ' + signedContext.jwtToken,
+                    'Content-Type': 'application/json',
+                }, 
             }
           ).then((response) => {
             if(response.ok){

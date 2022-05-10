@@ -80,7 +80,7 @@ class OfferSearcher extends React.Component {
   fetchOffers(){
     //TODO DELETE THIS \/
     //this.setState({offers: OFFER_LIST});
-    
+    console.log(this.state.offersData);
 
     fetch(
       `http://localhost:8000/offer/list?city=${this.state.offersData.city}&kilometers=${this.state.offersData.kilometers}&priceMin=${this.state.offersData.priceMin}&priceMax=${this.state.offersData.priceMax}&yearMin=${this.state.offersData.yearMin}&yearMax=${this.state.offersData.yearMax}&milageMin=${this.state.offersData.milageMin}&milageMax=${this.state.offersData.milageMax}`,
