@@ -18,14 +18,16 @@ function SignIn() {
   }
 
   function signInHandler(signInData) {
-    accountContext.signIn(signInData);
-    console.log(accountContext.isSignedIn);
-    if(accountContext.isSignedIn){
-      navigate('/');
-    }
-    else{
-      changeDataMatch(false);
-    }
+    accountContext.signIn(signInData)
+    .then((shouldLogIn) => {
+      console.log(shouldLogIn);
+      if(shouldLogIn){
+        navigate('/');
+      }
+      else{
+        changeDataMatch(false);
+      }
+    });
   }
 
   return (<>

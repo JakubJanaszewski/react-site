@@ -46,18 +46,19 @@ function NewOfferForm(props) {
       street: enteredStreet
     };
 
-    props.onNewOffer(newOfferData);
-    titleInputRef.current.value = '';
-    priceInputRef.current.value = '';
-    imageInputRef.current.value = '';
-    yearInputRef.current.value = '';
-    mileageInputRef.current.value = '';
-    engineCapacityInputRef.current.value = '';
-    engineTypeInputRef.current.value = '';
-    descriptionInputRef.current.value = '';
-    countryInputRef.current.value = '';
-    cityInputRef.current.value = '';
-    streetInputRef.current.value = '';
+    if(props.onNewOffer(newOfferData) === 1){
+      titleInputRef.current.value = '';
+      priceInputRef.current.value = '';
+      imageInputRef.current.value = '';
+      yearInputRef.current.value = '';
+      mileageInputRef.current.value = '';
+      engineCapacityInputRef.current.value = '';
+      engineTypeInputRef.current.value = '';
+      descriptionInputRef.current.value = '';
+      countryInputRef.current.value = '';
+      cityInputRef.current.value = '';
+      streetInputRef.current.value = '';
+    }
   }
 
   return (

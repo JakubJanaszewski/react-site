@@ -49,9 +49,7 @@ export function UserOffersContextProvider(props) {
     }
 
     async function addOfferHandler(newOfferData) {
-
-        let result = -1;
-
+        let ans = -1;
         await fetch(
             'http://localhost:8000/offer',
             {
@@ -60,21 +58,21 @@ export function UserOffersContextProvider(props) {
               headers: {
                 'Authorization': 'Bearer ' + signedContext.jwtToken,
                 'Content-Type': 'application/json',
-              },
+              }, 
             }
           ).then((response) => {
             if(response.ok){
-                result = 1;
                 setUserOffers((prevUserOffers) => {
-                    return prevUserOffers.concat(newOfferData);
+                    prevUserOffers.concat(newOfferData);
                 });
+                ans = 1;
             }
             else{
                 console.log("ERROR DURING ADDING OFFER");
             }
         });
 
-        return result;
+        return ans;
     }
 
     function deleteOfferHandler(offerID) {

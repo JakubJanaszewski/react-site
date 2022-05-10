@@ -14,8 +14,12 @@ function NewOffer() {
   }
 
   function newOfferHandler(newOfferData) {  
-    const response = userOffersContext.addOffer(newOfferData);
-    changeMessage(response);
+
+    userOffersContext.addOffer(newOfferData)
+    .then((data) => {
+      console.log(data);
+      changeMessage(data);
+    });
   }
 
   return (<>
