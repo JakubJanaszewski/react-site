@@ -3,31 +3,6 @@ import classes from './OfferSearcher.module.css'
 import layout from '../layout/Layout.module.css';
 import OfferList from './OfferList';
 
-const OFFER_LIST = [
-  {
-    id: 'id1',
-    title: 'BMW Seria 3 320i',
-    image: 'https://media.istockphoto.com/photos/generic-red-suv-on-a-white-background-side-view-picture-id1157655660?s=612x612',
-    price: 20900,
-    year: 2005,
-    mileage: 168154,
-    engineCapacity: 1995,
-    engineType: 'Benzyna',
-    description: 'Description of this car',
-  },
-  {
-    id: 'id2',
-    title: 'MERCEDES-BENZ A Klasa',
-    image: 'https://cdn.otomotoklik.pl/static/img/vc/462dcb3b72b9c9083f01432fb1372f1f/exterior-closed_nr_001_original.jpg',
-    price: 74999,
-    year: 2017,
-    mileage: 29100,
-    engineCapacity: 2143,
-    engineType: 'Diesel',
-    description: 'Description of this car',
-  },
-];
-
 class OfferSearcher extends React.Component {
   
   constructor(props) {
@@ -78,8 +53,7 @@ class OfferSearcher extends React.Component {
   }
 
   fetchOffers(){
-    //TODO DELETE THIS \/
-    //this.setState({offers: OFFER_LIST});
+    console.log("Stany wyszukiwarki");
     console.log(this.state.offersData);
 
     fetch(
@@ -103,73 +77,67 @@ class OfferSearcher extends React.Component {
 
   submitHandler(event) {
     event.preventDefault();
+    let newCity = this.cityRef.current.value;
+    let newKilometers = this.kilometersRef.current.value;
+    let newPriceMin = this.priceMinRef.current.value;
+    let newPriceMax = this.priceMaxRef.current.value;
+    let newYearMin = this.yearMinRef.current.value;
+    let newYearMax = this.yearMaxRef.current.value;
+    let newMilageMin = this.milageMinRef.current.value;
+    let newMilageMax = this.milageMaxRef.current.value;
 
     if(this.cityRef.current.value === 'Worldwide'){
-      this.setState({offersData: {city: null}});
+      newCity = null;
     }
-    else{
-      this.setState({offersData: {city: this.cityRef.current.value}});
-    }
-    
-    this.setState({offersData: {city: this.cityRef.current.value}});
 
     if(isNaN(this.kilometersRef.current.value)){
       this.kilometersRef.current.value = "No limit";
-      this.setState({offersData: {kilometers: null}});
-    }
-    else{
-      this.setState({offersData: {kilometers: this.kilometersRef.current.value}});
+      newKilometers = null;
     }
 
     if(isNaN(this.priceMinRef.current.value)){
       this.priceMinRef.current.value = "No limit";
-      this.setState({offersData: {priceMin: null}});
-    }
-    else{
-      this.setState({offersData: {priceMin: this.priceMinRef.current.value}});
+      newPriceMin = null;
     }
 
     if(isNaN(this.priceMaxRef.current.value)){
       this.priceMaxRef.current.value = "No limit";
-      this.setState({offersData: {priceMax: null}});
-    }
-    else{
-      this.setState({offersData: {priceMax: this.priceMaxRef.current.value}});
+      newPriceMax = null;
     }
 
     if(isNaN(this.yearMinRef.current.value)){
       this.yearMinRef.current.value = "No limit";
-      this.setState({offersData: {yearMin: null}});
-    }
-    else{
-      this.setState({offersData: {yearMin: this.yearMinRef.current.value}});
+      newYearMin = null;
     }
 
     if(isNaN(this.yearMaxRef.current.value)){
       this.yearMaxRef.current.value = "No limit";
-      this.setState({offersData: {yearMax: null}});
-    }
-    else{
-      this.setState({offersData: {yearMax: this.yearMaxRef.current.value}});
+      newYearMax = null;
     }
 
     if(isNaN(this.milageMinRef.current.value)){
       this.milageMinRef.current.value = "No limit";
-      this.setState({offersData: {milageMin: null}});
-    }
-    else{
-      this.setState({offersData: {milageMin: this.milageMinRef.current.value}});
+      newMilageMin = null;
     }
 
     if(isNaN(this.milageMaxRef.current.value)){
       this.milageMaxRef.current.value = "No limit";
-      this.setState({offersData: {milageMax: null}});
-    }
-    else{
-      this.setState({offersData: {milageMax: this.milageMaxRef.current.value}});
+      newMilageMax = null;
     }
 
-    this.fetchOffers();  
+    this.setState({offersData: 
+    {
+      city: newCity,
+      kilometers: newKilometers,
+      priceMin: newPriceMin,
+      priceMax: newPriceMax,
+      yearMin: newYearMin,
+      yearMax: newYearMax,
+      milageMin: newMilageMin,
+      milageMax: newMilageMax,
+    }},
+    this.fetchOffers
+    );
   }
 
   render() {
