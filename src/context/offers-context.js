@@ -16,6 +16,9 @@ export function UserOffersContextProvider(props) {
         if(signedContext.isSignedIn){
             getUserOfferFromDatabaseHandler();
         }
+        else{
+            setUserOffers([]);
+        }
     }, [signedContext.isSignedIn])
 
     async function getUserOfferFromDatabaseHandler() {

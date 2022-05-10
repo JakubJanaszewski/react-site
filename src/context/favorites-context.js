@@ -17,6 +17,9 @@ export function FavoritesContextProvider(props) {
     if(signedContext.isSignedIn){
       getFavoriteFromDatabaseHandler();
     }
+    else{
+      setUserFavorites([]);
+    }
 }, [signedContext.isSignedIn])
 
 
