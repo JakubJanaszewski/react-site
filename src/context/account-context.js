@@ -71,12 +71,13 @@ export function AccountContextProvider(props) {
       throw new Error('Response not ok.');
     })
     .then((json) => {
-      setEmail(signInData.email)
-      setSign(true);
-      setToken(json["jwtToken"]);
 
       cookies.set('token', json["jwtToken"]);
       cookies.set('email', signInData.email);
+
+      setEmail(signInData.email)
+      setSign(true);
+      setToken(json["jwtToken"]);
 
       setNameHandler(signInData.email);
 
