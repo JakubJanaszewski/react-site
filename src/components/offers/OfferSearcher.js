@@ -17,8 +17,8 @@ class OfferSearcher extends React.Component {
         priceMax: null,
         yearMin: null,
         yearMax: null,
-        milageMin: null,
-        milageMax: null,
+        mileageMin: null,
+        mileageMax: null,
       }
     }
 
@@ -28,8 +28,8 @@ class OfferSearcher extends React.Component {
     this.priceMaxRef = React.createRef();
     this.yearMinRef = React.createRef();
     this.yearMaxRef = React.createRef();
-    this.milageMinRef = React.createRef();
-    this.milageMaxRef = React.createRef();
+    this.mileageMinRef = React.createRef();
+    this.mileageMaxRef = React.createRef();
 
     this.submitHandler = this.submitHandler.bind(this);
     this.fetchOffers = this.fetchOffers.bind(this);
@@ -47,8 +47,8 @@ class OfferSearcher extends React.Component {
     this.priceMaxRef.current.value = "No limit";
     this.yearMinRef.current.value = "No limit";
     this.yearMaxRef.current.value = "No limit";
-    this.milageMinRef.current.value = "No limit";
-    this.milageMaxRef.current.value = "No limit";
+    this.mileageMinRef.current.value = "No limit";
+    this.mileageMaxRef.current.value = "No limit";
     this.fetchOffers();
   }
 
@@ -57,7 +57,7 @@ class OfferSearcher extends React.Component {
     console.log(this.state.offersData);
 
     fetch(
-      `http://localhost:8000/offer/list?city=${this.state.offersData.city}&kilometers=${this.state.offersData.kilometers}&priceMin=${this.state.offersData.priceMin}&priceMax=${this.state.offersData.priceMax}&yearMin=${this.state.offersData.yearMin}&yearMax=${this.state.offersData.yearMax}&milageMin=${this.state.offersData.milageMin}&milageMax=${this.state.offersData.milageMax}`,
+      `http://localhost:8000/offer/list?city=${this.state.offersData.city}&kilometers=${this.state.offersData.kilometers}&priceMin=${this.state.offersData.priceMin}&priceMax=${this.state.offersData.priceMax}&yearMin=${this.state.offersData.yearMin}&yearMax=${this.state.offersData.yearMax}&mileageMin=${this.state.offersData.mileageMin}&mileageMax=${this.state.offersData.mileageMax}`,
       {
         method: 'GET',
         headers: {
@@ -83,8 +83,8 @@ class OfferSearcher extends React.Component {
     let newPriceMax = this.priceMaxRef.current.value;
     let newYearMin = this.yearMinRef.current.value;
     let newYearMax = this.yearMaxRef.current.value;
-    let newMilageMin = this.milageMinRef.current.value;
-    let newMilageMax = this.milageMaxRef.current.value;
+    let newMileageMin = this.mileageMinRef.current.value;
+    let newMileageMax = this.mileageMaxRef.current.value;
 
     if(this.cityRef.current.value === 'Worldwide'){
       newCity = null;
@@ -115,14 +115,14 @@ class OfferSearcher extends React.Component {
       newYearMax = null;
     }
 
-    if(isNaN(this.milageMinRef.current.value)){
-      this.milageMinRef.current.value = "No limit";
-      newMilageMin = null;
+    if(isNaN(this.mileageMinRef.current.value)){
+      this.mileageMinRef.current.value = "No limit";
+      newMileageMin = null;
     }
 
-    if(isNaN(this.milageMaxRef.current.value)){
-      this.milageMaxRef.current.value = "No limit";
-      newMilageMax = null;
+    if(isNaN(this.mileageMaxRef.current.value)){
+      this.mileageMaxRef.current.value = "No limit";
+      newMileageMax = null;
     }
 
     this.setState({offersData: 
@@ -133,8 +133,8 @@ class OfferSearcher extends React.Component {
       priceMax: newPriceMax,
       yearMin: newYearMin,
       yearMax: newYearMax,
-      milageMin: newMilageMin,
-      milageMax: newMilageMax,
+      mileageMin: newMileageMin,
+      mileageMax: newMileageMax,
     }},
     this.fetchOffers
     );
@@ -153,11 +153,11 @@ class OfferSearcher extends React.Component {
             <input type='text' id='km' ref={this.kilometersRef} />
           </div>
           <div className={classes.control}>
-            <label htmlFor='priceMin'>Min km:</label>
+            <label htmlFor='priceMin'>Min PLN:</label>
             <input type='text' id='priceMin' ref={this.priceMinRef} />
           </div>
           <div className={classes.control}>
-            <label htmlFor='priceMax'>Max km:</label>
+            <label htmlFor='priceMax'>Max PLN:</label>
             <input type='text' id='priceMax' ref={this.priceMaxRef} />
           </div>
           <div className={classes.control}>
@@ -169,12 +169,12 @@ class OfferSearcher extends React.Component {
             <input type='text' id='yearMax' ref={this.yearMaxRef} />
           </div>
           <div className={classes.control}>
-            <label htmlFor='milageMin'>Min milage:</label>
-            <input type='text' id='milageMin' ref={this.milageMinRef} />
+            <label htmlFor='mileageMin'>Min mileage:</label>
+            <input type='text' id='mileageMin' ref={this.mileageMinRef} />
           </div>
           <div className={classes.control}>
-            <label htmlFor='milageMax'>Max milage:</label>
-            <input type='text' id='milageMax' ref={this.milageMaxRef} />
+            <label htmlFor='mileageMax'>Max mileage:</label>
+            <input type='text' id='mileageMax' ref={this.mileageMaxRef} />
          </div>
                   
           <div className={classes.actions}>
