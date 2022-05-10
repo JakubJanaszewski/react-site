@@ -4,15 +4,11 @@ import { useNavigate} from 'react-router-dom';
 import SignInForm from '../components/account/SignInForm';
 import classes from '../components/layout/Layout.module.css';
 import AccountContext from '../context/account-context';
-import FavoritesContext from '../context/favorites-context';
-import UserOffersContext from '../context/offers-context';
 import ErrorMessage from '../components/ui/ErrorMessage';
 
 
 function SignIn() {
   const accountContext = useContext(AccountContext);
-  const favoritesContext = useContext(FavoritesContext);
-  const offerContexts = useContext(UserOffersContext);
   const [dataMatch, changeDataMatch] = useState(true);
 
   let navigate = useNavigate();
@@ -21,11 +17,10 @@ function SignIn() {
     changeDataMatch(true);
   }
 
-  async function signInHandler(signInData) {
-    const isSigned = await accountContext.signIn(signInData)
-    if(isSigned){
-      favoritesContext.getFavoriteFromDatabase();
-      offerContexts.getFavoriteFromDatabase();
+  function signInHandler(signInData) {
+    accountContext.signIn(signInData);
+    console.log(accountContext.isSignedIn);
+    if(accountContext.isSignedIn){
       navigate('/');
     }
     else{
