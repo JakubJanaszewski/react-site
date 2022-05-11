@@ -90,7 +90,14 @@ function NewOfferForm(props) {
         </div>
         <div className={classes.control}>
           <label htmlFor='engineType'>Engine type:</label>
-          <input type='text' required id='engineType' ref={engineTypeInputRef} />
+          <input list="typeList" required id='engineType' ref={engineTypeInputRef} />
+          <datalist id="typeList">
+            <option value="Electric"/>
+            <option value="Petrol"/>
+            <option value="Diesel"/>
+            <option value="Hybrid"/>
+            <option value="LPG"/>
+          </datalist>
         </div>
         <div className={classes.control}>
           <label htmlFor='country'>Country:</label>

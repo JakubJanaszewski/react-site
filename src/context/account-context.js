@@ -25,9 +25,7 @@ export function AccountContextProvider(props) {
 
   async function validate(){
     const cookieToken = cookies.get('token')
-    console.log("token form cookies: " + cookieToken);
     const cookieEmail = cookies.get('email')
-    console.log("email form cookies: " + cookieEmail);
 
     if(cookieToken !== undefined && cookieEmail !== undefined){
       const response = await fetch(

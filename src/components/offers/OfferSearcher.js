@@ -53,8 +53,6 @@ class OfferSearcher extends React.Component {
   }
 
   fetchOffers(){
-    console.log("Stany wyszukiwarki");
-    console.log(this.state.offersData);
 
     fetch(
       `http://localhost:8000/offer/list?city=${this.state.offersData.city}&kilometers=${this.state.offersData.kilometers}&priceMin=${this.state.offersData.priceMin}&priceMax=${this.state.offersData.priceMax}&yearMin=${this.state.offersData.yearMin}&yearMax=${this.state.offersData.yearMax}&mileageMin=${this.state.offersData.mileageMin}&mileageMax=${this.state.offersData.mileageMax}`,
@@ -68,8 +66,6 @@ class OfferSearcher extends React.Component {
           return response.json();
         }
       }).then((json) => {
-        console.log("lista:")
-        console.log(json["list"])
         this.setState({offers: json["list"]});
     });
   }

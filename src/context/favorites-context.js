@@ -28,12 +28,12 @@ export function FavoritesContextProvider(props) {
     console.log("GETTING FAVS FROM DATABES FUNCTION")
 
     fetch(
-      'http://localhost:8000/offer/fav',
+      `http://localhost:8000/offer/fav?email=${signedContext.email}`,
       {
         method: 'GET',
         headers: {
           'Authorization': 'Bearer ' + signedContext.jwtToken,
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
       }).then((response) => {
         if(response.ok){

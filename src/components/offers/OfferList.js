@@ -3,9 +3,6 @@ import classes from './OfferList.module.css';
 
 function OfferList(props) {
    
-    console.log("offerlist")
-    console.log(props)
-
     return (
         <ul className={classes.list}>
             {props.offers?.map((offer) => (

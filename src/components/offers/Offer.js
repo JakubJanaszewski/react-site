@@ -11,8 +11,6 @@ import ChooseMessage from '../ui/ChooseMessage';
 
 function Offer(props) {
 
-    console.log(props)
-
     const accContext = useContext(AccountContext);
     const favoritesCtx = useContext(FavoritesContext);
     const userOffersContext = useContext(UserOffersContext);

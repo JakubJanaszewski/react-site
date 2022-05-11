@@ -23,8 +23,6 @@ export function UserOffersContextProvider(props) {
 
     async function getUserOfferFromDatabaseHandler() {
 
-        console.log("GETTING OFFERS FROM DATABES FUNCTION")
-
         await fetch(
             `http://localhost:8000/offer/list?user=${signedContext.email}`,
             {
@@ -43,8 +41,6 @@ export function UserOffersContextProvider(props) {
             }
         }).then((json) => {
             setUserOffers(json["list"])
-            console.log("OFFERS:");
-            console.log(json["list"]);
         });
     }
 
