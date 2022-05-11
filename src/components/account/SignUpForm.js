@@ -34,18 +34,6 @@ function SignUpForm(props) {
     const enteredDescription = descriptionInputRef.current.value;
     const enteredPhoneNumber= phoneNumberInputRef.current.value;
 
-    emailInputRef.current.value     = '';
-    passwordInputRef.current.value  = '';
-    passwordInput2Ref.current.value  = '';
-    firstNameInputRef.current.value = '';
-    lastNameInputRef.current.value = '';
-    dateOfBirthInputRef.current.value = '';
-    streetInputRef.current.value = '';
-    zipCodeInputRef.current.value = '';
-    cityInputRef.current.value = '';
-    descriptionInputRef.current.value = '';
-    phoneNumberInputRef.current.value = '';
-
     const signUpData = {
       email: enteredEmail,
       password: enteredpassword,
@@ -97,11 +85,11 @@ function SignUpForm(props) {
             </div>
             <div className={classes.control}>
               <label htmlFor='phone'>Phone number:</label>
-              <input type='text' required id='phone' ref={phoneNumberInputRef} />
+              <input type='tel' required id='phone' ref={phoneNumberInputRef} />
             </div>
             <div className={classes.control}>
               <label htmlFor='dateOfBirth'>Date of birth:</label>
-              <input type='text' required id='dateOfBirth' ref={dateOfBirthInputRef} />
+              <input type='date' required id='dateOfBirth' ref={dateOfBirthInputRef} />
             </div>
             <div className={classes.control}>
               <label htmlFor='city'>City:</label>
