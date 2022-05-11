@@ -61,6 +61,8 @@ function NewOfferForm(props) {
     }
   }
 
+  console.log(props)
+
   return (
     <ShadowElement>
       <form className={classes.form} onSubmit={submitHandler}>
@@ -92,16 +94,19 @@ function NewOfferForm(props) {
           <label htmlFor='engineType'>Engine type:</label>
           <input list="typeList" required id='engineType' ref={engineTypeInputRef} />
           <datalist id="typeList">
-            <option value="Electric"/>
-            <option value="Petrol"/>
-            <option value="Diesel"/>
-            <option value="Hybrid"/>
-            <option value="LPG"/>
+            {props.engines?.map((engine) => (
+            <option key={engine} value={engine}/>
+            ))}
           </datalist>
         </div>
         <div className={classes.control}>
           <label htmlFor='country'>Country:</label>
-          <input type='text' required id='country' ref={countryInputRef} />
+          <input list="countriesList" required id='country' ref={countryInputRef} />
+          <datalist id="countriesList">
+            {props.countries?.map((country) => (
+            <option key={country} value={country}/>
+            ))}
+          </datalist>
         </div>
         <div className={classes.control}>
           <label htmlFor='city'>City:</label>
