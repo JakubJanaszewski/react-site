@@ -24,16 +24,13 @@ export function FavoritesContextProvider(props) {
 
 
   function getFavoriteFromDatabaseHandler() {
-
-    console.log("GETTING FAVS FROM DATABES FUNCTION")
-
     fetch(
-      `http://localhost:8000/offer/fav?email=${signedContext.email}`,
+      `http://localhost:8000/offer/fav`,
       {
         method: 'GET',
         headers: {
           'Authorization': 'Bearer ' + signedContext.jwtToken,
-          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Type': 'application/json',
         },
       }).then((response) => {
         if(response.ok){
