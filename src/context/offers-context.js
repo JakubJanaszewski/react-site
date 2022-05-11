@@ -46,7 +46,7 @@ export function UserOffersContextProvider(props) {
 
     async function addOfferHandler(newOfferData) {
         let ans = -1;
-        await fetch(
+        const response = await fetch(
             'http://localhost:8000/offer',
             {
                 method: 'POST',
@@ -56,17 +56,18 @@ export function UserOffersContextProvider(props) {
                     'Content-Type': 'application/json',
                 }, 
             }
-          ).then((response) => {
-            if(response.ok){
-                setUserOffers((prevUserOffers) => {
-                    prevUserOffers.concat(newOfferData);
-                });
-                ans = 1;
-            }
-            else{
-                console.log("ERROR DURING ADDING OFFER");
-            }
-        });
+        )
+        if(response.ok){
+            console.log("Last user offer:")
+            console.log(userOffers)
+            getUserOfferFromDatabaseHandler();
+            console.log("Last user offer:")
+            console.log(userOffers)
+            ans = 1;
+        }
+        else{
+            console.log("ERROR DURING ADDING OFFER");
+        }
 
         return ans;
     }
