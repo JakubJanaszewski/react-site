@@ -8,6 +8,7 @@ import Layout from './components/layout/Layout';
 import { AccountContextProvider } from './context/account-context';
 import { UserOffersContextProvider } from './context/offers-context';
 import { FavoritesContextProvider } from './context/favorites-context';
+import { UtilityContextProvider } from './context/utility-context';
 
 const container = document.getElementById('root');
 const root = ReactDOMClient.createRoot(container);
@@ -16,9 +17,11 @@ root.render(
         <AccountContextProvider>
             <UserOffersContextProvider>
                 <FavoritesContextProvider>
-                    <Layout>
-                        <App/>
-                    </Layout>
+                    <UtilityContextProvider>
+                        <Layout>
+                            <App/>
+                        </Layout>
+                    </UtilityContextProvider>
                 </FavoritesContextProvider>
             </UserOffersContextProvider>
         </AccountContextProvider>

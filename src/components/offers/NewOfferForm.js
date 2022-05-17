@@ -1,9 +1,12 @@
-import { useRef } from 'react';
+import { useRef, useContext } from 'react';
 
-import classes from './NewOfferForm.module.css'
+import classes from './NewOfferForm.module.css';
 import ShadowElement from '../ui/ShadowElement';
+import UtilityContext from '../../context/utility-context';
 
 function NewOfferForm(props) {
+  const utilityContext = useContext(UtilityContext);
+
   const titleInputRef = useRef();
   const priceInputRef = useRef();
   const imageInputRef = useRef();
@@ -94,7 +97,7 @@ function NewOfferForm(props) {
           <label htmlFor='engineType'>Engine type:</label>
           <input list="typeList" required id='engineType' ref={engineTypeInputRef} />
           <datalist id="typeList">
-            {props.engines?.map((engine) => (
+            {utilityContext.engines?.map((engine) => (
             <option key={engine} value={engine}/>
             ))}
           </datalist>
@@ -103,7 +106,7 @@ function NewOfferForm(props) {
           <label htmlFor='country'>Country:</label>
           <input list="countriesList" required id='country' ref={countryInputRef} />
           <datalist id="countriesList">
-            {props.countries?.map((country) => (
+            {utilityContext.countries?.map((country) => (
             <option key={country} value={country}/>
             ))}
           </datalist>
