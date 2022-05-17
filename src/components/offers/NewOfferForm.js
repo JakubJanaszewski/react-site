@@ -18,6 +18,19 @@ function NewOfferForm(props) {
   const countryInputRef = useRef();
   const cityInputRef = useRef();
   const streetInputRef = useRef();
+
+  if(props.defaultValues){
+    titleInputRef.current.value = props.title;
+    imageInputRef.current.value = props.image;
+    yearInputRef.current.value  = props.year;
+    mileageInputRef.current.value = props.image;
+    engineCapacityInputRef.current.value = props.engineCapacity;
+    engineTypeInputRef.current.value = props.engineType;
+    descriptionInputRef.current.value = props.description;
+    countryInputRef.current.value = props.country;
+    cityInputRef.current.value = props.city;
+    streetInputRef.current.value = props.street;
+  }
   
 
   function submitHandler(event) {
