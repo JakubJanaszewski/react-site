@@ -1,23 +1,16 @@
-import { useContext, useState } from 'react';
+import {useContext} from 'react';
 import {useNavigate} from 'react-router-dom';
 
 import classes from './Offer.module.css';
 import ShadowElement from '../ui/ShadowElement'
 import FavoritesContext from '../../context/favorites-context';
 import AccountContext from '../../context/account-context';
-import UserOffersContext from '../../context/offers-context';
-import ChooseMessage from '../ui/ChooseMessage';
-
 
 function Offer(props) {
-
     const accContext = useContext(AccountContext);
     const favoritesCtx = useContext(FavoritesContext);
-    const userOffersContext = useContext(UserOffersContext);
 
     const itemIsFavorite = favoritesCtx.itemIsFavorite(props.offerId);
-
-    const [ isDeleteClicked, toggleDeleteState] = useState(false);
 
     let navigate = useNavigate(); 
     function toggleFavoriteStatusHandler() {
@@ -49,7 +42,11 @@ function Offer(props) {
         navigate('/offer/' + props.offerId);
     }
 
-    return (<>
+    function onEdit() {
+        navigate('/edit/' + props.offerId);
+    }
+
+    return (
         <ShadowElement>
             <li className={classes.item}>
                 <div className={classes.conteiner}>
@@ -79,11 +76,11 @@ function Offer(props) {
                                     </button>
                                 </div>
                             </li>
-                            {props.delete === '1' &&
+                            {props.edit === '1' &&
                             <li>
                                 <div className={classes.actions}>
-                                    <button onClick={() => {toggleDeleteState(true);}}>
-                                        Delete
+                                    <button onClick={onEdit}>
+                                        Edit
                                     </button>
                                 </div>
                             </li>}
@@ -99,15 +96,7 @@ function Offer(props) {
                 </div>
             </li>
         </ShadowElement>
-        {isDeleteClicked && 
-        <ChooseMessage 
-            onCancel = { () => {toggleDeleteState(false)}} 
-            onConfirm = { () => {userOffersContext.deleteOffer(props.offerId); toggleDeleteState(false)} } 
-            buttonCancel = 'Cancel' 
-            buttonConfirm = 'Delete' 
-            description = 'Are you sure you want to delete an offer?'>
-        </ChooseMessage>}
-    </>);
+    );
 }
 
 

@@ -77,8 +77,6 @@ function NewOfferForm(props) {
     }
   }
 
-  console.log(props)
-
   return (
     <ShadowElement>
       <form className={classes.form} onSubmit={submitHandler}>
@@ -141,10 +139,10 @@ function NewOfferForm(props) {
           ></textarea>
         </div>
         <div className={classes.actions}>
-          <button>Add new offer</button>
+          <button>Sumbit</button>
         </div>
       </form>
-    </ShadowElement>
+    </ShadowElement> 
   );
 }
 

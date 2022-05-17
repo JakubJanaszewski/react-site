@@ -22,7 +22,7 @@ function UserOffers() {
     return (
         <div className={classes.offers}>
             <h1>My offers</h1>
-            <OfferList offers={userOffersContext.userOffers}  delete = '1' />
+            <OfferList offers={userOffersContext.userOffers}  edit = '1' />
         </div>
     );
 }

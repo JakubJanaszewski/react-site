@@ -18,7 +18,7 @@ function OfferList(props) {
                 EngineTypeName={offer.EngineTypeName}
                 description={offer.description}
 
-                delete = {props.delete}
+                edit = {props.edit}
                 />
             ))}
         </ul>
