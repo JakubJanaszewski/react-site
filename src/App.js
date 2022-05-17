@@ -11,6 +11,7 @@ import OfferPage from './pages/Offer';
 import UserOffers from './pages/UserOffers';
 import NewOfferPage from './pages/NewOffer';
 import AccountContext from './context/account-context';
+import EditOffer from './pages/EditOffer';
 
 function App() {
     const accContext = useContext(AccountContext);
@@ -24,6 +25,7 @@ function App() {
             <Route path='/favorites' element = {(accContext.isSignedIn) ? <FavoritesPage/> : <Navigate to='/'/>}/>
             <Route path='/new-offer' element = {(accContext.isSignedIn) ? <NewOfferPage/> : <Navigate to='/'/>}/>
             <Route path='/my-offers' element = {(accContext.isSignedIn) ? <UserOffers/> : <Navigate to='/'/>}/>
+            <Route path='/edit/:offerId' element = {(accContext.isSignedIn) ? <EditOffer/> : <Navigate to='/'/>}/>
         </Routes>
     );
   }

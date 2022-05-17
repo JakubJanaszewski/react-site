@@ -62,7 +62,7 @@ function NewOfferForm(props) {
       street: enteredStreet
     };
 
-    if(props.onNewOffer(newOfferData) === 1){
+    if(props.onSumbit(newOfferData) === 1){
       titleInputRef.current.value = '';
       priceInputRef.current.value = '';
       imageInputRef.current.value = '';
