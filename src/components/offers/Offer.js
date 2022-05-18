@@ -1,15 +1,19 @@
-import {useContext} from 'react';
+import {useContext, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 
 import classes from './Offer.module.css';
 import ShadowElement from '../ui/ShadowElement'
+import ChooseMessage from '../ui/ChooseMessage';
 import FavoritesContext from '../../context/favorites-context';
 import AccountContext from '../../context/account-context';
+import UserOffersContext from '../../context/offers-context';
 
 function Offer(props) {
     const accContext = useContext(AccountContext);
     const favoritesCtx = useContext(FavoritesContext);
+    const userOffersContext = useContext(UserOffersContext);
 
+    const [isDeleteClicked, toggleDeleteState] = useState(false);
     const itemIsFavorite = favoritesCtx.itemIsFavorite(props.offerId);
 
     let navigate = useNavigate(); 
@@ -46,7 +50,7 @@ function Offer(props) {
         navigate('/edit/' + props.offerId);
     }
 
-    return (
+    return (<>
         <ShadowElement>
             <li className={classes.item}>
                 <div className={classes.conteiner}>
@@ -76,27 +80,44 @@ function Offer(props) {
                                     </button>
                                 </div>
                             </li>
-                            {props.edit === '1' &&
-                            <li>
+                            {props.edit === true &&
+                            <><li>
                                 <div className={classes.actions}>
                                     <button onClick={onEdit}>
                                         Edit
                                     </button>
                                 </div>
-                            </li>}
+                            </li>
+                            <li>
+                                <div className={classes.actions}>
+                                    <button onClick={() => {toggleDeleteState(true);}}>
+                                        Delete
+                                    </button>
+                                </div>
+                            </li></>}
+                            {props.edit === false &&
                             <li>
                                 <div className={classes.actions}>
                                     <button onClick={toggleFavoriteStatusHandler}>
                                         {itemIsFavorite ? 'Stop observing' : 'Observe'}
                                     </button>
                                 </div>
-                            </li>
+                            </li>}
                         </ul>
                     </div>
                 </div>
             </li>
         </ShadowElement>
-    );
+        {isDeleteClicked && 
+            <ChooseMessage 
+                onCancel = { () => {toggleDeleteState(false)}} 
+                onConfirm = { () => {userOffersContext.deleteOffer(props.offerId); toggleDeleteState(false)} } 
+                buttonCancel = 'Cancel' 
+                buttonConfirm = 'Delete' 
+                description = 'Are you sure you want to delete an offer?'>
+            </ChooseMessage>
+        }   
+    </>);
 }
 
 

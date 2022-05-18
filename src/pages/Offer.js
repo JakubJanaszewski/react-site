@@ -33,8 +33,6 @@ function OfferPage() {
 
             setOfferData(jsonOfferData);
 
-            //console.log(offerData);
-
             const responseUserData = await fetch(
                 'http://localhost:8000/users/info/' + jsonOfferData["UserEmail"],
                 {
