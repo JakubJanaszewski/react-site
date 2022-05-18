@@ -179,7 +179,7 @@ class OfferSearcher extends React.Component {
         </form>
       </div>
       <div className={layout.offers}>
-        <OfferList offers={this.state.offers} delete = '0'/>
+        <OfferList offers={this.state.offers} edit={false}/>
       </div>
     </>);
   }

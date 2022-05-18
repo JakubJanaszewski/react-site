@@ -1,4 +1,4 @@
-import { useState, useContext} from 'react';
+import { useState, useContext, useEffect} from 'react';
 import { useParams } from "react-router-dom";
 
 import NewOfferForm from '../components/offers/NewOfferForm';
@@ -9,8 +9,31 @@ import UserOffersContext from '../context/offers-context';
 function EditOffer() {
   const userOffersContext = useContext(UserOffersContext);
   const [message, changeMessage] = useState(0);
-
+  const [defaultValues, changeDefaultValues] = useState({});
   const { offerId } = useParams();
+
+  useEffect(() => { 
+    //UPDATE THIS ENDPOINT
+    fetch(
+      `http://localhost:8000/offer/${offerId}`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }).then((response) => {
+        if(response.ok){
+          return response.json();
+        }
+        else{
+          console.log("ERROR WHILE GETTING FAVORITES LIST")
+        }
+      }).then((json) => {
+        console.log("Dane ofery w celu aktualizacji:")
+        console.log(json)
+        changeDefaultValues(json)
+    });
+  }, [offerId])
 
   function cancelHandler() {
     changeMessage(0);
@@ -27,7 +50,12 @@ function EditOffer() {
   return (<>
     <div className={classes.newOffer}>
       <h1>Update an offer</h1>
-      <NewOfferForm onSumbit={updateOfferHandler} edit={true}/>
+      <NewOfferForm onSumbit={updateOfferHandler} defaultValues={true}
+      title={defaultValues.title} price={defaultValues.price} image={defaultValues.image} 
+      year={defaultValues.year} mileage={defaultValues.mileage}
+      engineCapacity={defaultValues.engineCapacity} engineType={defaultValues.engineType}
+      description={defaultValues.description} country={defaultValues.country}
+      city={defaultValues.city} street={defaultValues.street}/>
     </div>
     {message === -1 && <ErrorMessage description = "Wrong data, Try again." button = "Confirm" onCancel = {cancelHandler}/>}
     {message === 1 && <ErrorMessage description = "Updated an offer." button = "Confirm" onCancel = {cancelHandler}/>}
