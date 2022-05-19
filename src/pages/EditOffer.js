@@ -40,7 +40,6 @@ function EditOffer() {
   }
 
   function updateOfferHandler(newOfferData) {  
-    //TODO IMPLEMENT THIS FUNCTION VVVVV
     userOffersContext.updateOffer(newOfferData)
     .then((data) => {
       changeMessage(data);
@@ -52,9 +51,9 @@ function EditOffer() {
       <h1>Update an offer</h1>
       <NewOfferForm onSumbit={updateOfferHandler} defaultValues={true}
       title={defaultValues.title} price={defaultValues.price} image={defaultValues.image} 
-      year={defaultValues.year} mileage={defaultValues.mileage}
-      engineCapacity={defaultValues.engineCapacity} engineType={defaultValues.engineType}
-      description={defaultValues.description} country={defaultValues.country}
+      year={defaultValues.modelYear} mileage={defaultValues.mileage}
+      engineCapacity={defaultValues.engineCapacity} engineType={defaultValues.EngineTypeName}
+      description={defaultValues.description} country={defaultValues.CountryName}
       city={defaultValues.city} street={defaultValues.street}/>
     </div>
     {message === -1 && <ErrorMessage description = "Wrong data, Try again." button = "Confirm" onCancel = {cancelHandler}/>}
