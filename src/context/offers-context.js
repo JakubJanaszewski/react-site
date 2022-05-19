@@ -5,6 +5,7 @@ const UserOffersContext = createContext({
     userOffers: [],
     getUserOfferFromDatabase: () => {},
     addOffer: () => {},
+    updateOffer: () => {},
     deleteOffer: () => {},
 });
 
@@ -72,6 +73,30 @@ export function UserOffersContextProvider(props) {
         return ans;
     }
 
+    async function updateOfferHandler(offerID, newData){
+        let ans = -1;
+        const response = await fetch(
+            `http://localhost:8000/offer/${offerID}`,
+            {
+                method: 'PATCH',
+                body: JSON.stringify(newData),
+                headers: {
+                    'Authorization': 'Bearer ' + signedContext.jwtToken,
+                    'Content-Type': 'application/json',
+                }, 
+            }
+        )
+        if(response.ok){
+            getUserOfferFromDatabaseHandler();
+            ans = 1;
+        }
+        else{
+            console.log("ERROR DURING UPDATING AN OFFER");
+        }
+
+        return ans;
+    }
+
     function deleteOfferHandler(offerID) {
         fetch(
             `http://localhost:8000/offer/${offerID}`,
@@ -98,6 +123,7 @@ export function UserOffersContextProvider(props) {
         userOffers: userOffers,
         getUserOfferFromDatabase: getUserOfferFromDatabaseHandler,
         addOffer: addOfferHandler,
+        updateOffer: updateOfferHandler,
         deleteOffer: deleteOfferHandler,
     };
 

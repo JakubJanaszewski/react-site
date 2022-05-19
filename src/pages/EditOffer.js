@@ -40,7 +40,7 @@ function EditOffer() {
   }
 
   function updateOfferHandler(newOfferData) {  
-    userOffersContext.updateOffer(newOfferData)
+    userOffersContext.updateOffer(offerId, newOfferData)
     .then((data) => {
       changeMessage(data);
     });
