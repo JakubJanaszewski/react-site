@@ -1,54 +1,34 @@
-import React, { useState, useCallback, useEffect } from 'react';
-import useWebSocket, { ReadyState } from 'react-use-websocket';
+import React, { useEffect, useState } from 'react';
+import io from 'socket.io-client';
+import Messages from './Messages';
+import MessageInput from './MessageInput';
 
-function Chat () {
-  //Public API that will echo messages sent to it back to the client
-  const [socketUrl, setSocketUrl] = useState('wss://echo.websocket.org');
-  const [messageHistory, setMessageHistory] = useState([]);
+import './Chat.css';
 
-  const { sendMessage, lastMessage, readyState } = useWebSocket('ws://localhost:8000/socket.io');
+function Chat() {
+  const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    if (lastMessage !== null) {
-      setMessageHistory((prev) => prev.concat(lastMessage));
-    }
-  }, [lastMessage, setMessageHistory]);
-
-  const handleClickChangeSocketUrl = useCallback(
-    () => setSocketUrl('wss://demos.kaazing.com/echo'),
-    []
-  );
-
-  const handleClickSendMessage = useCallback(() => sendMessage('Hello'), []);
-
-  const connectionStatus = {
-    [ReadyState.CONNECTING]: 'Connecting',
-    [ReadyState.OPEN]: 'Open',
-    [ReadyState.CLOSING]: 'Closing',
-    [ReadyState.CLOSED]: 'Closed',
-    [ReadyState.UNINSTANTIATED]: 'Uninstantiated',
-  }[readyState];
+    const newSocket = io(`ws://localhost:8000`);
+    setSocket(newSocket);
+    return () => newSocket.close();
+  }, [setSocket]);
 
   return (
-    <div>
-      <button onClick={handleClickChangeSocketUrl}>
-        Click Me to change Socket Url
-      </button>
-      <button
-        onClick={handleClickSendMessage}
-        disabled={readyState !== ReadyState.OPEN}
-      >
-        Click Me to send 'Hello'
-      </button>
-      <span>The WebSocket is currently {connectionStatus}</span>
-      {lastMessage ? <span>Last message: {lastMessage.data}</span> : null}
-      <ul>
-        {messageHistory.map((message, idx) => (
-          <span key={idx}>{message ? message.data : null}</span>
-        ))}
-      </ul>
+    <div className="App">
+      <header className="app-header">
+        React Chat
+      </header>
+      { socket ? (
+        <div className="chat-container">
+          <Messages socket={socket} />
+          <MessageInput socket={socket} />
+        </div>
+      ) : (
+        <div>Not Connected</div>
+      )}
     </div>
   );
-};
+}
 
 export default Chat;
