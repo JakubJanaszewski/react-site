@@ -2,8 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import io from 'socket.io-client';
 
 import ShadowElement from '../ui/ShadowElement'
-
-import './Chat.css';
+import classes from './Chat.module.css';
 
 function Chat() {
   const [socket, ] = useState(io(`ws://localhost:8000`));
@@ -30,7 +29,6 @@ function Chat() {
     });
   }
 
-
   function submitForm(e){
     e.preventDefault();
     if(inputRef.current.value){
@@ -42,15 +40,15 @@ function Chat() {
 
   return (
     <ShadowElement>
-      <div className="App">
-        <header className="app-header">
-          React Chat
+      <div className={classes.chat}>
+        <header>
+          Chat with bot
         </header>
         { socket ? (
-          <div className="chat-container">
-            <div className="message-list">
+          <div className={classes.container}>
+            <div className={classes.list}>
               {Object.keys(messages).map((key) => (
-                <li key={key}>{messages[key].who + ": " + messages[key].message}</li>
+                <p className={classes.message} id={messages[key].who} key={key}>{messages[key].message}</p>
               ))}
             </div>
             <form onSubmit={submitForm}>

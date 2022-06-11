@@ -1,11 +1,9 @@
 import OfferSearcher from '../components/offers/OfferSearcher';
 
 function MainPage() {
-  return (<>
-    <div>
+  return (
       <OfferSearcher/>
-    </div>
-  </>);
+  );
 }
   
 export default MainPage;

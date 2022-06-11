@@ -41,3 +41,12 @@
 .offerDetails h1{
     text-align: center;
 }
+
+.chat{
+    text-align: center;
+    width:50%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+

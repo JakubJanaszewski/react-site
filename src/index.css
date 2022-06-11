@@ -18,6 +18,12 @@ h2 {
     color: #2c292b;
 }
 
+h3 {
+    font-size: 1rem;
+    justify-content: center;
+    color: #2c292b;
+}
+
 textarea{
     resize: none;
 }
