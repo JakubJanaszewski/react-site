@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './MessageInput.css';
+//import './MessageInput.css';
 
 const NewMessage = ({socket}) => {
   const [value, setValue] = useState('');
