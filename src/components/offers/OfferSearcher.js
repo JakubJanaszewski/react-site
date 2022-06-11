@@ -41,19 +41,10 @@ class OfferSearcher extends React.Component {
   }
 
   init(){
-    this.cityRef.current.value = "Worldwide";
-    this.kilometersRef.current.value = "No limit";
-    this.priceMinRef.current.value = "No limit";
-    this.priceMaxRef.current.value = "No limit";
-    this.yearMinRef.current.value = "No limit";
-    this.yearMaxRef.current.value = "No limit";
-    this.mileageMinRef.current.value = "No limit";
-    this.mileageMaxRef.current.value = "No limit";
     this.fetchOffers();
   }
 
   fetchOffers(){
-
     fetch(
       `http://localhost:8000/offer/list?city=${this.state.offersData.city}&kilometers=${this.state.offersData.kilometers}&priceMin=${this.state.offersData.priceMin}&priceMax=${this.state.offersData.priceMax}&yearMin=${this.state.offersData.yearMin}&yearMax=${this.state.offersData.yearMax}&mileageMin=${this.state.offersData.mileageMin}&mileageMax=${this.state.offersData.mileageMax}`,
       {
@@ -73,52 +64,45 @@ class OfferSearcher extends React.Component {
 
   submitHandler(event) {
     event.preventDefault();
-    let newCity = this.cityRef.current.value;
-    let newKilometers = this.kilometersRef.current.value;
-    let newPriceMin = this.priceMinRef.current.value;
-    let newPriceMax = this.priceMaxRef.current.value;
-    let newYearMin = this.yearMinRef.current.value;
-    let newYearMax = this.yearMaxRef.current.value;
-    let newMileageMin = this.mileageMinRef.current.value;
-    let newMileageMax = this.mileageMaxRef.current.value;
+    let newCity = null;
+    let newKilometers = null;
+    let newPriceMin = null;
+    let newPriceMax = null;
+    let newYearMin = null;
+    let newYearMax = null;
+    let newMileageMin = null;
+    let newMileageMax = null;
 
-    if(this.cityRef.current.value === 'Worldwide'){
-      newCity = null;
+    if(this.cityRef.current.value !== ''){
+      newCity = this.cityRef.current.value;
     }
 
-    if(isNaN(this.kilometersRef.current.value)){
-      this.kilometersRef.current.value = "No limit";
-      newKilometers = null;
+    if(typeof this.kilometersRef.current.value == 'number'){
+      newKilometers = this.kilometersRef.current.value;
     }
 
-    if(isNaN(this.priceMinRef.current.value)){
-      this.priceMinRef.current.value = "No limit";
-      newPriceMin = null;
+    if(typeof this.priceMinRef.current.value== 'number'){
+      newPriceMin = this.priceMinRef.current.value;
     }
 
-    if(isNaN(this.priceMaxRef.current.value)){
-      this.priceMaxRef.current.value = "No limit";
-      newPriceMax = null;
+    if(typeof this.priceMaxRef.current.value == 'number'){
+      newPriceMax = this.priceMaxRef.current.value;
     }
 
-    if(isNaN(this.yearMinRef.current.value)){
-      this.yearMinRef.current.value = "No limit";
-      newYearMin = null;
+    if(typeof this.yearMinRef.current.value == 'number'){
+      newYearMin = this.yearMinRef.current.value;
     }
 
-    if(isNaN(this.yearMaxRef.current.value)){
-      this.yearMaxRef.current.value = "No limit";
-      newYearMax = null;
+    if(typeof this.yearMaxRef.current.value == 'number'){
+      newYearMax = this.yearMaxRef.current.value;
     }
 
-    if(isNaN(this.mileageMinRef.current.value)){
-      this.mileageMinRef.current.value = "No limit";
-      newMileageMin = null;
+    if(typeof this.mileageMinRef.current.value == 'number'){
+      newMileageMin = this.mileageMinRef.current.value;
     }
 
-    if(isNaN(this.mileageMaxRef.current.value)){
-      this.mileageMaxRef.current.value = "No limit";
-      newMileageMax = null;
+    if(typeof this.mileageMaxRef.current.value == 'number'){
+      newMileageMax = this.mileageMaxRef.current.value;
     }
 
     this.setState({offersData: 
@@ -142,35 +126,35 @@ class OfferSearcher extends React.Component {
         <form className={classes.container} onSubmit={this.submitHandler}>
           <div className={classes.control}>
             <label htmlFor='city'>City:</label>
-            <input type='text' id='city' ref={this.cityRef}></input>
+            <input type='text' id='city' ref={this.cityRef} placeholder="Worldwide"></input>
           </div>
           <div className={classes.control}>
             <label htmlFor='km'>Range:</label>
-            <input type='text' id='km' ref={this.kilometersRef} />
+            <input type='text' id='km' ref={this.kilometersRef} placeholder="No limit"/>
           </div>
           <div className={classes.control}>
             <label htmlFor='priceMin'>Min PLN:</label>
-            <input type='text' id='priceMin' ref={this.priceMinRef} />
+            <input type='text' id='priceMin' ref={this.priceMinRef} placeholder="Worldwide"/>
           </div>
           <div className={classes.control}>
             <label htmlFor='priceMax'>Max PLN:</label>
-            <input type='text' id='priceMax' ref={this.priceMaxRef} />
+            <input type='text' id='priceMax' ref={this.priceMaxRef} placeholder="Worldwide"/>
           </div>
           <div className={classes.control}>
             <label htmlFor='yearMin'>Min year:</label>
-            <input type='text' id='yearMin' ref={this.yearMinRef} />
+            <input type='text' id='yearMin' ref={this.yearMinRef} placeholder="Worldwide"/>
           </div>
           <div className={classes.control}>
             <label htmlFor='yearMax'>Max year:</label>
-            <input type='text' id='yearMax' ref={this.yearMaxRef} />
+            <input type='text' id='yearMax' ref={this.yearMaxRef} placeholder="Worldwide"/>
           </div>
           <div className={classes.control}>
             <label htmlFor='mileageMin'>Min KM:</label>
-            <input type='text' id='mileageMin' ref={this.mileageMinRef} />
+            <input type='text' id='mileageMin' ref={this.mileageMinRef} placeholder="Worldwide"/>
           </div>
           <div className={classes.control}>
             <label htmlFor='mileageMax'>Max KM:</label>
-            <input type='text' id='mileageMax' ref={this.mileageMaxRef} />
+            <input type='text' id='mileageMax' ref={this.mileageMaxRef} placeholder="Worldwide"/>
          </div>
                   
           <div className={classes.actions}>
