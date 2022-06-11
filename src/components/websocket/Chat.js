@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import io from 'socket.io-client';
 
+import ShadowElement from '../ui/ShadowElement'
+
 import './Chat.css';
 
 function Chat() {
@@ -39,29 +41,31 @@ function Chat() {
   };
 
   return (
-    <div className="App">
-      <header className="app-header">
-        React Chat
-      </header>
-      { socket ? (
-        <div className="chat-container">
-          <div className="message-list">
-            {Object.keys(messages).map((key) => (
-              <li key={key}>{messages[key].who + ": " + messages[key].message}</li>
-            ))}
+    <ShadowElement>
+      <div className="App">
+        <header className="app-header">
+          React Chat
+        </header>
+        { socket ? (
+          <div className="chat-container">
+            <div className="message-list">
+              {Object.keys(messages).map((key) => (
+                <li key={key}>{messages[key].who + ": " + messages[key].message}</li>
+              ))}
+            </div>
+            <form onSubmit={submitForm}>
+              <input
+                autoFocus
+                ref={inputRef}
+                placeholder="Type your message"
+              />
+            </form>
           </div>
-          <form onSubmit={submitForm}>
-            <input
-              autoFocus
-              ref={inputRef}
-              placeholder="Type your message"
-            />
-          </form>
-        </div>
-      ) : (
-        <div>Not Connected</div>
-      )}
-    </div>
+        ) : (
+          <div>Not Connected</div>
+        )}
+      </div>
+    </ShadowElement>
   );
 }
 
