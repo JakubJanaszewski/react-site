@@ -29,8 +29,6 @@ function SignInForm(props) {
         <div className={classes.control}>
           <label htmlFor='email'>E-mail:</label>
           <input type='text' required id='email' ref={emailInputRef} />
-        </div>
-        <div className={classes.control}>
           <label htmlFor='password'>Password:</label>
           <input type='password' required id='password' ref={passwordInputRef} />
         </div>
