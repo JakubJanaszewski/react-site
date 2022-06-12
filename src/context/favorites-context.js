@@ -66,11 +66,6 @@ export function FavoritesContextProvider(props) {
         console.log("ERROR WHILE ADDING FAVORITE")
       }
     });
-
-    // \/ TODO DELETE THIS TEMPORARY CODE \/
-    /*setUserFavorites((prevUserOffers) => {
-      return prevUserOffers.concat(favoriteOffer);
-    });*/
   }
 
   function removeFavoriteHandler(offerId) {
@@ -93,11 +88,6 @@ export function FavoritesContextProvider(props) {
         console.log("ERROR WHILE REMOVING FAVORITE")
       }
     });
-
-    // \/ TODO DELETE THIS TEMPORARY CODE \/
-    /*setUserFavorites(prevUserFavorites => {
-      return prevUserFavorites.filter(offer => offer.id !== offerId);
-    });*/
   }
 
   function itemIsFavoriteHandler(offerId) {
