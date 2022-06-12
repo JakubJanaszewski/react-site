@@ -11,10 +11,10 @@ function TopBar() {
             <Link className={classes.logo} to="/">Main Page</Link>
             <nav>
                 <ul>
+                    <li><Link to="/help">Help</Link></li>
                     {(!accountContext.isSignedIn) ?
                     <><li><Link to="/sign-up">Sign Up</Link></li> 
-                    <li><Link to="/sign-in">Sign In</Link></li>
-                    <li><Link to="/help">Help</Link></li></>
+                    <li><Link to="/sign-in">Sign In</Link></li></>
                     : 
                     <><li><Link to="/new-offer">New Offer</Link></li>
                     <li><Link to="/my-offers">My Offers</Link></li>
