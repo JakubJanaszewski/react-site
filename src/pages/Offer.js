@@ -12,8 +12,6 @@ function OfferPage() {
 
     const { offerId } = useParams();
 
-    //TODO: REPLACE WHEN CONECTION WITH DATABASE WILL BE DONE
-    //const [loading, setLoading] = useState(0);
     const [loading, setLoading] = useState(1);
 
     async function showOfferHandler() {  
