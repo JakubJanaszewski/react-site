@@ -85,28 +85,22 @@ function NewOfferForm(props) {
         <div className={classes.control}>
           <label htmlFor='title'>Title:</label>
           <input type='text' required id='title' ref={titleInputRef} />
-        </div>
-        <div className={classes.control}>
+
           <label htmlFor='price'>Price [PLN]:</label>
           <input type='text' required id='price' ref={priceInputRef} />
-        </div>
-        <div className={classes.control}>
+
           <label htmlFor='image'>Image (URL):</label>
           <input type='text' required id='image' ref={imageInputRef} />
-        </div>
-        <div className={classes.control}>
+
           <label htmlFor='year'>Year:</label>
           <input type='text' required id='year' ref={yearInputRef} />
-        </div>
-        <div className={classes.control}>
+
           <label htmlFor='mileage'>Mileage [km]:</label>
           <input type='text' required id='mileage' ref={mileageInputRef} />
-        </div>
-        <div className={classes.control}>
+
           <label htmlFor='engineCapacity'>Engine capacity [cm3]:</label>
           <input type='text' required id='engineCapacity' ref={engineCapacityInputRef} />
-        </div>
-        <div className={classes.control}>
+
           <label htmlFor='engineType'>Engine type:</label>
           <input list="typeList" required id='engineType' ref={engineTypeInputRef} />
           <datalist id="typeList">
@@ -114,8 +108,7 @@ function NewOfferForm(props) {
             <option key={engine} value={engine}/>
             ))}
           </datalist>
-        </div>
-        <div className={classes.control}>
+
           <label htmlFor='country'>Country:</label>
           <input list="countriesList" required id='country' ref={countryInputRef} />
           <datalist id="countriesList">
@@ -123,16 +116,13 @@ function NewOfferForm(props) {
             <option key={country} value={country}/>
             ))}
           </datalist>
-        </div>
-        <div className={classes.control}>
+
           <label htmlFor='city'>City:</label>
           <input type='text' required id='city' ref={cityInputRef} />
-        </div>
-        <div className={classes.control}>
+
           <label htmlFor='street'>Street:</label>
           <input type='text' required id='street' ref={streetInputRef} />
-        </div>
-        <div className={classes.control}>
+
           <label htmlFor='description'>Description:</label>
           <textarea
             id='description'
@@ -140,6 +130,7 @@ function NewOfferForm(props) {
             ref={descriptionInputRef}
           ></textarea>
         </div>
+        
         <div className={classes.actions}>
           <button>Sumbit</button>
         </div>

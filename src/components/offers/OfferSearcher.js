@@ -134,27 +134,27 @@ class OfferSearcher extends React.Component {
           </div>
           <div className={classes.control}>
             <label htmlFor='priceMin'>Min PLN:</label>
-            <input type='text' id='priceMin' ref={this.priceMinRef} placeholder="Worldwide"/>
+            <input type='text' id='priceMin' ref={this.priceMinRef} placeholder="No limit"/>
           </div>
           <div className={classes.control}>
             <label htmlFor='priceMax'>Max PLN:</label>
-            <input type='text' id='priceMax' ref={this.priceMaxRef} placeholder="Worldwide"/>
+            <input type='text' id='priceMax' ref={this.priceMaxRef} placeholder="No limit"/>
           </div>
           <div className={classes.control}>
             <label htmlFor='yearMin'>Min year:</label>
-            <input type='text' id='yearMin' ref={this.yearMinRef} placeholder="Worldwide"/>
+            <input type='text' id='yearMin' ref={this.yearMinRef} placeholder="No limit"/>
           </div>
           <div className={classes.control}>
             <label htmlFor='yearMax'>Max year:</label>
-            <input type='text' id='yearMax' ref={this.yearMaxRef} placeholder="Worldwide"/>
+            <input type='text' id='yearMax' ref={this.yearMaxRef} placeholder="No limit"/>
           </div>
           <div className={classes.control}>
             <label htmlFor='mileageMin'>Min KM:</label>
-            <input type='text' id='mileageMin' ref={this.mileageMinRef} placeholder="Worldwide"/>
+            <input type='text' id='mileageMin' ref={this.mileageMinRef} placeholder="No limit"/>
           </div>
           <div className={classes.control}>
             <label htmlFor='mileageMax'>Max KM:</label>
-            <input type='text' id='mileageMax' ref={this.mileageMaxRef} placeholder="Worldwide"/>
+            <input type='text' id='mileageMax' ref={this.mileageMaxRef} placeholder="No limit"/>
          </div>
                   
           <div className={classes.actions}>

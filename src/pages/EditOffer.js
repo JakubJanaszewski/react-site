@@ -13,7 +13,6 @@ function EditOffer() {
   const { offerId } = useParams();
 
   useEffect(() => { 
-    //UPDATE THIS ENDPOINT
     fetch(
       `http://localhost:8000/offer/${offerId}`,
       {

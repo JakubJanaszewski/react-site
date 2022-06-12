@@ -1,7 +1,6 @@
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 
 const render = (status) => {
-  //console.log(status)
   if (status === Status.FAILURE) return "FAILURE";
   return status;
 };
