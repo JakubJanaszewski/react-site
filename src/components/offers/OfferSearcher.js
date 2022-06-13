@@ -77,31 +77,31 @@ class OfferSearcher extends React.Component {
       newCity = this.cityRef.current.value;
     }
 
-    if(typeof this.kilometersRef.current.value == 'number'){
+    if(!isNaN(this.kilometersRef.current.value) && this.kilometersRef.current.value!=''){
       newKilometers = this.kilometersRef.current.value;
     }
 
-    if(typeof this.priceMinRef.current.value== 'number'){
+    if(!isNaN(this.priceMinRef.current.value) && this.priceMinRef.current.value!=''){
       newPriceMin = this.priceMinRef.current.value;
     }
 
-    if(typeof this.priceMaxRef.current.value == 'number'){
+    if(!isNaN(this.priceMaxRef.current.value) && this.priceMaxRef.current.value!=''){
       newPriceMax = this.priceMaxRef.current.value;
     }
 
-    if(typeof this.yearMinRef.current.value == 'number'){
+    if(!isNaN(this.yearMinRef.current.value) && this.yearMinRef.current.value!=''){
       newYearMin = this.yearMinRef.current.value;
     }
 
-    if(typeof this.yearMaxRef.current.value == 'number'){
+    if(!isNaN(this.yearMaxRef.current.value) && this.yearMaxRef.current.value!=''){
       newYearMax = this.yearMaxRef.current.value;
     }
 
-    if(typeof this.mileageMinRef.current.value == 'number'){
+    if(!isNaN(this.mileageMinRef.current.value) && this.mileageMinRef.current.value!=''){
       newMileageMin = this.mileageMinRef.current.value;
     }
 
-    if(typeof this.mileageMaxRef.current.value == 'number'){
+    if(!isNaN(this.mileageMaxRef.current.value) && this.mileageMaxRef.current.value!=''){
       newMileageMax = this.mileageMaxRef.current.value;
     }
 
